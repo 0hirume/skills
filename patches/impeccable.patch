@@ -1,5 +1,5 @@
 diff --git a/skill/SKILL.src.md b/skill/SKILL.src.md
-index c413ae26e832b36d54603353f1c7a0ae04784eea..567776314426a71be2fe4e81f5fe454f17f5af00 100644
+index c413ae26e832b36d54603353f1c7a0ae04784eea..9e580269a52875305f24a76643a5ef2ea73cd81e 100644
 --- a/skill/SKILL.src.md
 +++ b/skill/SKILL.src.md
 @@ -1,15 +1,23 @@
@@ -33,14 +33,14 @@ index c413ae26e832b36d54603353f1c7a0ae04784eea..567776314426a71be2fe4e81f5fe454f
  
  Core principles:
  - Go all out. No hedging, no shortcuts. The deliverable must be complete (except assets the user must provide).
-@@ -18,11 +26,11 @@ Core principles:
+@@ -18,11 +26,11 @@
  
  ## Setup
  
 -1. Run `<skill-base-dir>/scripts/impeccable context` once per session, where `<skill-base-dir>` is the directory that contains this SKILL.md (the skill folder, not a plugin root two levels above it); keep cwd at the user's project. That base directory resolves every `{{scripts_path}}/impeccable <verb>` command in this skill and its references, and `{{scripts_path}}` is the fallback only when the runtime reports no base directory. On a Windows shell without `sh`, call `{{scripts_path}}/impeccable.cmd` instead. The launcher runs a self-contained binary that ships next to it or is downloaded once on first run; no Node or other runtime is required. Pass a named source file or route as `--target <path>`. It loads PRODUCT.md, DESIGN.md, the matching surface brief, and native-platform guidance when applicable; follow its directives and do not rerun it. <!-- rule:skill-setup-context -->
 -2. Load the request's playbook: its Commands-table reference for an explicit/implied sub-command, or [reference/new-work.md](reference/new-work.md) for a new surface or replacement visual world. Inspect target and incumbent visual truth before editing. When the app cannot run, start with committed visual-regression goldens or screenshot fixtures; verify target and freshness against current tokens, CSS, components, or assets, resolve conflicts, and compare theme/variant captures. <!-- rule:skill-setup-command-ref --> <!-- rule:skill-setup-read-project -->
 -3. After resolving analysis and direction, read [reference/craft-floor.md](reference/craft-floor.md) immediately before any UI edit, including small refinements. It carries the quality floor, the absolute bans, and the reflexes no detector catches. Do not load it for planning-only work. <!-- rule:skill-craft-floor-load -->
-+1. Resolve `skill://impeccable` to its actual filesystem directory. Keep cwd at the user's project. Use the mise-managed engine with `mise exec -- impeccable <verb>` throughout this skill, not the bundled launchers. For each engine subprocess, set `IMPECCABLE_SKILL_DIR` to that directory, `IMPECCABLE_PROVIDER_ID=omp`, `IMPECCABLE_NO_TELEMETRY=1`, and `IMPECCABLE_NO_UPDATE_CHECK=1`; also use the native hook's current `IMPECCABLE_SESSION_ID` and `IMPECCABLE_CACHE_ROOT` scope when it is present. These are process-local values, not persistent configuration. Run `mise exec -- impeccable engine-probe` to confirm the matching engine, then `mise exec -- impeccable context` once per session. Pass a named source file or route as `--target <path>`. It loads PRODUCT.md, DESIGN.md, the matching surface brief, and native-platform guidance when applicable; use its findings within the authorized scope. Interpret its reference paths through `skill://impeccable/reference/<name>.md` and its command suggestions through `/skill:impeccable`. The upstream `reference/` layout is retained because the engine reads it directly. <!-- rule:skill-setup-context -->
++1. Resolve `skill://impeccable` to its actual filesystem directory. Keep cwd at the user's project. Use the mise-managed engine with `mise exec -- impeccable <verb>` throughout this skill, not the bundled launchers. For each engine subprocess, set `IMPECCABLE_SKILL_DIR` to that directory, `IMPECCABLE_PROVIDER_ID=omp`, `IMPECCABLE_NO_TELEMETRY=1`, and `IMPECCABLE_NO_UPDATE_CHECK=1`. These are process-local values, not persistent configuration. Run `mise exec -- impeccable engine-probe` to confirm the matching engine, then `mise exec -- impeccable context` once per session. Pass a named source file or route as `--target <path>`. It loads PRODUCT.md, DESIGN.md, the matching surface brief, and native-platform guidance when applicable; use its findings within the authorized scope. Interpret its reference paths through `skill://impeccable/reference/<name>.md` and its command suggestions through `/skill:impeccable`. The upstream `reference/` layout is retained because the engine reads it directly. <!-- rule:skill-setup-context -->
 +2. Load the request's playbook: its Commands-table reference for an explicit/implied sub-command, or [reference/new-work.md](skill://impeccable/reference/new-work.md) for a new surface or replacement visual world. Inspect target and incumbent visual truth before editing. When the app cannot run, start with committed visual-regression goldens or screenshot fixtures; verify target and freshness against current tokens, CSS, components, or assets, resolve conflicts, and compare theme/variant captures. <!-- rule:skill-setup-command-ref --> <!-- rule:skill-setup-read-project -->
 +3. After resolving analysis and direction, read [reference/craft-floor.md](skill://impeccable/reference/craft-floor.md) immediately before any UI edit, including small refinements. It carries the quality floor, the absolute bans, and the reflexes no detector catches. Do not load it for planning-only work. <!-- rule:skill-craft-floor-load -->
  
@@ -49,7 +49,7 @@ index c413ae26e832b36d54603353f1c7a0ae04784eea..567776314426a71be2fe4e81f5fe454f
  
  ## How to design
  
-@@ -40,51 +48,55 @@ The mode names what the visitor's success looks like on this surface.
+@@ -40,51 +48,53 @@
  - **Read:** the visitor understands something. Docs, articles, guides, help, changelogs. Structure for comprehension, then make the reading experience worth staying in. <!-- rule:skill-read-register -->
  - **Experience:** the visitor is inside the work itself. Portfolios, galleries, showcases. Let the artifact lead from the first viewport; the interface recedes. <!-- rule:skill-experience-register -->
  
@@ -127,10 +127,9 @@ index c413ae26e832b36d54603353f1c7a0ae04784eea..567776314426a71be2fe4e81f5fe454f
 +**Pin / Unpin:** `/skill:impeccable pin <command>` and `/skill:impeccable unpin <command>` create or remove an OMP prompt-template shortcut after explicit authorization. Validate the command against `scripts/command-metadata.json`; edit the skills repository's `local/commands/<command>.md`, then run its `prepare.nu` to refresh the deployed commands. A new `<command>.md` contains description and argument-hint frontmatter, instructions to read `skill://impeccable` and run the selected command for the authorized request, followed by `$ARGUMENTS`. Never overwrite an existing command; unpin only an unchanged shortcut whose complete body matches that redirect. Do not run the engine's provider-specific pin operation for OMP.
  
 -**Hooks:** `{{command_prefix}}impeccable hooks <on|off|status|ignore-rule|ignore-file|ignore-value|reset>` manages the design detector hook for this project (auto-runs the detector after UI file edits and surfaces findings). Load [reference/hooks.md](reference/hooks.md) when the user invokes it with any argument.
-+**Hooks:** The skills repository's `local/hooks/post/impeccable.ts` factory registers native OMP post-edit and completion checks. It feeds actual mutation metadata to the installed engine, returns findings as ordinary tool/message data, and requests continuation for deep completion findings. `/skill:impeccable hooks <on|off|status|ignore-rule|ignore-file|ignore-value|reset>` manages project detector configuration; load [reference/hooks.md](skill://impeccable/reference/hooks.md) for the requested action. Use actual native hook output as evidence of scans; when automatic execution is unavailable, report that failure and use the manual detector within the authorized task.
- 
+-
 -**Doctor:** `{{command_prefix}}impeccable doctor` reports and repairs drift between this project's Impeccable artifacts (PRODUCT.md, DESIGN.md and its sidecar, config, surface briefs, the hook) and what this version reads. Load [reference/doctor.md](reference/doctor.md) when the user invokes it, or when they ask what is out of date, stale, or needs refreshing. A `CONTEXT_STALE` directive in Setup's output is the cheap subset of the same report; act on it there per its own instructions rather than running doctor unasked. <!-- rule:skill-doctor-route -->
-+**Doctor:** `/skill:impeccable doctor` reports drift between this project's Impeccable artifacts (PRODUCT.md, DESIGN.md and its sidecar, config, surface briefs, the hook) and what this version reads. Load [reference/doctor.md](skill://impeccable/reference/doctor.md) when the user invokes it or asks what is stale. Repairs require explicit authorization; a `CONTEXT_STALE` finding during setup is reported without running doctor unasked. <!-- rule:skill-doctor-route -->
++**Doctor:** `/skill:impeccable doctor` reports drift between this project's Impeccable artifacts (PRODUCT.md, DESIGN.md and its sidecar, config, surface briefs) and what this version reads. Load [reference/doctor.md](skill://impeccable/reference/doctor.md) when the user invokes it or asks what is stale. Repairs require explicit authorization; a `CONTEXT_STALE` finding during setup is reported without running doctor unasked. <!-- rule:skill-doctor-route -->
  
  **Never repair drift as a side effect of a design task.** A `CONTEXT_STALE` finding is reported, not acted on, unless the user asks. The one exception is a finding marked `auto`, which the next write to that file performs anyway. <!-- rule:skill-drift-not-a-side-quest -->
 +
@@ -207,7 +206,7 @@ index d2c4e107c8031e932bbdab6bb2cfb3efe0edd225..48ec01b7874108f4fa6cb4b8ed6359fc
  effort: medium
  max-turns: 30
 diff --git a/skill/agents/impeccable-finish-reviewer.md b/skill/agents/impeccable-finish-reviewer.md
-index ab1afa66103d709bdb1cf6a63388321facdd9e71..67fd81d968e3a9cdde86daeb5948bc8a439517fe 100644
+index ab1afa66103d709bdb1cf6a63388321facdd9e71..352914d39b02900a68d794d3ccd4f4e120a56e11 100644
 --- a/skill/agents/impeccable-finish-reviewer.md
 +++ b/skill/agents/impeccable-finish-reviewer.md
 @@ -1,8 +1,7 @@
@@ -220,23 +219,29 @@ index ab1afa66103d709bdb1cf6a63388321facdd9e71..67fd81d968e3a9cdde86daeb5948bc8a
  model: inherit
  effort: high
  max-turns: 30
-@@ -22,7 +21,7 @@ A hard turn ceiling ends the run without warning; a run that ends before its con
+@@ -22,7 +21,7 @@
  
  ## Input Contract
  
 -Expect: the original request; the confirmed user answers; the artifact path(s); the screenshots the parent captured, in `.impeccable/review/` (web: `desktop.png` and `mobile.png`; native: device-class names such as `phone.png` and `tablet.png`, suffixed per OS on adaptive). A screenshot path the calling brief names is authoritative when the file exists; `.impeccable/review/` is where to look when the brief names none or a named path is missing, never a filename you invent. Also expect: the direction contract (THESIS, OWN-WORLD, STORY, FIRST VIEWPORT, FORM); the PRODUCT.md path; existing hook or detector findings; the chosen world's QUALITY BAR card paths; on a comp-led build the approved comp path (a code-led build has none; it passes the chosen decision comp as a separate critique-reference input, labeled as such, and nothing here that binds "the approved comp" binds it); on a comp-led build the build state (`.impeccable/build/state.json`), the measured spec (`.impeccable/build/spec.json`), and the diff directories `.impeccable/review/diff/hero/` and `.impeccable/review/diff/final/` (each holds `side-by-side.png`, `heatmap.png`, `regions/<id>.png` paired crops, and `report.json` with per-region scores and verdicts from `impeccable comp-diff`); and the skill's `reference/craft-floor.md` path. On a native (`ios` / `android` / `adaptive`) build the packet adds the platform reference path(s) (`reference/ios.md` / `reference/android.md`) and a line saying no detector ran: read the platform reference alongside the craft floor, judge every check in the platform's own conventions, treat the screenshots as device captures, and know your floor check is the build's only slop gate. When the harness can view images, open the screenshots, the comp, and the card first, and inventory the comp's salient elements in your own words before reading the direction contract or any builder-authored summary: a review anchored on the contract inherits whatever the builder's abstraction dropped.
-+Expect: the original request; the confirmed user answers; the artifact path(s); the screenshots the parent captured, in `.impeccable/review/` (web: `desktop.png` and `mobile.png`; native: device-class names such as `phone.png` and `tablet.png`, suffixed per OS on adaptive). A screenshot path the calling brief names is authoritative when the file exists; `.impeccable/review/` is where to look when the brief names none or a named path is missing, never a filename you invent. Also expect: the direction contract (THESIS, OWN-WORLD, STORY, FIRST VIEWPORT, FORM); the PRODUCT.md path; existing hook or detector findings; the chosen world's QUALITY BAR card paths; on a comp-led build the approved comp path (a code-led build has none; it passes the chosen decision comp as a separate critique-reference input, labeled as such, and nothing here that binds "the approved comp" binds it); on a comp-led build the build state (`.impeccable/build/state.json`), the measured spec (`.impeccable/build/spec.json`), and the diff directories `.impeccable/review/diff/hero/` and `.impeccable/review/diff/final/` (each holds `side-by-side.png`, `heatmap.png`, `regions/<id>.png` paired crops, and `report.json` with per-region scores and verdicts from `mise exec -- impeccable comp-diff`); and the skill's `reference/craft-floor.md` path. On a native (`ios` / `android` / `adaptive`) build the packet adds the platform reference path(s) (`reference/ios.md` / `reference/android.md`) and a line saying no detector ran: read the platform reference alongside the craft floor, judge every check in the platform's own conventions, treat the screenshots as device captures, and know your floor check is the build's only slop gate. When the harness can view images, open the screenshots, the comp, and the card first, and inventory the comp's salient elements in your own words before reading the direction contract or any builder-authored summary: a review anchored on the contract inherits whatever the builder's abstraction dropped.
++Expect: the original request; the confirmed user answers; the artifact path(s); the screenshots the parent captured, in `.impeccable/review/` (web: `desktop.png` and `mobile.png`; native: device-class names such as `phone.png` and `tablet.png`, suffixed per OS on adaptive). A screenshot path the calling brief names is authoritative when the file exists; `.impeccable/review/` is where to look when the brief names none or a named path is missing, never a filename you invent. Also expect: the direction contract (THESIS, OWN-WORLD, STORY, FIRST VIEWPORT, FORM); the PRODUCT.md path; existing detector findings; the chosen world's QUALITY BAR card paths; on a comp-led build the approved comp path (a code-led build has none; it passes the chosen decision comp as a separate critique-reference input, labeled as such, and nothing here that binds "the approved comp" binds it); on a comp-led build the build state (`.impeccable/build/state.json`), the measured spec (`.impeccable/build/spec.json`), and the diff directories `.impeccable/review/diff/hero/` and `.impeccable/review/diff/final/` (each holds `side-by-side.png`, `heatmap.png`, `regions/<id>.png` paired crops, and `report.json` with per-region scores and verdicts from `mise exec -- impeccable comp-diff`); and the skill's `reference/craft-floor.md` path. On a native (`ios` / `android` / `adaptive`) build the packet adds the platform reference path(s) (`reference/ios.md` / `reference/android.md`) and a line saying no detector ran: read the platform reference alongside the craft floor, judge every check in the platform's own conventions, treat the screenshots as device captures, and know your floor check is the build's only slop gate. When the harness can view images, open the screenshots, the comp, and the card first, and inventory the comp's salient elements in your own words before reading the direction contract or any builder-authored summary: a review anchored on the contract inherits whatever the builder's abstraction dropped.
  
  ## Checks, in order
  
-@@ -30,7 +29,7 @@ Expect: the original request; the confirmed user answers; the artifact path(s);
+@@ -30,11 +29,11 @@
  1. **Persistence.** PRODUCT.md exists. On a comp-led build, `.impeccable/build/state.json` exists and every phase before `review` is `closed` or explicitly `skipped`; an open or failed phase is a material finding. A comp-led config with no state file, or a state whose `comps` phase is neither `closed` nor `skipped`, means the comp round was skipped and the build ran from a world description alone, a material finding that outranks craft; a phase closed with a `forced` record is disclosed as a material finding unless the user downgraded the comp in words the packet quotes; a state file whose `hero.gate.score` sits under 0.72, or a missing state file, means the reproduction ran unproven, a material finding, and `.impeccable/review/hero-repro.png` must exist either way. When DESIGN.md predates this build (an extension or redesign), it matches the built world; on a new world it is written after this review by the documenter, so its absence here is not a finding. When comp-round comps exist under `.impeccable/mocks/`, an approval record exists too: the surface brief naming the approved comp, or an `approved` flag in its sidecar. Comp-round comps with no recorded pick mean the approval point was skipped, a material finding. Files under `.impeccable/mocks/decision/` are exempt: they are the direction round's dealt hand, produced before any comp round, and imply no approval whatever the build path; a code-led build has no comp round at all.
  2. **Fidelity.** Start from the measurement, then judge what it cannot: read `.impeccable/review/diff/final/report.json` (and hero) first; every region scored `missing` or `contradicted` is a matrix row in that state unless the paired crop under `regions/` shows the score is wrong, and you say why; a region scored `match` still gets your eye for lettering character and material, which the numbers do not measure. Then, against your own element inventory of the approved comp, never against the contract's summary of it: topology, reading order, focal scale, overlaps and z-order, density, signature geometry, the primary action's treatment (a CTA the comp physically works, dissolves, or stamps is a signature element; its plain-rectangle rendition is contradicted), navigation items and icons, headline levels and scale relationships. Classify every salient element: match, acceptable adaptation, missing, contradicted, or added without approval. Three rows are mandatory in every matrix. TYPE: the display lettering's character, compression, width, weight, contrast, terminals, against the comp's; a face of a different character is contradicted however the layout matches. MATERIAL: an element rendered as flat CSS or clean vector where the comp shows painted, textured, dimensional, or photographic material is contradicted regardless of placement; medium is part of the promise. GROUND: the page field's value and temperature against the comp's, sampled from pixels on both sides when tooling allows rather than judged from memory, and read as the net on-screen result where a texture or tile paints over the base color; a ground warmer or cooler than the comp's is contradicted however faithfully the layout matches, and drift toward the rendition prior (warm cream on light grounds, blue-black slate on dark) is the direction to hunt. With no approved comp, TYPE and MATERIAL do not lapse: judge them against the contract's OWN-WORLD and the world's real materials, and treat faked physicality (CSS bevels, embossing, stamped-metal or chalk effects imitating a material the page never renders) as contradicted on its face; imitation material is the single most reliable mark of machine-made design. GROUND narrows rather than lapses: with no comp to sample, a color OWN-WORLD names is the target and the same warmer-or-cooler judgment applies; when OWN-WORLD names none, there is no GROUND authority, and the review says so in place of a verdict, because a target the reviewer invents turns the check into taste. A critique-reference comp on such a build is provocation, not spec: no element matrix, no adaptation citations, no asset obligations; its one contribution is what the image dared that the build did not, and dares worth adopting enter material_fixes as ordinary ordered fixes. An adaptation counts as intentional only when it cites the user answer, surface brief, accessibility need, or product truth that forced it; an uncited deviation is a defect. A missing signature element, a changed topology, or content added without approval fails fidelity and outranks every craft point in material_fixes. When MATERIAL is contradicted on the focal element, or contradiction is the page rather than the exception, stop ordering repairs: make the first material fix a rebuild directive naming the comp regions to re-derive and the assets to produce; a list of patches against a rejected page launders the rejection into an approval. A fix that requires producing an asset says so explicitly ("produce: <region> as a raster asset"), never phrased as a style adjustment the parent will answer with CSS. The comp is the spec for composition, topology, element inventory, density, lettering character, and material; it is not a pixel spec for semantics, accessibility, or responsive reflow, and that allowance covers translation, never replacement.
  3. **Ceiling.** Against the QUALITY BAR card: name the world's native devices the build left unused, frame, depth, lettering treatment, ornament density, motion. The card governs commitment and finish, never composition.
 -4. **Contract, promise by promise.** First verify FORM carries the seed reference the concept roll printed (`seed:` and 16 hex), corroborated against the roll output the parent saw or with `impeccable concept-seed --check-seed <reference>` (exit 0 means this machine rolled it). A raw seed key in FORM is itself a material fix: the brief is committed, and the key must not be. `seed: none (unavailable)` stands only when the roll printed SEED REFERENCE unavailable, which `--check-seed none` confirms with exit 0. Any other contract with no reference, or one neither source corroborates, means the roll was skipped, a material fix ahead of any craft point. Then, for each of the five blocks: does the render keep the promise? Apply the memory test to the first viewport.
 +4. **Contract, promise by promise.** First verify FORM carries the seed reference the concept roll printed (`seed:` and 16 hex), corroborated against the roll output the parent saw or with `mise exec -- impeccable concept-seed --check-seed <reference>` (exit 0 means this machine rolled it). A raw seed key in FORM is itself a material fix: the brief is committed, and the key must not be. `seed: none (unavailable)` stands only when the roll printed SEED REFERENCE unavailable, which `--check-seed none` confirms with exit 0. Any other contract with no reference, or one neither source corroborates, means the roll was skipped, a material fix ahead of any craft point. Then, for each of the five blocks: does the render keep the promise? Apply the memory test to the first viewport.
  5. **Truth.** Demonstration data authored and labeled synthetic; no invented commercial claims; unanswered claims present as marked placeholders, not omissions. Every raster region of the spec shipped as its plate (the spec names the file; the page references it; the region's diff row is not `missing`), not a gradient, an inline SVG, or a many-vertex `clip-path` standing in for it, and every produced asset visibly present in the screenshots; an asset applied at near-zero opacity or buried behind a wash is a compliance token, not a shipped material, and the detector's `buried-raster` and `organic-clip-path` findings in the packet are material fixes.
- 6. **Floor.** Read the craft floor's Refuse list and hold the screenshots against it: kickers and eyebrows, hard offset shadows outside a neobrutalist world, glyph icons, system display faces, gradient text, side stripes, and the rest. A banned element is a material fix even when it matches nothing in the comp: the builder loaded the same ban before writing it, and fidelity to a comp cannot authorize what the floor refuses. The parent's hook findings cover this mechanically where hooks run; this check exists because hookless harnesses reach you with none, and the last two live sessions shipped five kickers past a reviewer that never looked.
+-6. **Floor.** Read the craft floor's Refuse list and hold the screenshots against it: kickers and eyebrows, hard offset shadows outside a neobrutalist world, glyph icons, system display faces, gradient text, side stripes, and the rest. A banned element is a material fix even when it matches nothing in the comp: the builder loaded the same ban before writing it, and fidelity to a comp cannot authorize what the floor refuses. The parent's hook findings cover this mechanically where hooks run; this check exists because hookless harnesses reach you with none, and the last two live sessions shipped five kickers past a reviewer that never looked.
++6. **Floor.** Read the craft floor's Refuse list and hold the screenshots against it: kickers and eyebrows, hard offset shadows outside a neobrutalist world, glyph icons, system display faces, gradient text, side stripes, and the rest. A banned element is a material fix even when it matches nothing in the comp: the builder loaded the same ban before writing it, and fidelity to a comp cannot authorize what the floor refuses.
+ 
+-Do not run a second detector pass; mechanical findings belong to the parent's hooks.
++Do not run a second detector pass; reuse the parent's detector findings.
+ 
+ ## Disposition
  
 diff --git a/skill/agents/impeccable-manual-edit-applier.md b/skill/agents/impeccable-manual-edit-applier.md
 index 81fe9fd8170738e4f66c1831f654285a7582592b..03b426b4b8a2354b6d9718c90c667bb745a9bc5b 100644
@@ -499,10 +504,18 @@ index 44962913269431a96fa9d2b5871c72193959ad3e..dd953b9bd857d3428f822d1c9814169e
  Then run `plan`, `capture` and `serve` again. Unchanged decisions carry over, so the user sees only what changed. Any spec change, or a plate replaced after acceptance, needs a new round; the build-phase gate stays closed until the review of the current spec is accepted.
  
 diff --git a/skill/reference/craft-floor.md b/skill/reference/craft-floor.md
-index 0252f5b9cd77acaafce46dd57cb93b054c76ac0a..91bc37fa68876ed34caaca5387d1ab577aa77719 100644
+index 0252f5b9cd77acaafce46dd57cb93b054c76ac0a..6b11748a837c8b9c39150e10f619e81e58d3bb9b 100644
 --- a/skill/reference/craft-floor.md
 +++ b/skill/reference/craft-floor.md
-@@ -40,13 +40,9 @@ Surface habits:
+@@ -1,6 +1,6 @@
+ # Craft floor
+ 
+-Load this after the direction is settled, and build without announcing the checklist. A pinned brief or the committed visual world overrides anything here; your own habit does not. When the design hook is active it already enforces the mechanical checks below as you edit: act on its findings instead of re-auditing each rule. <!-- rule:skill-craft-floor -->
++Load this after the direction is settled, and build without announcing the checklist. A pinned brief or the committed visual world overrides anything here; your own habit does not. <!-- rule:skill-craft-floor -->
+ 
+ ## Verify
+ 
+@@ -40,13 +40,9 @@
  - Unicode glyphs or emoji standing in for an icon system. Icons are drawn, from a real library or authored SVG, in one consistent stroke and weight. <!-- rule:skill-ban-glyph-icons -->
  - Geometric masks standing in for organic contours. A circle, polygon, or radial-gradient cutout approximating a photographic subject's edge is the cheap version of the effect and reads worse than omitting it. Derive an alpha matte from the actual image, or produce a cut-out asset. <!-- rule:skill-ban-geometric-occlusion-mask -->
  - Light or dark picked by category. Pick it from the use scene: who, where, under what ambient light. <!-- rule:skill-reflex-theme-by-habit -->
@@ -791,10 +804,16 @@ index bc0f6e96472be319e27e62e681975d3716e7b43a..8c7646eccaa9a06901af62a5ef8250f2
 -When the cuts feel right, hand off to `{{command_prefix}}impeccable polish` for the final pass. As Antoine de Saint-Exupéry put it: "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."
 +When the cuts feel right, hand off to `/skill:impeccable polish` for the final pass. As Antoine de Saint-Exupéry put it: "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."
 diff --git a/skill/reference/doctor.md b/skill/reference/doctor.md
-index 92387c2eeb47dba7b0eabbf7f0af427a2ac86fff..15434fc2108b5511a918495c6627b769d054f228 100644
+index 92387c2eeb47dba7b0eabbf7f0af427a2ac86fff..a1829b8c31164409e54f82134d544eee7ffb96b0 100644
 --- a/skill/reference/doctor.md
 +++ b/skill/reference/doctor.md
-@@ -6,14 +6,14 @@ This is maintenance, not design. Do not redesign anything, do not open files out
+@@ -1,4 +1,4 @@
+-Report and repair drift between this project's Impeccable artifacts and what the installed version reads: PRODUCT.md, DESIGN.md and its `.impeccable/design.json` sidecar, `.impeccable/config.json`, persisted surface briefs, and the design hook.
++Report and repair drift between this project's Impeccable artifacts and what the installed version reads: PRODUCT.md, DESIGN.md and its `.impeccable/design.json` sidecar, `.impeccable/config.json`, and persisted surface briefs.
+ 
+ This is maintenance, not design. Do not redesign anything, do not open files outside the ones the report names, and do not run any other command as a side effect.
+ 
+@@ -6,14 +6,14 @@
  
  Three kinds of drift travel under "out of date". Keep them apart:
  
@@ -811,7 +830,7 @@ index 92387c2eeb47dba7b0eabbf7f0af427a2ac86fff..15434fc2108b5511a918495c6627b769
  ```
  
  Add `--target <path>` when the user named a workspace, file, or route in a monorepo. Without it the report describes the repo root, and in a monorepo that is often the wrong project.
-@@ -26,7 +26,7 @@ An empty `findings` array is the good outcome. Say so in one line and stop.
+@@ -26,7 +26,7 @@
  
  The severity says what should happen, not how bad it is.
  
@@ -820,7 +839,7 @@ index 92387c2eeb47dba7b0eabbf7f0af427a2ac86fff..15434fc2108b5511a918495c6627b769
  - **`mention`** needs the user to know but not to decide anything now. State each one in a sentence with its offered fix.
  - **`route`** needs a specific command. Name the command and the gap it would close. Run it only if the user asks in this turn; `init` and `document` are conversations, not repairs you perform unattended.
  
-@@ -44,11 +44,11 @@ The same restraint applies to `workspace-context-inherited`. Inheritance is a de
+@@ -44,11 +44,11 @@
  
  ## Monorepo notes
  
@@ -899,10 +918,10 @@ index 0f49cfbaa0f6787b0f3b2e5e89980f88fe06af7c..189a129820a3c33b9d1cd2fb8e574ea4
  ## Step 2: Identify Patterns
  
 diff --git a/skill/reference/generate.md b/skill/reference/generate.md
-index 7247104e9a1e743cf19ac0910d8788ef889cc6eb..f22a4693ab7f9a2b6280ab9a3015f36e94acf424 100644
+index 7247104e9a1e743cf19ac0910d8788ef889cc6eb..e8bf85a390cee3908ce5dbe1fbdfb7f79d1b0070 100644
 --- a/skill/reference/generate.md
 +++ b/skill/reference/generate.md
-@@ -1,10 +1,10 @@
+@@ -1,16 +1,15 @@
  > **Additional context needed**: only the target element, when the request does not name one that resolves uniquely on the page.
  
 -Generate is the fast lane into live mode: the user names an element, a direction, and a count in one sentence, and within a minute they are cycling through variants in their browser. One command boots the helper, hands the element to the overlay in the page your harness already shows (it scrolls to it, selects it, and fires the same Go a click fires) and returns the generate event; one edit writes the variants; one call replies and waits for the user's choice, which the helper bakes into source itself. This file owns the lane's plumbing; from the event onward the design work is [live.md](live.md)'s, unchanged, so read it in full now if you have not this session.
@@ -913,9 +932,16 @@ index 7247104e9a1e743cf19ac0910d8788ef889cc6eb..f22a4693ab7f9a2b6280ab9a3015f36e
 -The plumbing is where the lane saves time: one command starts the session around the page your harness already shows, one call replies and waits, and nothing here is a browser you have to babysit. The design work is not where it saves time. Setup runs as for any command (`impeccable context`, this reference, craft-floor.md before the edit), and the variants are planned, written, and accepted exactly the way a live session plans, writes, and accepts them.
 +The plumbing is where the lane saves time: one command starts the session around the page your harness already shows, one call replies and waits, and nothing here is a browser you have to babysit. The design work is not where it saves time. Setup runs as for any command (`mise exec -- impeccable context`, this reference, craft-floor.md before the edit), and the variants are planned, written, and accepted exactly the way a live session plans, writes, and accepts them.
  
- Three prohibitions cover the known ways this command goes wrong:
+-Three prohibitions cover the known ways this command goes wrong:
++These prohibitions cover the known ways this command goes wrong:
  
-@@ -31,7 +31,7 @@ Three parts, all from the user's sentence:
+ - **Never run init or document, and never ask for PRODUCT.md or DESIGN.md.** When they exist, the start command prints them under `boot` and you use them. When they do not, it says so (`contextMissing`, `contextNote`) and you extract the identity from the event (Step 3). A missing file is never a reason to interview the user inside this command; offer `init` in one line after the session ends.
+ - **Never hand-write a variants wrapper or invent a session id.** Only the browser mints session ids (8 hex characters, at Go). A missing event is fixed by rerunning Step 2, never with a direct source edit.
+-- **Do not act on hook findings while live markers are in the file**, and do not restyle variants to appease them; the accept verifies the file once the variant is permanent.
+ 
+ ## Step 1: Parse the request
+ 
+@@ -31,7 +30,7 @@
    - **rule-breaking words**: `overdrive`
    - **Wording that carries intent but no vocabulary word** ("make it feel like a bank", "warmer", "more premium"): `impeccable`, with the user's wording passed as the prompt.
    - **An action fits AND extra intent rides along** ("bolder, but keep it monochrome"): that action, with the rest as the prompt.
@@ -924,7 +950,7 @@ index 7247104e9a1e743cf19ac0910d8788ef889cc6eb..f22a4693ab7f9a2b6280ab9a3015f36e
  - **The element description** ("the pricing cards", "the hero heading"): Step 2 resolves it to a selector.
  
  Done when you hold an action from the vocabulary (asked for, when the request named no direction), a count from 1 to 8, and the element description.
-@@ -40,16 +40,16 @@ Done when you hold an action from the vocabulary (asked for, when the request na
+@@ -40,16 +39,16 @@
  
  **Reuse** the dev server already running and the tab your harness already shows it in; a second server or a second browser window is the failure this step prevents.
  
@@ -946,7 +972,7 @@ index 7247104e9a1e743cf19ac0910d8788ef889cc6eb..f22a4693ab7f9a2b6280ab9a3015f36e
  
  - `--target`: the file that renders the element when the request or the project makes it obvious; skip it otherwise.
  - `--dev-url`: the origin from 1; omit it and the boot probes.
-@@ -57,13 +57,13 @@ Run it in the foreground in Cursor and Claude Code (it returns within the wait);
+@@ -57,13 +56,13 @@
  - `--boot`: runs the lane's boot (PRODUCT.md and DESIGN.md loaded again for the helper, missing files tolerated, dev URL found, bottom bar hidden for the helper's lifetime) and reuses a helper that is already running. Its result rides along as `boot`.
  - Also available: `--prompt`, `--text` (keep only matches whose visible text contains a snippet), `--index` (1-based pick among matches).
  
@@ -963,7 +989,7 @@ index 7247104e9a1e743cf19ac0910d8788ef889cc6eb..f22a4693ab7f9a2b6280ab9a3015f36e
  
  Done when the output shows `ok: true`, a `sessionId`, and an `event`, reached with at most one server started and one tab opened by you.
  
-@@ -74,10 +74,10 @@ The event is a standard `generate` event: the picked element's context, a prefli
+@@ -74,10 +73,10 @@
  **Reply and wait in one call**, with the file you wrote:
  
  ```bash
@@ -976,7 +1002,7 @@ index 7247104e9a1e743cf19ac0910d8788ef889cc6eb..f22a4693ab7f9a2b6280ab9a3015f36e
  
  Then tell the user, in one line, where their variants are: *"Three [bolder] variants are live on [the pricing cards]: cycle with the floating bar's arrows, adjust the Tune knobs, and Accept the keeper."*
  
-@@ -85,17 +85,17 @@ Outside the replace path, read the matching live.md section before acting: `scaf
+@@ -85,17 +84,17 @@
  
  ## Step 4: Accept and close
  
@@ -1008,152 +1034,124 @@ index e8a0567c5964ab154a726a2e53ea2b6563b780d5..8ee9f65df630ccb47cfb814bf2df9a27
 -When edge cases are covered, hand off to `{{command_prefix}}impeccable polish` for the final pass.
 +When edge cases are covered, hand off to `/skill:impeccable polish` for the final pass.
 diff --git a/skill/reference/hooks.md b/skill/reference/hooks.md
-index 7e8b5cf24220a84f42baf236f743fb4d25411cb1..cdd895bd8fe064fed74b86726895945fb57651f0 100644
+deleted file mode 100644
+index 7e8b5cf24220a84f42baf236f743fb4d25411cb1..0000000000000000000000000000000000000000
 --- a/skill/reference/hooks.md
-+++ b/skill/reference/hooks.md
-@@ -1,4 +1,4 @@
++++ /dev/null
+@@ -1,113 +0,0 @@
 -# /impeccable hooks
-+# /skill:impeccable hooks
- 
- Manage the **design detector hook** for the current project.
- 
-@@ -6,13 +6,13 @@ The hook runs the impeccable design detector on direct file edits to design-rele
- 
- The detector rules run in two tiers. The per-edit hook surfaces only the immediate tier: mechanical, unambiguous problems worth interrupting an edit for, such as broken images, overflowing content, contrast and legibility failures, gradient text, glow shadows, and design-system drift. Everything else (copy cadence, palette and typography taste, layout rhythm) is deferred to a deep pass on the `Stop` hook event, which runs the full rule set over every UI file touched in the session and surfaces the remaining findings once, deduplicated against what the per-edit pass already reported. A session with nothing left to report stops silently. Set `hook.perEditRules` to `"all"` in `.impeccable/config.json` to restore the full rule set on every edit. The Stop deep pass is wired for Claude Code, Codex, and Grok Build, which dispatch a native `Stop` hook event. Cursor does not get one (its stop hook is not consistently dispatched; the pre-write gate covers it), and GitHub Copilot's stop-style events do not feed context back to the model, so they keep the full detector per edit. Grok also fires an observe-only Stop with `reason: "shutdown"` after `end_turn`; skip that one, scan only `end_turn`.
- 
+-
+-Manage the **design detector hook** for the current project.
+-
+-The hook runs the impeccable design detector on direct file edits to design-relevant files (`.tsx`, `.jsx`, `.html`, `.vue`, `.svelte`, `.astro`, `.css`, `.scss`, `.sass`, `.less`, `.ts`, `.js`). Claude Code, Codex, and GitHub Copilot use a post-tool-use hook and push a short system reminder into the agent's context after the edit; findings get a correction prompt, pending issues get a re-nudge, and clean UI-ish files get a short ack unless quiet mode is on (`hook.quiet` in config). Plain `.ts` and `.js` files are still scanned, but stay quiet unless the detector finds something. Cursor uses `preToolUse` to block bad proposed writes before they land and stays silent when it allows a clean write. Grok Build fires the same PostToolUse scan to mark touched files, then surfaces findings on Stop `additionalContext`. Do not expect a Grok per-edit reminder: Grok discards that stdout.
+-
+-The detector rules run in two tiers. The per-edit hook surfaces only the immediate tier: mechanical, unambiguous problems worth interrupting an edit for, such as broken images, overflowing content, contrast and legibility failures, gradient text, glow shadows, and design-system drift. Everything else (copy cadence, palette and typography taste, layout rhythm) is deferred to a deep pass on the `Stop` hook event, which runs the full rule set over every UI file touched in the session and surfaces the remaining findings once, deduplicated against what the per-edit pass already reported. A session with nothing left to report stops silently. Set `hook.perEditRules` to `"all"` in `.impeccable/config.json` to restore the full rule set on every edit. The Stop deep pass is wired for Claude Code, Codex, and Grok Build, which dispatch a native `Stop` hook event. Cursor does not get one (its stop hook is not consistently dispatched; the pre-write gate covers it), and GitHub Copilot's stop-style events do not feed context back to the model, so they keep the full detector per edit. Grok also fires an observe-only Stop with `reason: "shutdown"` after `end_turn`; skip that one, scan only `end_turn`.
+-
 -Every hook is a mechanical pass. The reflexes no scanner catches live in [craft-floor.md](craft-floor.md), which the skill loads before it edits UI, so they apply whether or not a hook is wired. A session with no automatic hook gets one `MANUAL_DETECTOR_REQUIRED` directive from `impeccable context` asking for a single detector run at the end.
-+Every hook is a mechanical pass. The reflexes no scanner catches live in [craft-floor.md](skill://impeccable/reference/craft-floor.md), which the skill loads before it edits UI, so they apply whether or not a hook is wired. A session with no automatic hook gets one `MANUAL_DETECTOR_REQUIRED` directive from `mise exec -- impeccable context` asking for a single detector run at the end.
- 
- This command toggles the hook **per project** by editing `.impeccable/config.json` (the unified Impeccable config; hook runtime settings live under its `hook` key, and shared detector ignores live under `detector`). Per-developer overrides, including the install consent decision (`hook.consent`) the CLI records, live in the gitignored `.impeccable/config.local.json`. Set `hook.enabled: false` to turn the hook off, `hook.quiet: true` to silence the clean/pending acks, or `hook.auditLog` to a file path for an NDJSON log. The legacy `IMPECCABLE_HOOK_DISABLED`, `IMPECCABLE_HOOK_QUIET`, and `IMPECCABLE_HOOK_LOG` env vars are still honored and override these config values when set.
- 
- Declare server-side template extensions under **`detector.extensions`** when the project uses Blade, Twig, ERB, or Handlebars files; the hook skips them otherwise because they sit outside the built-in extension list. One entry per extension, `{ "ext": ".blade.php", "engine": "html" }`. `engine` picks the analyzer (`html` for markup templates, `text` for JS/TS/CSS-like files) and defaults to `html`. Match against the end of the filename, so double extensions like `.blade.php` and `.html.erb` work. Config only adds extensions; the built-in list always applies.
- 
+-
+-This command toggles the hook **per project** by editing `.impeccable/config.json` (the unified Impeccable config; hook runtime settings live under its `hook` key, and shared detector ignores live under `detector`). Per-developer overrides, including the install consent decision (`hook.consent`) the CLI records, live in the gitignored `.impeccable/config.local.json`. Set `hook.enabled: false` to turn the hook off, `hook.quiet: true` to silence the clean/pending acks, or `hook.auditLog` to a file path for an NDJSON log. The legacy `IMPECCABLE_HOOK_DISABLED`, `IMPECCABLE_HOOK_QUIET`, and `IMPECCABLE_HOOK_LOG` env vars are still honored and override these config values when set.
+-
+-Declare server-side template extensions under **`detector.extensions`** when the project uses Blade, Twig, ERB, or Handlebars files; the hook skips them otherwise because they sit outside the built-in extension list. One entry per extension, `{ "ext": ".blade.php", "engine": "html" }`. `engine` picks the analyzer (`html` for markup templates, `text` for JS/TS/CSS-like files) and defaults to `html`. Match against the end of the filename, so double extensions like `.blade.php` and `.html.erb` work. Config only adds extensions; the built-in list always applies.
+-
 -Manual `npx impeccable detect` scans use the same project filter config by default: `detector.ignoreRules`, `detector.ignoreFiles`, `detector.ignoreValues`, and `detector.designSystem.enabled`. `hook.enabled` only controls automatic hook execution, not manual CLI scans. Use `npx impeccable detect --no-config ...` for a raw detector run that ignores project config/context. Use `npx impeccable ignores ...` for direct CLI CRUD on the same detector ignores.
-+Manual `mise exec -- impeccable detect` scans use the same project filter config by default: `detector.ignoreRules`, `detector.ignoreFiles`, `detector.ignoreValues`, and `detector.designSystem.enabled`. `hook.enabled` only controls automatic hook execution, not manual CLI scans. Use `mise exec -- impeccable detect --no-config ...` for a raw detector run that ignores project config/context. Use `mise exec -- impeccable ignores ...` for direct CLI CRUD on the same detector ignores.
- 
- Supported harnesses: Claude Code (`.claude/settings.local.json` in the project, which is gitignored so the hook stays machine-local; a hook you move into the shared `settings.json` is honored in place too), Codex (`.codex/hooks.json` in the project), Cursor (`.cursor/hooks.json` in the project), Grok Build (`.grok/hooks/impeccable.json` in the project; requires `/hooks-trust` or `--trust`), and GitHub Copilot (`.github/hooks/impeccable.json` in the project, a team-shared committed file that both the Copilot CLI and the cloud agent read). For the Copilot CLI, repo-level hooks fire once `.github/hooks/impeccable.json` is committed to the repository's default branch.
- 
-@@ -20,6 +20,16 @@ On **Cursor**, `preToolUse` checks proposed Write/Edit/Shell write content and d
- 
- Gemini installs session and completion hooks in `.gemini/settings.json`, merged into the settings already there (comments are tolerated; a commented file is backed up to `settings.json.bak` before the rewrite, and a file that is not valid JSON is left alone). It does not install a per-edit detector hook. The `BeforeTool` hook only rewrites shell commands that run `build-phase`, and only on macOS and Linux; on Windows (where Gemini runs hooks through PowerShell) no session id reaches the shell, so a comp build is not tied to the session and the completion reminder stays silent.
- 
-+## OMP execution
-+
-+The skills repository's `local/hooks/post/impeccable.ts` factory is prepared and linked into the native `.omp/agent/hooks/post/` directory by `prepare.nu`. It registers `before_agent_start`, `tool_result`, and `session_stop`: startup supplies the session scope for engine subprocesses; successful writes, edits, multi-file patches, and applied structural edits feed actual resolved paths to `mise exec -- impeccable hook`; completion invokes the same engine with its Stop envelope. The adapter uses the engine's supported Claude-format wire envelope and translates it to OMP events. Findings stay ordinary tool/message data, accompanied by fixed handler-authored instructions. Completion findings request a bounded OMP continuation; process failures block an unsupported verification claim. No package or engine download is performed by the adapter.
-+
-+The adapter keeps mutable engine state in the active agent cache, separated by session, unless `IMPECCABLE_CACHE_ROOT` is explicitly configured. It preserves upstream project settings, sensitive/generated-file protections, immediate/deep tiers, deduplication, live-preview handling, and native-platform exclusions. Upstream bounds still apply: after six per-file edits the engine suppresses further per-edit hints for that file in the session; the Stop pass scans at most twenty touched files. Report these limits when they leave requested review coverage incomplete and use an explicitly requested manual audit for the remaining scope.
-+
-+OMP uses the registered factory and project `hook.enabled` field for activation. For an authorized `on`, read `.impeccable/config.json` as a JSON object, require any existing `hook` field to be an object, and set only `hook.enabled` to `true`, preserving all other fields; refuse malformed files instead of replacing them. An `off` can use the engine's validated admin operation. `status`, detector scans, and explicitly authorized exception administration use the installed engine. Check native registration as well as project config when reporting status; the engine's provider-manifest discovery is not OMP's factory discovery.
-+
-+A review does not authorize config writes, suppressions, or hook activation. Fix real defects. Persist a false-positive or stylistic exception only when explicitly authorized, using the narrowest evidenced scope; never weaken validation, security, accessibility, assertions, or tests to accommodate implementation. Inline suppression comments require explicit authorization as well.
-+
- ## Routing
- 
- The first argument is the action. Defaults to `status`.
-@@ -27,7 +37,7 @@ The first argument is the action. Defaults to `status`.
- | Action | What it does |
- |---|---|
- | `status` | Print current state, shared/local config paths, ignored rules / files / values, env override. |
+-
+-Supported harnesses: Claude Code (`.claude/settings.local.json` in the project, which is gitignored so the hook stays machine-local; a hook you move into the shared `settings.json` is honored in place too), Codex (`.codex/hooks.json` in the project), Cursor (`.cursor/hooks.json` in the project), Grok Build (`.grok/hooks/impeccable.json` in the project; requires `/hooks-trust` or `--trust`), and GitHub Copilot (`.github/hooks/impeccable.json` in the project, a team-shared committed file that both the Copilot CLI and the cloud agent read). For the Copilot CLI, repo-level hooks fire once `.github/hooks/impeccable.json` is committed to the repository's default branch.
+-
+-On **Cursor**, `preToolUse` checks proposed Write/Edit/Shell write content and denies only when the real detector finds an issue. The denial message is visible to the agent as the tool error, so the agent can reconsider before the bad write lands.
+-
+-Gemini installs session and completion hooks in `.gemini/settings.json`, merged into the settings already there (comments are tolerated; a commented file is backed up to `settings.json.bak` before the rewrite, and a file that is not valid JSON is left alone). It does not install a per-edit detector hook. The `BeforeTool` hook only rewrites shell commands that run `build-phase`, and only on macOS and Linux; on Windows (where Gemini runs hooks through PowerShell) no session id reaches the shell, so a comp build is not tied to the session and the completion reminder stays silent.
+-
+-## Routing
+-
+-The first argument is the action. Defaults to `status`.
+-
+-| Action | What it does |
+-|---|---|
+-| `status` | Print current state, shared/local config paths, ignored rules / files / values, env override. |
 -| `on` | Set `enabled: true` in `.impeccable/config.json`, record local hook consent as accepted, and install/repair provider hook manifests when the skill is installed. |
-+| `on` | Enable the registered native OMP factory for this project by setting `hook.enabled: true`, preserving valid existing configuration. |
- | `off` | Set `enabled: false` in `.impeccable/config.json`. |
- | `ignore-rule <id>` | Append `<id>` to `detector.ignoreRules`; for `overused-font`, requires `--all-values`. Suppresses the rule across the whole project. |
- | `ignore-file <glob>` | Append `<glob>` to `detector.ignoreFiles`. Suppresses **every** rule for matching files. |
-@@ -39,32 +49,32 @@ The first argument is the action. Defaults to `status`.
- ## Flow
- 
- 1. Resolve the action from the user's argument. If no action was given, default to `status`.
+-| `off` | Set `enabled: false` in `.impeccable/config.json`. |
+-| `ignore-rule <id>` | Append `<id>` to `detector.ignoreRules`; for `overused-font`, requires `--all-values`. Suppresses the rule across the whole project. |
+-| `ignore-file <glob>` | Append `<glob>` to `detector.ignoreFiles`. Suppresses **every** rule for matching files. |
+-| `ignore-value <id> <value> [--shared] [--reason "..."]` | Append a rule/value suppression to shared `.impeccable/config.json`. |
+-| `ignore-value <id> <value> --local [--reason "..."]` | Append a private rule/value suppression to `.impeccable/config.local.json`. |
+-| `ignore-value <id> "*" --file <glob> [--file <glob>...]` | Turn one rule off in matching files only, leaving it active everywhere else. Repeat `--file`, or use `--file=<glob>` / `--files=<glob>`. A bare `"*"` with no `--file` is refused: use `ignore-rule <id>` if you really mean project-wide. |
+-| `reset` | Delete the project config, dedup cache, and Cursor pending queue, and remove the hook's entries from every provider manifest `on` installs, the committed Copilot file included (a team-shared `settings.json` that `on` never writes is never touched). |
+-
+-## Flow
+-
+-1. Resolve the action from the user's argument. If no action was given, default to `status`.
 -2. Invoke the admin script and pass the user's output through verbatim:
-+2. Apply the OMP activation procedure above for `on`; for other authorized actions invoke the admin command and report its output. Inspect the exact deletion scope before `reset` and obtain approval for destructive changes outside the requested scope:
- 
-    ```bash
+-
+-   ```bash
 -   {{scripts_path}}/impeccable hooks <action> [args...]
-+   mise exec -- impeccable hooks <action> [args...]
-    ```
- 
+-   ```
+-
 -3. If `<action>` is `off`, follow up with a one-line note: "Done. New edits will not trigger the design hook in this project until you run `{{command_prefix}}impeccable hooks on`."
 -4. If `<action>` is `on`, follow up with: "Done. The design hook will fire after the next Edit/Write on a UI file."
-+3. If `<action>` is `off`, follow up with a one-line note: "Done. New edits will not trigger the design hook in this project until you run `/skill:impeccable hooks on`."
-+4. If `<action>` is `on`, report native registration and effective project state accurately. A successful activation means subsequent native UI mutations are eligible for scans; only actual hook output proves that a scan ran.
- 5. If `<action>` is `ignore-value`, `ignore-file`, or `ignore-rule`, just print the script output. The default scope is shared `.impeccable/config.json`; add `--local` only when the user explicitly asks for a private exception.
- 6. If `<action>` is `status`, just print the script output. Do not add commentary unless the user asked a follow-up question.
- 
- ## Triage findings
- 
+-5. If `<action>` is `ignore-value`, `ignore-file`, or `ignore-rule`, just print the script output. The default scope is shared `.impeccable/config.json`; add `--local` only when the user explicitly asks for a private exception.
+-6. If `<action>` is `status`, just print the script output. Do not add commentary unless the user asked a follow-up question.
+-
+-## Triage findings
+-
 -The hook itself never writes ignore config; every exception goes through `impeccable hooks`. Triage each finding into one of three outcomes:
-+The hook itself never writes ignore config; every exception goes through `mise exec -- impeccable hooks`. Triage each finding into one of three outcomes:
- 
- - **Real design problem**: fix it. Never add an ignore to skip a fix or to push a blocked write through.
+-
+-- **Real design problem**: fix it. Never add an ignore to skip a fix or to push a blocked write through.
 -- **Confident false positive or sanctioned exception**: persist the narrowest ignore yourself and disclose it in your reply. The bar is evidence you can name: an intentional demo or fixture, documentation of bad design, literal or domain-appropriate motion (a ball that bounces), or a choice the user already confirmed. Put that evidence in `--reason` as `"<who decided: evidence>"`; write "user confirmed" only when the user actually did.
-+- **Confident false positive or sanctioned exception**: propose the narrowest evidenced exception, obtain explicit authorization, and disclose any approved write in your reply. The bar is evidence you can name: an intentional demo or fixture, documentation of bad design, literal or domain-appropriate motion (a ball that bounces), or a choice the user already confirmed. Put that evidence in `--reason` as `"<who decided: evidence>"`; write "user confirmed" only when the user actually did.
- - **Unsure**: leave the finding standing and ask the user in one line. Ask once; a one-line question costs less than the hook re-firing on every later edit.
- 
+-- **Unsure**: leave the finding standing and ask the user in one line. Ask once; a one-line question costs less than the hook re-firing on every later edit.
+-
 -Self-serve stops at `ignore-value`. `ignore-file` and `ignore-rule` silence too much to add on your own judgment; ask the user first.
-+Every persisted exception requires explicit authorization. `ignore-file` and `ignore-rule` silence broad scopes; disclose that scope before asking.
- 
- Prefer the narrowest exception:
- 
+-
+-Prefer the narrowest exception:
+-
 -- If the finding line shows an `ignore-value <rule> <value>` pair, pass it to `impeccable hooks ignore-value` with your `--reason`. This writes shared `.impeccable/config.json` by default.
-+- If the finding line shows an `ignore-value <rule> <value>` pair, pass it to `mise exec -- impeccable hooks ignore-value` with your `--reason`. This writes shared `.impeccable/config.json` by default.
- - For value-specific findings such as `overused-font` and `bounce-easing`, use `ignore-value` for the specific value. Do not use `ignore-rule overused-font` for a specific font.
+-- For value-specific findings such as `overused-font` and `bounce-easing`, use `ignore-value` for the specific value. Do not use `ignore-rule overused-font` for a specific font.
 -- If the finding has no value-specific command, such as `side-tab`, scope that one rule to the file: `ignore-value <id> "*" --file <path>`. Run `npx impeccable detect <path>` first to see what actually fires there.
-+- If the finding has no value-specific command, such as `side-tab`, scope that one rule to the file: `ignore-value <id> "*" --file <path>`. Run `mise exec -- impeccable detect <path>` first to see what actually fires there.
- - Reach for `ignore-file <path>` only when the whole file is out of scope for design review: a fixture, a generated artifact, a deliberate slop demo. It silences every rule for that file permanently, including rules that have not been written yet. A real UI surface with one noisy rule wants the file-scoped value ignore above.
- - Use `ignore-rule <id>` only when the user asks to suppress that whole rule across the project. For broad overused-font suppression, use `ignore-rule overused-font --all-values` only when the user asks to ignore overused fonts generally.
- - Prefer config ignores (the commands above) by default; they keep suppressions in one reviewable place. Reach for an inline comment only when the waiver must travel with a single file that leaves the repo (a generated/exported standalone document, an emailed HTML file). The supported marker is `impeccable-disable <rule>` (whole file) or `impeccable-disable-line` / `impeccable-disable-next-line` (one line), in any comment syntax, with an optional reason after `:` or `--`. The detector honors it by default; `--no-inline-ignores` or `--no-config` bypasses it.
-@@ -72,42 +82,42 @@ Prefer the narrowest exception:
- Example value-specific exception:
- 
- ```bash
+-- Reach for `ignore-file <path>` only when the whole file is out of scope for design review: a fixture, a generated artifact, a deliberate slop demo. It silences every rule for that file permanently, including rules that have not been written yet. A real UI surface with one noisy rule wants the file-scoped value ignore above.
+-- Use `ignore-rule <id>` only when the user asks to suppress that whole rule across the project. For broad overused-font suppression, use `ignore-rule overused-font --all-values` only when the user asks to ignore overused fonts generally.
+-- Prefer config ignores (the commands above) by default; they keep suppressions in one reviewable place. Reach for an inline comment only when the waiver must travel with a single file that leaves the repo (a generated/exported standalone document, an emailed HTML file). The supported marker is `impeccable-disable <rule>` (whole file) or `impeccable-disable-line` / `impeccable-disable-next-line` (one line), in any comment syntax, with an optional reason after `:` or `--`. The detector honors it by default; `--no-inline-ignores` or `--no-config` bypasses it.
+-
+-Example value-specific exception:
+-
+-```bash
 -{{scripts_path}}/impeccable hooks ignore-value overused-font Inter --shared --reason "User confirmed Inter is intentional"
-+mise exec -- impeccable hooks ignore-value overused-font Inter --shared --reason "User confirmed Inter is intentional"
- ```
- 
+-```
+-
 -Example self-served exception, with the evidence named:
-+Example authorized value exception, with the evidence named:
- 
- ```bash
+-
+-```bash
 -{{scripts_path}}/impeccable hooks ignore-value bounce-easing bounce-ball --shared --reason "Agent: literal ball-bounce animation, bounce easing is the subject"
-+mise exec -- impeccable hooks ignore-value bounce-easing bounce-ball --shared --reason "Agent: literal ball-bounce animation, bounce easing is the subject"
- ```
- 
- Example whole-rule font exception:
- 
- ```bash
+-```
+-
+-Example whole-rule font exception:
+-
+-```bash
 -{{scripts_path}}/impeccable hooks ignore-rule overused-font --all-values --reason "User asked to ignore overused fonts generally"
-+mise exec -- impeccable hooks ignore-rule overused-font --all-values --reason "User asked to ignore overused fonts generally"
- ```
- 
- Example one-rule-in-one-file exception, for a file that is still worth reviewing
- for everything else:
- 
- ```bash
+-```
+-
+-Example one-rule-in-one-file exception, for a file that is still worth reviewing
+-for everything else:
+-
+-```bash
 -{{scripts_path}}/impeccable hooks ignore-value design-system-font-size "*" --file "src/overlay/widget.js" --reason "Injected widget builds its own type scale; DESIGN.md's ramp describes the site"
-+mise exec -- impeccable hooks ignore-value design-system-font-size "*" --file "src/overlay/widget.js" --reason "Injected widget builds its own type scale; DESIGN.md's ramp describes the site"
- ```
- 
- Example whole-file exception, for a file that is out of scope entirely:
- 
- ```bash
+-```
+-
+-Example whole-file exception, for a file that is out of scope entirely:
+-
+-```bash
 -{{scripts_path}}/impeccable hooks ignore-file "src/legacy/Card.tsx"
-+mise exec -- impeccable hooks ignore-file "src/legacy/Card.tsx"
- ```
- 
- ## Constraints
- 
+-```
+-
+-## Constraints
+-
 -- Never modify `.impeccable/config.json` or `.impeccable/config.local.json` by hand from this command. Always go through `impeccable hooks` so writes stay validated and the file shape stays consistent. One exception: `detector.extensions` has no admin action, so when the user asks to cover a template stack, edit that one field in `.impeccable/config.json` directly and leave the rest of the file untouched.
 -- Do not edit the launcher or the binary behind `impeccable hook` and `impeccable hook-before-edit` from this flow. Those are skill plumbing.
-+- Use `mise exec -- impeccable hooks` for supported admin operations so their writes stay validated. For native OMP activation, edit only `hook.enabled` after parsing and preserving a valid existing configuration object as described above. `detector.extensions` also has no admin action: when the user authorizes a template stack, edit that field only and preserve the rest.
-+- Do not edit the launcher or the binary behind `mise exec -- impeccable hook` and `mise exec -- impeccable hook-before-edit` from this flow. Those are skill plumbing.
- - Cursor can block a proposed write when the detector finds a real issue. Claude Code, Codex, and GitHub Copilot do not block the edit; they emit a post-edit reminder instead. Disabling stops both blocking and reminders.
- - The hook is bundled with the Impeccable skill and installed through project-local manifests: `.claude/settings.local.json`, `.codex/hooks.json`, `.cursor/hooks.json`, `.github/hooks/impeccable.json`, and `.gemini/settings.json`. On Codex, the user must approve the hook via `/hooks` the first time. On Cursor, confirm hooks are enabled under Settings -> Hooks. On GitHub Copilot, the CLI loads `.github/hooks/impeccable.json` once it is committed to the repository's default branch, and the cloud agent reads it from the repo directly.
- 
- ## Failure modes
- 
+-- Cursor can block a proposed write when the detector finds a real issue. Claude Code, Codex, and GitHub Copilot do not block the edit; they emit a post-edit reminder instead. Disabling stops both blocking and reminders.
+-- The hook is bundled with the Impeccable skill and installed through project-local manifests: `.claude/settings.local.json`, `.codex/hooks.json`, `.cursor/hooks.json`, `.github/hooks/impeccable.json`, and `.gemini/settings.json`. On Codex, the user must approve the hook via `/hooks` the first time. On Cursor, confirm hooks are enabled under Settings -> Hooks. On GitHub Copilot, the CLI loads `.github/hooks/impeccable.json` once it is committed to the repository's default branch, and the cloud agent reads it from the repo directly.
+-
+-## Failure modes
+-
 -- If `.impeccable/config.json` or `.impeccable/config.local.json` is unreadable or malformed, the hook ignores that file and uses the remaining valid config/defaults. `impeccable hooks status` will show malformed files as ignored.
 -- If the user asks to "disable the hook" globally, lead with `{{command_prefix}}impeccable hooks off` (persistent for this project; writes `hook.enabled: false` to config). The legacy `IMPECCABLE_HOOK_DISABLED=1` env var also works as a one-shot override that follows the shell.
-+- If `.impeccable/config.json` or `.impeccable/config.local.json` is unreadable or malformed, the hook ignores that file and uses the remaining valid config/defaults. `mise exec -- impeccable hooks status` will show malformed files as ignored.
-+- If the user asks to "disable the hook" globally, lead with `/skill:impeccable hooks off` (persistent for this project; writes `hook.enabled: false` to config). The legacy `IMPECCABLE_HOOK_DISABLED=1` env var also works as a one-shot override that follows the shell.
 diff --git a/skill/reference/init.md b/skill/reference/init.md
 index 87a0f8b8b805a60316cff901c9c8f39ef55fc720..6aaa50fab9494b76b53e2d6194dfbe1ce33e9679 100644
 --- a/skill/reference/init.md
@@ -1568,7 +1566,7 @@ index b30c4c9139e3094bd35c60738decb6109326153f..5ee978f60a9dc049caca899d9d1e5874
  ## Directions
  
 diff --git a/skill/reference/new-work.md b/skill/reference/new-work.md
-index 44abb022a31a3f45cca07560794679ad25cc90d2..d26be3491860588ef27e8c396eaed56b75cd0294 100644
+index 44abb022a31a3f45cca07560794679ad25cc90d2..1c78f1136d748f2fd2a9f2865973a96a71a5454b 100644
 --- a/skill/reference/new-work.md
 +++ b/skill/reference/new-work.md
 @@ -1,8 +1,8 @@
@@ -1582,7 +1580,7 @@ index 44abb022a31a3f45cca07560794679ad25cc90d2..d26be3491860588ef27e8c396eaed56b
  
  ## 1. Decide what is already true
  
-@@ -17,7 +17,7 @@ A section, component, feature, or state inside an established surface inherits t
+@@ -17,7 +17,7 @@
  
  ## 2. Ask what will change the work
  
@@ -1591,7 +1589,7 @@ index 44abb022a31a3f45cca07560794679ad25cc90d2..d26be3491860588ef27e8c396eaed56b
  
  - **Persuade:** who must act, what they should believe, which real proof, content, or assets earn that belief.
  - **Operate:** the task, information, important states, frequency, constraints.
-@@ -36,21 +36,21 @@ Inherit its world and composition. Resolve only the new purpose, content, hierar
+@@ -36,21 +36,21 @@
  
  Keep the visual system fixed. Derive five to seven materially different structures from the content, task, and user behavior, ordered by resonance. For a genuinely open whole page, screen, or flow, run:
  
@@ -1618,7 +1616,7 @@ index 44abb022a31a3f45cca07560794679ad25cc90d2..d26be3491860588ef27e8c396eaed56b
  
  The execution contract, comp-led or code-led, is never asked inside a round; the page's toggle handles the exception. An Operate or Read surface is code-led whatever the project records: working screens and documents come out better built than pictured. A Persuade or Experience surface takes the recorded default: read it from `.impeccable/config.json` (`buildPath`), the gitignored `.impeccable/config.local.json` winning where one machine differs from the team's committed value; with neither, comp-led is the default whenever image generation exists. concept-seed's PRESENTATION block prints the path for the surface in hand; follow that line. Author every direction and surface payload with `buildPath: { "value": <default>, "toggle": true }`; the page renders a footer toggle with the trade stated beside it, and the ANSWER returns `buildPath` plus `buildPathFlipped`. A flipped value binds that session only and is never written back, with one exception, the only question this preference ever earns inside a round (init records it up front on projects that get the chance): when `buildPathFlipped` comes back true on a Persuade or Experience surface in a project that records no `buildPath` at all, ask once after the round closes whether to keep it as the standing default; a flip on an Operate or Read surface is one round's choice and is never offered for recording. Either answer writes `.impeccable/config.json`; the answer picks the value, never whether to record one. Yes writes the flipped value; "no, just this once" writes the value they flipped away from, the standing default they just confirmed by declining. Ask on the flip, never on the untouched default: a user who left the toggle alone told you nothing. A declined offer nothing writes down is an offer the next session makes again. When the user asks in words to change the standing default, update the file without asking. **Comp-led**: the chosen card's comp is law, generated before building when it does not yet exist, and the finish review audits the build against it; boldest composition on the table, fix rounds expected, and the comp is non-optional, no silent skipping. **Code-led**: no comp of this page and no apology for it; each card's HTML sketch is what the user chooses from, and the picked one is the composition the build matches and the finish review audits; the QUALITY BAR boards still calibrate finish, and the ambition moves into the written contract, the FIRST VIEWPORT block plus a named signature interaction and motion grammar, which the finish reviewer audits in behavior; code-led is not a discount on commitment. A code-led round still declares each card's comp path as a flip reserve: when the user flips the toggle to comp mid-round, `--wait` returns once with BUILD PATH FLIPPED while the page shimmers the slots; generate each open card's comp into its declared path then, lead first, and wait again. The flip back is free, and a comp that already rendered rides at the finish review as the critique reference. Without image generation there is no toggle and no choice: code-led is the only path, stated in one line rather than asked. The structured-tool fallback has no toggle either: it builds on the path the PRESENTATION block printed for the surface and asks nothing about the build path. The old two-card execution-contract round is retired; `followup: true` remains the general mechanism for delivering any later round over the same table via `--update`. <!-- rule:skill-build-path-round -->
  
-@@ -58,7 +58,7 @@ Catalog worlds are working systems, not mood references. When one survives, carr
+@@ -58,7 +58,7 @@
  
  Every direction the roll can land on must already be viable: every relationship and claim it visualizes true, a real palette and component family, a distinctive composition with one product-specific experience, workable at full-surface scale within the available assets, tools, and performance budget. A candidate that fails on truth is replaced before the roll, never rescued by it. Truth binds claims, not demonstrations: in greenfield work, author whatever illustrative material the concept needs at full fidelity, label it synthetic wherever a visitor could mistake it for the real thing, and hand the user the list of what to replace with real material. What stays uninventable are commercial and factual claims: prices, customers, benchmarks, endpoints, capabilities the product does not have. Refusing a bold direction because its demonstration data does not exist yet is the timidity reflex wearing honesty's clothes. <!-- rule:skill-truth-binds-claims -->
  
@@ -1627,7 +1625,7 @@ index 44abb022a31a3f45cca07560794679ad25cc90d2..d26be3491860588ef27e8c396eaed56b
  
  ## 4. Commit the world
  
-@@ -67,11 +67,7 @@ Pick a color strategy before picking colors: Restrained (neutrals tinted from th
+@@ -67,11 +67,7 @@
  Choose faces like objects from the subject's world, in the mode's register. Operate and Read surfaces are well served by system stacks and workhorse UI faces; Persuade and Experience surfaces want faces with a point of view, and these training-data defaults mean you stopped looking: Fraunces, Playfair Display, Cormorant, Lora, Crimson, Newsreader, Syne, Space Grotesk, Space Mono, IBM Plex, Inter-as-display, DM Sans, DM Serif, Outfit, Plus Jakarta Sans, Instrument Sans. Naming one of these faces anyway requires a reason no other face could satisfy, and a subject association is never that reason: books wanting a serif, bookshops wanting hand-lettering, and tech wanting a mono are the associations the list exists to break. <!-- rule:skill-typo-reflex-faces -->
  
  Calibration: AI-generated interfaces cluster around a few looks regardless of subject: warm cream ground, high-contrast serif display, and a terracotta or signal-red accent; near-black with one neon accent and glowing edges; broadsheet-editorial hairlines, italic display serif, and small tracked mono labels; flat saturated ink with black boxes, hard offset shadows, and heavy condensed display type. All are legitimate when the brief calls for them. Where the brief leaves the aesthetic free, landing in one means the self-check failed: if someone could guess your aesthetic from the category alone, or from category-plus-avoidance, rework until neither answer is obvious. <!-- rule:skill-calibration-saturated-looks --> Energy is not the enemy of trust: a brief's negative constraints (no gamification, no hype) rule out those devices, not exuberance, and adjectives describing the product's behavior (quiet support, calm coaching) do not dictate the surface's energy. <!-- rule:skill-constraints-rule-out-devices-not-energy --> A bookish, warm, or child-facing subject does not soften the calibration: book cloth, thread, jackets, endpapers, and shelf ephemera span the whole saturated spectrum, and cream paper is the smallest corner of that world; landing on cream plus serif for a book subject is the default wearing the subject's clothes. <!-- rule:skill-book-subject-not-cream-license --> A brief-pinned world pins the world, not its softest rendition: the pinned world's full material range stays in play, and a rendition matching what any model ships for that world failed the self-check at execution rather than selection. <!-- rule:skill-pinned-world-not-default-rendition -->
@@ -1640,7 +1638,7 @@ index 44abb022a31a3f45cca07560794679ad25cc90d2..d26be3491860588ef27e8c396eaed56b
  ## 5. Record the decision
  
  Before code, record the chosen direction as a development-only contract under `## Direction contract` in the relevant surface brief. A direction contract is durable route or artifact strategy, so create or update the brief even when no other surface strategy needs persistence. Use six short blocks, roughly 150 words; do not spend tool calls counting words. THESIS: the one idea this surface owns and the category-default arrangement it refuses. OWN-WORLD: the palette and component language, specific enough to be recognizable with all content removed. STORY: what the visitor understands, believes, and does. FIRST VIEWPORT: the exact composition, what is where and at what scale, and where the primary action sits. FORM: the chosen form, its position on your ordered list, and the SEED REFERENCE concept-seed printed (`seed:` and 16 hex), never the raw seed key: the brief is committed, and on this machine the reference stands in for the key wherever a command takes one. When the roll printed SEED REFERENCE unavailable, write `seed: none (unavailable)` instead, and nothing else. Close with one more line, FINISH: the run's exit condition, verbatim "unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance". The surface brief is the reminder later agents reload across edits and sessions: a page that looks complete with the FINISH line undischarged is not done, it is abandoned at the finish line. If a block reads like a mood, the direction is not decided yet; the finishing review audits the render against this contract. <!-- rule:skill-decide-then-build -->
-@@ -82,17 +78,17 @@ On a new or replacement world, DESIGN.md is written at finish, from the built wo
+@@ -82,17 +78,17 @@
  
  Read the existing surface brief before updating it:
  
@@ -1662,7 +1660,7 @@ index 44abb022a31a3f45cca07560794679ad25cc90d2..d26be3491860588ef27e8c396eaed56b
  
  ## 6. Build with full commitment
  
-@@ -102,19 +98,19 @@ Build the assigned direction, not a safer interpretation of it. The form supplie
+@@ -102,19 +98,19 @@
  
  When an approved comp exists, it is a spatial contract, not a mood board: only the user can downgrade its authority, in explicit words. Models systematically believe their HTML, CSS, and SVG recreation of an image succeeded when it did not, so the build runs as a state machine on disk whose gates measure the screen against the comp instead of asking you to remember it. Start it once, and let it tell you what is next:
  
@@ -1689,7 +1687,7 @@ index 44abb022a31a3f45cca07560794679ad25cc90d2..d26be3491860588ef27e8c396eaed56b
  4. **sections.** Build the rest of the surface inside the spec's system: the same corner language, line weights, and palette, and nothing the comp never shows. Where the comp does not cover a region, it inherits the recorded system.
  5. **motion.** The signature interaction, reveals, and motion, orchestrated once rather than scattered.
  6. **responsive.** The other viewports, and the first viewport at common desktop widths (1280 to 1600), not only at the comp's exact size: fluid columns, no fixed-pixel grid that wraps a hundred pixels narrower, and sizes in proportion to the viewport rather than px floors, so nothing the comp's first viewport shows is pushed below it and an accepted first viewport still matches at desktop width. Capture `desktop.png` (1440 wide, full page) and `mobile.png` (390 wide) into `.impeccable/review/`; the gate diffs the desktop first viewport (1440 wide at the comp's aspect; a native capture renders its own) against the comp and refuses a first viewport that only held at the comp's width. When it fails, open the crops it lists, in order: a `displaced` region is present but pushed out of the first viewport, so restore it there by resizing what sits above it, not by moving it alone. After three failed attempts the gate names the route (the first-viewport review, or the user's decision once one is accepted); take it instead of iterating or recording `fix`. A comp'd surface that is mobile-first was comped portrait; the plates were produced for that frame.
-@@ -137,20 +133,20 @@ Preserve semantics, accessibility, performance, responsiveness, project conventi
+@@ -137,20 +133,20 @@
  
  ## 7. Inspect and finish
  
@@ -1699,10 +1697,10 @@ index 44abb022a31a3f45cca07560794679ad25cc90d2..d26be3491860588ef27e8c396eaed56b
  A capture is evidence only when it is valid, and you validate before you send. Settle or disable entrance motion first: an element hidden by animation timing reads as a missing element and gets fixed into a regression. Capture full-page shots from the document top. Capture the comp comparison at the comp's own pixel dimensions. Then open every file once and confirm it shows what its name claims: no black or blank regions, no wrong section behind a right filename, no half-loaded state. A malformed capture sent onward costs the whole round; the reviewer answers it with `disposition: recapture` and nothing it reviewed binds. <!-- rule:skill-capture-validity -->
  
 -After the second inspection round the build thread's polishing is over: no further defect hunts, micro-edit scripts, or rebuilds here (an open build-phase gate is not a defect hunt; it closes as above); whatever remains ships through the handoffs, where a fresh context does the finding better and cheaper. On the web, where this harness runs no design hook, run `{{scripts_path}}/impeccable detect --json` on the changed targets once here, fix what is mechanical, and pass the remaining findings to the reviewer; a hookless web build that skips this ships every tell the hook exists to catch. A native platform skips the detector entirely: it reads HTML and CSS and has no verdict on native code, so the reviewer's floor check is the only slop gate and the input packet says so. Capture the screenshots into `.impeccable/review/`, one file per captured viewport (on the web, `desktop.png` and `mobile.png`, plus `user-<width>.png` whenever the user's viewport joined the inspected set; on native, one per device class, such as `phone.png` and `tablet.png`, suffixed per OS on adaptive), creating that directory when the harness does not; the paths you pass the reviewer are its spec, every viewport you inspected is named required in the packet, and that directory is where it looks when a passed path is missing.
-+After the second inspection round the build thread's polishing is over: no further defect hunts, micro-edit scripts, or rebuilds here (an open build-phase gate is not a defect hunt; it closes as above); whatever remains ships through the handoffs, where a fresh context does the finding better and cheaper. On the web, where this harness runs no design hook, run `mise exec -- impeccable detect --json` on the changed targets once here, fix what is mechanical, and pass the remaining findings to the reviewer; a hookless web build that skips this ships every tell the hook exists to catch. A native platform skips the detector entirely: it reads HTML and CSS and has no verdict on native code, so the reviewer's floor check is the only slop gate and the input packet says so. Capture the screenshots into `.impeccable/review/`, one file per captured viewport (on the web, `desktop.png` and `mobile.png`, plus `user-<width>.png` whenever the user's viewport joined the inspected set; on native, one per device class, such as `phone.png` and `tablet.png`, suffixed per OS on adaptive), creating that directory when the harness does not; the paths you pass the reviewer are its spec, every viewport you inspected is named required in the packet, and that directory is where it looks when a passed path is missing.
++After the second inspection round the build thread's polishing is over: no further defect hunts, micro-edit scripts, or rebuilds here (an open build-phase gate is not a defect hunt; it closes as above); whatever remains ships through the handoffs, where a fresh context does the finding better and cheaper. On the web, run `mise exec -- impeccable detect --json` on the changed targets once here, fix what is mechanical, and pass the remaining findings to the reviewer. A native platform skips the detector entirely: it reads HTML and CSS and has no verdict on native code, so the reviewer's floor check is the only slop gate and the input packet says so. Capture the screenshots into `.impeccable/review/`, one file per captured viewport (on the web, `desktop.png` and `mobile.png`, plus `user-<width>.png` whenever the user's viewport joined the inspected set; on native, one per device class, such as `phone.png` and `tablet.png`, suffixed per OS on adaptive), creating that directory when the harness does not; the paths you pass the reviewer are its spec, every viewport you inspected is named required in the packet, and that directory is where it looks when a passed path is missing.
  
 -Then spawn the shipped finish reviewer, `impeccable-finish-reviewer` (`impeccable_finish_reviewer` in codex; `/impeccable-finish-reviewer` in Cursor; on GitHub Copilot say "Use the impeccable-finish-reviewer agent"), with the original request, confirmed answers, the artifact path, the screenshot paths, the direction contract, existing hook findings, the QUALITY BAR card and approved comp paths (a code-led build has no approved comp; the chosen decision comp rides in that slot as the critique reference, named as such), on a comp-led build the build state (`.impeccable/build/state.json`), the spec, and the diff directories (`.impeccable/review/diff/hero/` and `.impeccable/review/diff/final/`, whose side-by-side, heatmap, region pairs, and `report.json` are the fidelity evidence), the craft-floor reference path, and on a native platform the platform reference path(s), [ios.md](ios.md) / [android.md](android.md), both on adaptive, plus one line saying no detector ran, so the reviewer judges in the platform's conventions rather than the web's. The reviewer has no browser; screenshots you fail to pass are checks it cannot run. Never read the shipped agents' definition files before spawning; the harness loads them at spawn, and you owe only the input packet. Wait on any agent with one long timeout rather than a loop of short polls, and spend the wait on the next independent step. Verify the return carries the five contract sections (a recapture return carries one, its recapture list); on an empty or thrashed return, respawn once with the same inputs. This review never runs inside the build thread and never inherits it: spawn the reviewer fresh, with no forked conversation history (`fork_turns: 0` in codex); a reviewer that inherits your transcript inherits your framing, your optimism, and your abstractions, and everything it needs travels in the inputs above. Only a harness with no subagent capability at all substitutes a fresh in-thread pass after stepping fully out of the build context, run from [degraded/finish-reviewer.md](degraded/finish-reviewer.md), and a substituted or failed-and-replaced review is disclosed in one line at finish, never silently. <!-- rule:skill-finish-separate-reviewer -->
-+Then read [the finish-reviewer role](skill://impeccable/agents/impeccable-finish-reviewer.md) and apply the OMP delegation contract from the entry point, with the original request, confirmed answers, the artifact path, the screenshot paths, the direction contract, existing hook findings, the QUALITY BAR card and approved comp paths (a code-led build has no approved comp; the chosen decision comp rides in that slot as the critique reference, named as such), on a comp-led build the build state (`.impeccable/build/state.json`), the spec, and the diff directories (`.impeccable/review/diff/hero/` and `.impeccable/review/diff/final/`, whose side-by-side, heatmap, region pairs, and `report.json` are the fidelity evidence), the craft-floor reference path, and on a native platform the platform reference path(s), [ios.md](skill://impeccable/reference/ios.md) / [android.md](skill://impeccable/reference/android.md), both on adaptive, plus one line saying no detector ran, so the reviewer judges in the platform's conventions rather than the web's. The reviewer has no browser; screenshots you fail to pass are checks it cannot run. Pass the complete role instructions and input packet to a fresh OMP `researcher` assignment when delegation is warranted; workers do not inherit the parent's conversation. Use automatic completion notifications, and call `wait` only when blocked with no independent work remaining. Verify the return carries the five contract sections (a recapture return carries one, its recapture list); on an empty or thrashed return, respawn once with the same inputs. The reviewer receives evidence, not the build thread's framing, optimism, or abstractions. When the OMP delegation gate selects inline work or a worker fails, perform the same role after separating the review from the build context and disclose that independence limitation in one line at finish. <!-- rule:skill-finish-separate-reviewer -->
++Then read [the finish-reviewer role](skill://impeccable/agents/impeccable-finish-reviewer.md) and apply the OMP delegation contract from the entry point, with the original request, confirmed answers, the artifact path, the screenshot paths, the direction contract, existing detector findings, the QUALITY BAR card and approved comp paths (a code-led build has no approved comp; the chosen decision comp rides in that slot as the critique reference, named as such), on a comp-led build the build state (`.impeccable/build/state.json`), the spec, and the diff directories (`.impeccable/review/diff/hero/` and `.impeccable/review/diff/final/`, whose side-by-side, heatmap, region pairs, and `report.json` are the fidelity evidence), the craft-floor reference path, and on a native platform the platform reference path(s), [ios.md](skill://impeccable/reference/ios.md) / [android.md](skill://impeccable/reference/android.md), both on adaptive, plus one line saying no detector ran, so the reviewer judges in the platform's conventions rather than the web's. The reviewer has no browser; screenshots you fail to pass are checks it cannot run. Pass the complete role instructions and input packet to a fresh OMP `researcher` assignment when delegation is warranted; workers do not inherit the parent's conversation. Use automatic completion notifications, and call `wait` only when blocked with no independent work remaining. Verify the return carries the five contract sections (a recapture return carries one, its recapture list); on an empty or thrashed return, respawn once with the same inputs. The reviewer receives evidence, not the build thread's framing, optimism, or abstractions. When the OMP delegation gate selects inline work or a worker fails, perform the same role after separating the review from the build context and disclose that independence limitation in one line at finish. <!-- rule:skill-finish-separate-reviewer -->
  
 -Act on the disposition word; there are exactly four. **recapture**: the evidence failed, not the build. Recapture what the return names under the capture-validity rules, then run a full review over the new evidence. A review conducted on invalid evidence binds nothing, and a verdict pass may never follow it. **rebuild**: fidelity failed wholesale, not in patches. Skip the fix batch and execute the rebuild immediately: re-derive the named regions, produce the named assets, and send the result back for a fresh full review, never a verdict pass; a rebuild replaces regions wholesale, so the whole matrix runs again over the recaptures. Tell the user what is happening rather than asking permission to fix a failure. Consult the user only on a second rebuild directive, both verdicts on the table, or when rebuilding would discard content the user approved. **ship**: nothing is owed; report the verdict at its scope and continue to the documenter. **fix**: apply the material fixes in one batch, rebuild once, and recapture the same viewports over the same files. On a comp-led build the batch keeps its gates passing: while a phase is open, rerun `{{scripts_path}}/impeccable build-phase advance` after it. Once all are closed, the final `finish --disposition ship`, recorded only on the reviewer's ship verdict, rechecks the page and reopens responsive when it no longer holds. A recapture measures positions, loading, and overflow; it cannot measure whether a fix reached the quality the finding named, so send the recaptured screenshots back to the same reviewer for a verdict scoring every material fix resolved, partial, or unresolved (through the harness's agent continuation; without one, run the scoring fresh from [degraded/finish-reviewer.md](degraded/finish-reviewer.md)'s Verdict Pass). Fixes scored partial or unresolved get another batch, recapture, and verdict. Two rounds is the budget an unattended run ends at; an attended session's ceiling belongs to the user, so when the second verdict still lists open items, put the table in front of them and let them choose between shipping as it stands and funding another round. Whoever decides, stop the moment a round resolves nothing, and the reviewer's findings are the only list you work from, never your own re-opened hunt. Do not run a second detector. <!-- rule:skill-verdict-bounds-the-finish -->
 +Act on the disposition word; there are exactly four. **recapture**: the evidence failed, not the build. Recapture what the return names under the capture-validity rules, then run a full review over the new evidence. A review conducted on invalid evidence binds nothing, and a verdict pass may never follow it. **rebuild**: fidelity failed wholesale, not in patches. Skip the fix batch and execute the rebuild immediately: re-derive the named regions, produce the named assets, and send the result back for a fresh full review, never a verdict pass; a rebuild replaces regions wholesale, so the whole matrix runs again over the recaptures. Tell the user what is happening rather than asking permission to fix a failure. Consult the user only on a second rebuild directive, both verdicts on the table, or when rebuilding would discard content the user approved. **ship**: nothing is owed; report the verdict at its scope and continue to the documenter. **fix**: apply the material fixes in one batch, rebuild once, and recapture the same viewports over the same files. On a comp-led build the batch keeps its gates passing: while a phase is open, rerun `mise exec -- impeccable build-phase advance` after it. Once all are closed, the final `finish --disposition ship`, recorded only on the reviewer's ship verdict, rechecks the page and reopens responsive when it no longer holds. A recapture measures positions, loading, and overflow; it cannot measure whether a fix reached the quality the finding named, so send the recaptured screenshots back to the same reviewer for a verdict scoring every material fix resolved, partial, or unresolved (through the harness's agent continuation; without one, run the scoring fresh from [degraded/finish-reviewer.md](skill://impeccable/agents/impeccable-finish-reviewer.md)'s Verdict Pass). Fixes scored partial or unresolved get another batch, recapture, and verdict. Two rounds is the budget an unattended run ends at; an attended session's ceiling belongs to the user, so when the second verdict still lists open items, put the table in front of them and let them choose between shipping as it stands and funding another round. Whoever decides, stop the moment a round resolves nothing, and the reviewer's findings are the only list you work from, never your own re-opened hunt. Do not run a second detector. <!-- rule:skill-verdict-bounds-the-finish -->
@@ -1716,7 +1714,7 @@ index 44abb022a31a3f45cca07560794679ad25cc90d2..d26be3491860588ef27e8c396eaed56b
 +After the last correction, read [the documenter role](skill://impeccable/agents/impeccable-documenter.md) and apply it within the authorized documentation boundary, with the project root, artifact path, direction contract, PRODUCT.md, [document.md](skill://impeccable/reference/document.md), and write boundary. Without subagents, load [degraded/documenter.md](skill://impeccable/agents/impeccable-documenter.md) and [document.md](skill://impeccable/reference/document.md) before writing. Verify the outcome: new worlds and approved system changes require token-bearing DESIGN.md **and** `.impeccable/design.json`, not prose alone. Ordinary extensions compare the finished build against the incumbent system, preserve its files, and report the evidence checked; report pre-existing drift without repairing it unasked. Recheck after later edits. Finish only when review and documentation are complete. <!-- rule:skill-documenter-records-the-world -->
  
 -On a comp-led build, record the final review disposition with `{{scripts_path}}/impeccable build-phase finish --disposition <ship|fix|rebuild|recapture>` before the final response. A refused `ship` is an unfinished build; report the outstanding phase with the verdict. Any edit after the last captured gate, a fix for a hook finding after `ship` included, voids that capture: run `finish --disposition ship` again before you stop, which rechecks the current files against the gate and names any recapture it needs. Never record `fix` to end a run over an open gate: take the route the gate names, and when the user leaves it open, report that phase as open.
-+On a comp-led build, record the final review disposition with `mise exec -- impeccable build-phase finish --disposition <ship|fix|rebuild|recapture>` before the final response. A refused `ship` is an unfinished build; report the outstanding phase with the verdict. Any edit after the last captured gate, a fix for a hook finding after `ship` included, voids that capture: run `finish --disposition ship` again before you stop, which rechecks the current files against the gate and names any recapture it needs. Never record `fix` to end a run over an open gate: take the route the gate names, and when the user leaves it open, report that phase as open.
++On a comp-led build, record the final review disposition with `mise exec -- impeccable build-phase finish --disposition <ship|fix|rebuild|recapture>` before the final response. A refused `ship` is an unfinished build; report the outstanding phase with the verdict. Any edit after the last captured gate voids that capture: run `finish --disposition ship` again before you stop, which rechecks the current files against the gate and names any recapture it needs. Never record `fix` to end a run over an open gate: take the route the gate names, and when the user leaves it open, report that phase as open.
 diff --git a/skill/reference/onboard.md b/skill/reference/onboard.md
 index e6f835b46209087e6801f449160f7569c0efe713..735720cdbd374c908a4bec85ba88b3f4c00e199a 100644
 --- a/skill/reference/onboard.md
@@ -1763,10 +1761,10 @@ index 474100a3043084ac187217edb6ffe9815f8b344f..43ba7ee5c92134c98a92770d2125abff
  
  Skipping this step risks building something embarrassing that needs to be thrown away.
 diff --git a/skill/reference/polish.md b/skill/reference/polish.md
-index f2146990505863574e3c8298613a37d4c31ee73c..0e14c8bc78e1fa1cf9e0b2e0af02e9a73a02e2d0 100644
+index f2146990505863574e3c8298613a37d4c31ee73c..597a048db4bd5298f522afbaa44036a11ef799f0 100644
 --- a/skill/reference/polish.md
 +++ b/skill/reference/polish.md
-@@ -29,7 +29,7 @@ Use the feature yourself at the surface's representative sizes: desktop and mobi
+@@ -29,7 +29,7 @@
  If a prior critique exists, use it as one input:
  
  ```bash
@@ -1775,12 +1773,12 @@ index f2146990505863574e3c8298613a37d4c31ee73c..0e14c8bc78e1fa1cf9e0b2e0af02e9a7
  ```
  
  Exit 0 returns JSON with the latest snapshot's `body` and an exact `snapshot_file` identity. Retain `snapshot_file` until the end of the pass. For a local file target, the helper compares the file's exact current content fingerprint with the fingerprint captured by critique. Unchanged staged, unstaged, or untracked content remains current; any byte change, deletion, or replacement with a non-file closes the backlog it identified while preserving its trend history and exits 2. A URL target has no local fingerprint and remains current until explicitly closed. When current, incorporate relevant P0/P1 findings from `body` and name the snapshot read. Exit 2 means none exists or the target changed. Perform an independent pass either way.
-@@ -92,14 +92,14 @@ Walk the complete path again with mouse, keyboard, and touch where applicable. C
+@@ -92,14 +92,14 @@
  - console errors, layout shift, interaction latency, and image loading everywhere; supported browsers on the web; supported OS versions, runtime warnings, and dropped frames on native;
  - agreement with DESIGN.md, neighboring features, and the user's scope.
  
 -Follow the quality guidance supplied by `impeccable context` and hooks, then run any other relevant QA commands. Context requests a manual scan only when no automatic detector is active; never add another detector pass. Fix real defects and document only narrow intentional exceptions. A clean scan does not replace visual judgment.
-+Follow the quality guidance supplied by `mise exec -- impeccable context` and hooks, then run any other relevant QA commands. Context requests a manual scan only when no automatic detector is active; never add another detector pass. Fix real defects and document only narrow intentional exceptions. A clean scan does not replace visual judgment.
++Follow the quality guidance supplied by `mise exec -- impeccable context`, then run any other relevant QA commands. Run `mise exec -- impeccable detect --json` on changed web targets once; reuse existing detector findings when those targets have already been scanned. Fix real defects and document only narrow intentional exceptions. A clean scan does not replace visual judgment.
  
  Finish with a source diff: remove accidental churn, orphaned code, redundant values, and temporary artifacts. Ship only when the feature is functionally complete and consistently finished across the path.
  

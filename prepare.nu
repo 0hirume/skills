@@ -80,7 +80,7 @@ def clean [...worktrees: record<name: string, repository: string, path: string>]
 def main [
     --agent: path # Agent directory to receive workflow links.
     --prepare-only # Prepare workflow content without changing agent links.
-]: nothing -> record<skills: string, hooks: string, agents: string, commands: string, linked: bool> {
+]: nothing -> record<skills: string, agents: string, commands: string, linked: bool> {
     let destination = if $agent != null {
         $agent | path expand
     } else {
@@ -89,7 +89,7 @@ def main [
         | path expand
     }
 
-    let links = [skills hooks commands agents/poteto.md agents/researcher.md] | each {|name|
+    let links = [skills commands agents/poteto.md agents/researcher.md] | each {|name|
         let path = $destination | path join $name
         let kind = $path | path type | default missing
 
@@ -142,7 +142,7 @@ def main [
     }
 
     try {
-        for name in [skills hooks agents commands] {
+        for name in [skills agents commands] {
             cp --recursive ($REPOSITORY | path join local $name) ($stage | path join $name)
         }
 
@@ -393,7 +393,6 @@ def main [
 
     {
         skills: ($stage | path join skills)
-        hooks: ($stage | path join hooks)
         agents: ($stage | path join agents)
         commands: ($stage | path join commands)
         linked: (not $prepare_only)
