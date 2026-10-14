@@ -1,0 +1,2681 @@
+diff --git a/site/src/code-discipline.md b/omp/code.md
+similarity index 100%
+rename from site/src/code-discipline.md
+rename to omp/code.md
+diff --git a/site/src/comment-discipline.md b/omp/comments.md
+similarity index 100%
+rename from site/src/comment-discipline.md
+rename to omp/comments.md
+diff --git a/site/src/contributing.md b/omp/contributing.md
+similarity index 100%
+rename from site/src/contributing.md
+rename to omp/contributing.md
+diff --git a/site/src/cosmetic-discipline.md b/omp/cosmetic.md
+similarity index 100%
+rename from site/src/cosmetic-discipline.md
+rename to omp/cosmetic.md
+diff --git a/site/src/error-and-panic-discipline.md b/omp/errors.md
+similarity index 100%
+rename from site/src/error-and-panic-discipline.md
+rename to omp/errors.md
+diff --git a/site/src/snippet_helpers/code_discipline.rs b/omp/examples/code.md
+similarity index 100%
+rename from site/src/snippet_helpers/code_discipline.rs
+rename to omp/examples/code.md
+diff --git a/site/src/snippet_helpers/comment_discipline.rs b/omp/examples/comments.md
+similarity index 100%
+rename from site/src/snippet_helpers/comment_discipline.rs
+rename to omp/examples/comments.md
+diff --git a/site/src/snippet_helpers/cosmetic_discipline.rs b/omp/examples/cosmetic.md
+similarity index 100%
+rename from site/src/snippet_helpers/cosmetic_discipline.rs
+rename to omp/examples/cosmetic.md
+diff --git a/site/src/snippet_helpers/error_handling.rs b/omp/examples/errors.md
+similarity index 100%
+rename from site/src/snippet_helpers/error_handling.rs
+rename to omp/examples/errors.md
+diff --git a/site/src/snippet_helpers/function_discipline.rs b/omp/examples/functions.md
+similarity index 100%
+rename from site/src/snippet_helpers/function_discipline.rs
+rename to omp/examples/functions.md
+diff --git a/site/src/snippet_helpers/import_discipline.rs b/omp/examples/imports.md
+similarity index 100%
+rename from site/src/snippet_helpers/import_discipline.rs
+rename to omp/examples/imports.md
+diff --git a/site/src/snippet_helpers/pattern_matching_discipline.rs b/omp/examples/matching.md
+similarity index 100%
+rename from site/src/snippet_helpers/pattern_matching_discipline.rs
+rename to omp/examples/matching.md
+diff --git a/site/src/snippet_helpers/naming_discipline.rs b/omp/examples/naming.md
+similarity index 100%
+rename from site/src/snippet_helpers/naming_discipline.rs
+rename to omp/examples/naming.md
+diff --git a/site/src/snippet_helpers/ordering_discipline.rs b/omp/examples/ordering.md
+similarity index 100%
+rename from site/src/snippet_helpers/ordering_discipline.rs
+rename to omp/examples/ordering.md
+diff --git a/site/src/snippet_helpers/error_and_panic_discipline.rs b/omp/examples/panics.md
+similarity index 100%
+rename from site/src/snippet_helpers/error_and_panic_discipline.rs
+rename to omp/examples/panics.md
+diff --git a/site/src/function-discipline.md b/omp/functions.md
+similarity index 100%
+rename from site/src/function-discipline.md
+rename to omp/functions.md
+diff --git a/site/src/import-discipline.md b/omp/imports.md
+similarity index 100%
+rename from site/src/import-discipline.md
+rename to omp/imports.md
+diff --git a/site/src/SUMMARY.md b/omp/index.md
+similarity index 100%
+rename from site/src/SUMMARY.md
+rename to omp/index.md
+diff --git a/site/src/introduction.md b/omp/introduction.md
+similarity index 100%
+rename from site/src/introduction.md
+rename to omp/introduction.md
+diff --git a/site/src/pattern-matching-discipline.md b/omp/matching.md
+similarity index 100%
+rename from site/src/pattern-matching-discipline.md
+rename to omp/matching.md
+diff --git a/site/src/naming-discipline.md b/omp/naming.md
+similarity index 100%
+rename from site/src/naming-discipline.md
+rename to omp/naming.md
+diff --git a/site/src/ordering-discipline.md b/omp/ordering.md
+similarity index 100%
+rename from site/src/ordering-discipline.md
+rename to omp/ordering.md
+diff --git a/site/src/preconditions.md b/omp/preconditions.md
+similarity index 100%
+rename from site/src/preconditions.md
+rename to omp/preconditions.md
+diff --git a/site/src/further-reading.md b/omp/resources.md
+similarity index 100%
+rename from site/src/further-reading.md
+rename to omp/resources.md
+diff --git a/site/src/structural-discipline.md b/omp/structure.md
+similarity index 100%
+rename from site/src/structural-discipline.md
+rename to omp/structure.md
+diff --git a/site/src/unsafe-discipline.md b/omp/unsafe.md
+similarity index 100%
+rename from site/src/unsafe-discipline.md
+rename to omp/unsafe.md
+diff --git a/omp/code.md b/omp/code.md
+index f652571cce0251257202f46295263518d32de8f0..f880b2688839aedc61fad23fbcf38c292028351f 100644
+--- a/omp/code.md
++++ b/omp/code.md
+@@ -1,5 +1,7 @@
+ # Code discipline
+ 
++Example support: [code](skill://rust/references/canonical/examples/code.md).
++
+ ## When to use `Self`
+ 
+ Use `Self` wherever possible to reduce the number of types which the reader must keep in mind as instead of needing to remember an extra type which may or may not be important, the reader is instead reminded that the current code strongly relates to the `impl` block it is contained in.
+@@ -8,20 +10,20 @@ By maximising the use of `Self` it also highlights where it _isn’t_ possible t
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# use std::cmp::Ordering;
+-# #[derive(Eq, PartialEq)]
+-# struct Node;
++
++use std::cmp::Ordering;
++#[derive(Eq, PartialEq)]
++struct Node;
+ impl Node {
+     pub fn new(parent: &Self) -> Self {
+         // ...
+-#       Node
++      Node
+     }
+ }
+ 
+ impl PartialOrd for Node {
+     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+-#       Some(Ordering::Less)
++      Some(Ordering::Less)
+     }
+ }
+ ```
+@@ -29,21 +31,21 @@ impl PartialOrd for Node {
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# use std::cmp::Ordering;
+-# #[derive(Eq, PartialEq)]
+-# struct Node;
++
++use std::cmp::Ordering;
++#[derive(Eq, PartialEq)]
++struct Node;
+ impl Node {
+     pub fn new(parent: &Node) -> Node {
+         // ...
+-#       Node
++      Node
+     }
+ }
+ 
+ impl PartialOrd<Node> for Node { // NB: Rhs=Self is also the default for PartialOrd.
+     fn partial_cmp(&self, other: &Node) -> Option<Ordering> {
+         // ...
+-#       Some(Ordering::Less)
++      Some(Ordering::Less)
+     }
+ }
+ ```
+@@ -63,12 +65,12 @@ In this case, it is okay to use the crate’s `Result` type alias instead.
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# type MyType = Arbitrary;
+-# struct SomeStruct {
+-#     some: (),
+-#     fields: (),
+-# }
++
++type MyType = Arbitrary;
++struct SomeStruct {
++    some: (),
++    fields: (),
++}
+ impl Responder for MyType {
+     type Response = SomeStruct;
+     type Err = Error;
+@@ -87,14 +89,14 @@ impl Responder for MyType {
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# type MyType = Arbitrary;
+-# struct SomeStruct {
+-#     some: (),
+-#     fields: (),
+-# }
+-# {
+-# type Result<T, E> = std::result::Result<T, E>;
++
++type MyType = Arbitrary;
++struct SomeStruct {
++    some: (),
++    fields: (),
++}
++{
++type Result<T, E> = std::result::Result<T, E>;
+ impl Responder for MyType {
+     type Response = SomeStruct;
+     type Err = Error;
+@@ -108,7 +110,7 @@ impl Responder for MyType {
+         })
+     }
+ }
+-# }
++}
+ ```
+ 
+ ## Struct population
+@@ -140,7 +142,7 @@ If there is a dependency between field declarations, for example if some shared
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
++
+ struct Entry<K, V> {
+     id: u64,
+     key: K,
+@@ -148,8 +150,8 @@ struct Entry<K, V> {
+     pretty_date_modified: String,
+ }
+ 
+-# type V = Arbitrary;
+-# impl<K: Clone> Entry<K, V> {
++type V = Arbitrary;
++impl<K: Clone> Entry<K, V> {
+ fn get_entry(&self, key: &K) -> Result<Entry<K, V>> {
+     let key = key.clone();
+     let id = self.id_of(&key)?;
+@@ -163,25 +165,25 @@ fn get_entry(&self, key: &K) -> Result<Entry<K, V>> {
+         pretty_date_modified,
+     })
+ }
+-#
+-#   fn get(&self, _: &K) -> Result<V> {
+-#       Ok(Arbitrary)
+-#   }
+-#
+-#   fn id_of(&self, _: &K) -> Result<u64> {
+-#       Ok(0)
+-#   }
+-#
+-#   fn date_modified(&self, _: &K) -> Result<Arbitrary> {
+-#       Ok(Arbitrary)
+-#   }
+-# }
++
++  fn get(&self, _: &K) -> Result<V> {
++      Ok(Arbitrary)
++  }
++
++  fn id_of(&self, _: &K) -> Result<u64> {
++      Ok(0)
++  }
++
++  fn date_modified(&self, _: &K) -> Result<Arbitrary> {
++      Ok(Arbitrary)
++  }
++}
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
++
+ struct Entry<K, V> {
+     id: u64,
+     key: K,
+@@ -189,8 +191,8 @@ struct Entry<K, V> {
+     pretty_date_modified: String,
+ }
+ 
+-# type V = Arbitrary;
+-# impl<K: Clone> Entry<K, V> {
++type V = Arbitrary;
++impl<K: Clone> Entry<K, V> {
+ fn get_entry(&self, key: &K) -> Result<Entry<K, V>> {
+     let value_stored_at_key = self.get(key)?;
+     Ok(Entry {
+@@ -201,19 +203,19 @@ fn get_entry(&self, key: &K) -> Result<Entry<K, V>> {
+         value: value_stored_at_key,
+     })
+ }
+-#
+-#   fn get(&self, _: &K) -> Result<V> {
+-#       Ok(Arbitrary)
+-#   }
+-#
+-#   fn id_of(&self, _: &K) -> Result<u64> {
+-#       Ok(0)
+-#   }
+-#
+-#   fn date_modified(&self, _: &K) -> Result<Arbitrary> {
+-#       Ok(Arbitrary)
+-#   }
+-# }
++
++  fn get(&self, _: &K) -> Result<V> {
++      Ok(Arbitrary)
++  }
++
++  fn id_of(&self, _: &K) -> Result<u64> {
++      Ok(0)
++  }
++
++  fn date_modified(&self, _: &K) -> Result<Arbitrary> {
++      Ok(Arbitrary)
++  }
++}
+ ```
+ 
+ ## Tuple population
+@@ -224,26 +226,26 @@ Keep things visually simple—if the formatter chooses to break tuple population
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# fn snippet() -> Result<(Arbitrary, Arbitrary)> {
++
++fn snippet() -> Result<(Arbitrary, Arbitrary)> {
+ let key = some_long_computation()?
+     .something_else()
+     .another_thing();
+ let value = some_other_long_computation()
+     .chained_with_something_else()?;
+-# let ret =
++let ret =
+ (key, value)
+-# ;
+-# Ok(ret)
+-# }
++;
++Ok(ret)
++}
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# fn snippet() -> Result<(Arbitrary, Arbitrary)> {
+-# let ret =
++
++fn snippet() -> Result<(Arbitrary, Arbitrary)> {
++let ret =
+ (
+     some_long_computation()?
+         .something_else()
+@@ -251,9 +253,9 @@ let value = some_other_long_computation()
+     some_other_long_computation()
+         .chained_with_something_else()?,
+ )
+-# ;
+-# Ok(ret)
+-# }
++;
++Ok(ret)
++}
+ ```
+ 
+ ## Prefer `collect` when interacting with `FromIterator`
+@@ -265,8 +267,8 @@ Prefer the latter as this makes the order of operations the same as what is read
+ ✅ Do this:
+ 
+ ```rust
+-# let collection = [0];
+-# let filter_closure = |_: &i32| true;
++let collection = [0];
++let filter_closure = |_: &i32| true;
+ let my_vec: Vec<_> = collection.into_iter()
+     .filter(filter_closure)
+     .collect();
+@@ -275,8 +277,8 @@ let my_vec: Vec<_> = collection.into_iter()
+ ⚠️ Avoid this:
+ 
+ ```rust
+-# let collection = [0];
+-# let filter_closure = |_: &i32| true;
++let collection = [0];
++let filter_closure = |_: &i32| true;
+ let my_vec = Vec::from_iter(
+     collection.into_iter()
+         .filter(filter_closure)
+@@ -294,16 +296,16 @@ Consider also that `vec![expr; n]` where `n` is zero will still evaluate (and th
+ 
+ ```rust
+ let my_vec = Vec::new();
+-# let my_vec_constraint: Vec<i32> = my_vec;
++let my_vec_constraint: Vec<i32> = my_vec;
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+ let my_vec = vec![];
+-# let my_vec_constraint: Vec<i32> = my_vec;
++let my_vec_constraint: Vec<i32> = my_vec;
+ let my_vec = Vec::with_capacity(0);
+-# let my_vec_constraint: Vec<i32> = my_vec;
++let my_vec_constraint: Vec<i32> = my_vec;
+ ```
+ 
+ ## Avoid loosely-scoped `let mut`
+@@ -313,8 +315,8 @@ Whenever this happens, scope the mutable declarations to just where they are nee
+ Doing this also makes code simpler to read as there are fewer things which can mutate at any one point.
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# type MyStructure = Arbitrary;
++
++type MyStructure = Arbitrary;
+ let my_structure = {
+     let mut my_structure = MyStructure::new();
+     // Mutate `my_structure` as required to construct it.
+@@ -328,7 +330,7 @@ If mutability is to retain some state whilst iterating through a structure, cons
+ As a simple example, if presented with the following imperative code to count the number of spaces in a string
+ 
+ ```rust
+-# let my_string = "";
++let my_string = "";
+ let mut num_spaces = 0;
+ for c in my_string.chars() {
+     if c == ' ' {
+@@ -340,7 +342,7 @@ for c in my_string.chars() {
+ Consider instead, using the functional style to avoid the mutation—
+ 
+ ```rust
+-# let my_string = "";
++let my_string = "";
+ let num_spaces = my_string.chars()
+     .filter(|c| *c == ' ')
+     .count();
+@@ -354,16 +356,16 @@ Instead, prefer to return the required value from the block which computes it.
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# fn snippet() -> Result<()> {
+-# let result = Result::Ok(());
++
++fn snippet() -> Result<()> {
++let result = Result::Ok(());
+ let message = if result.is_ok() {
+     "success!"
+ } else {
+     "failed!"
+ };
+ 
+-# fn exec_web_request() -> Result<Message> { Ok(Message) }
++fn exec_web_request() -> Result<Message> { Ok(Message) }
+ let mut retries = 0;
+ let message = loop {
+     let resp = exec_web_request();
+@@ -378,16 +380,16 @@ let message = loop {
+         return Err(Error::NetworkUnavailable);
+     }
+ };
+-# Ok(())
+-# }
++Ok(())
++}
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# fn snippet() -> Result<()> {
+-# let result = Result::Ok(());
++
++fn snippet() -> Result<()> {
++let result = Result::Ok(());
+ let message;
+ if result.is_ok() {
+     message = "success!";
+@@ -395,7 +397,7 @@ if result.is_ok() {
+     message = "failed!";
+ }
+ 
+-# fn exec_web_request() -> Result<Message> { Ok(Message) }
++fn exec_web_request() -> Result<Message> { Ok(Message) }
+ let mut retries = 0;
+ let message;
+ loop {
+@@ -414,8 +416,8 @@ loop {
+         return Err(Error::NetworkUnavailable);
+     }
+ }
+-# Ok(())
+-# }
++Ok(())
++}
+ ```
+ 
+ ## Reference scope
+@@ -430,8 +432,8 @@ As a rule of thumb, only use `&` at the start of the value of a `let` declaratio
+ ✅ Do this:
+ 
+ ```rust
+-# fn from_func() {}
+-# fn other_func(_: &()) {}
++fn from_func() {}
++fn other_func(_: &()) {}
+ let foo = from_func();
+ other_func(&foo);
+ ```
+@@ -439,8 +441,8 @@ other_func(&foo);
+ ⚠️ Avoid this:
+ 
+ ```rust
+-# fn from_func() {}
+-# fn other_func(_: &()) {}
++fn from_func() {}
++fn other_func(_: &()) {}
+ let foo = &from_func();
+ other_func(foo);
+ ```
+@@ -469,8 +471,8 @@ In the second case when shadowing in the same scope with the same type, there is
+ However, if this is being used to effectively mutate a value during construction with no other values being affected, instead use the scoped-mutability pattern—
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# type MyThing = Arbitrary;
++
++type MyThing = Arbitrary;
+ let my_thing = {
+     let mut my_thing = MyThing::new();
+     // Mutate `my_thing` to construct it...
+@@ -482,12 +484,12 @@ In the final case, when shadowing in the same but changing types (e.g. in a conv
+ This pattern is commonly seen in conversion functions—those which take ownership of their sole parameter and convert it into another type.
+ 
+ ```rust
+-# struct Store<S> {
+-#     some_field: (),
+-#     state: S,
+-# }
+-# struct New;
+-# struct Inited;
++struct Store<S> {
++    some_field: (),
++    state: S,
++}
++struct New;
++struct Inited;
+ impl Store<New> {
+     fn init(self) -> Store<Inited> {
+         let Self { some_field, .. } = self;
+@@ -496,7 +498,7 @@ impl Store<New> {
+         Store {
+             some_field,
+             // ...
+-#           state: Inited,
++          state: Inited,
+         }
+     }
+ }
+@@ -519,7 +521,7 @@ These rules ensure that the reader cannot miss any constraints.
+ ✅ Do this:
+ 
+ ```rust
+-# struct IterWrapper<I>(I);
++struct IterWrapper<I>(I);
+ impl<'a, 'b, I, T> IterWrapper<I>
+     where
+         'b: 'a,
+@@ -531,7 +533,7 @@ impl<'a, 'b, I, T> IterWrapper<I>
+ ⚠️ Avoid this:
+ 
+ ```rust
+-# struct IterWrapper<I>(I);
++struct IterWrapper<I>(I);
+ impl<'a, 'b: 'a, I: Iterator<Item=T> + 'a, T> IterWrapper<I>
+     where
+         T: 'b
+@@ -578,9 +580,9 @@ If a type parameter seems necessary as a variable name is not sufficiently descr
+ ✅ Do this:
+ 
+ ```rust
+-# let foo = [0];
+-# let filter_closure = |_: &&i32| true;
+-# let map_closure = |_| ();
++let foo = [0];
++let filter_closure = |_: &&i32| true;
++let map_closure = |_| ();
+ let some_meaningful_var_name: Vec<_> = foo.iter()
+     .filter(filter_closure)
+     .map(map_closure)
+@@ -591,18 +593,18 @@ let some_meaningful_var_name: Vec<_> = foo.iter()
+ ⚠️ Avoid this:
+ 
+ ```rust
+-# fn snippet<'lifetimes, With, Generics>() {
+-# struct And<'l>(&'l ());
+-# let foo = [0];
+-# let filter_closure = |_: &&i32| true;
+-# let map_closure = |x| SomeExtremelyLongType(std::marker::PhantomData);
+-# struct SomeExtremelyLongType<W, G, A>(std::marker::PhantomData<(W, G, A)>);
++fn snippet<'lifetimes, With, Generics>() {
++struct And<'l>(&'l ());
++let foo = [0];
++let filter_closure = |_: &&i32| true;
++let map_closure = |x| SomeExtremelyLongType(std::marker::PhantomData);
++struct SomeExtremelyLongType<W, G, A>(std::marker::PhantomData<(W, G, A)>);
+ let x = foo.iter()
+     .filter(filter_closure)
+     .map(map_closure)
+     // ...
+     .collect::<Vec<SomeExtremelyLongType<With, Generics, And<'lifetimes>>>>();
+-# }
++}
+ ```
+ 
+ ## Avoid explicit `drop` calls
+@@ -616,9 +618,9 @@ a closure which takes one argument, ignores it and returns a unit.
+ This form is consistent with similar closures which ignore parts of their inputs, for example when extracting the key from a key-value pair—
+ 
+ ```rust
+-# [(1, 2)].iter()
++[(1, 2)].iter()
+     .map(|(key, _)| key)
+-# ;
++;
+ ```
+ 
+ There are two exceptions to this.
+@@ -631,10 +633,10 @@ This highlights that we care only about side-effects, and that no information is
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# use std::fs::OpenOptions;
+-# use std::io::Write;
+-# impl Log {
++
++use std::fs::OpenOptions;
++use std::io::Write;
++impl Log {
+ async fn log(&self, message: String) -> Result<()> {
+     {
+         let mut file = OpenOptions::new()
+@@ -645,16 +647,16 @@ async fn log(&self, message: String) -> Result<()> {
+     self.transmit_log(&message).await?;
+     Ok(())
+ }
+-# }
++}
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# use std::fs::OpenOptions;
+-# use std::io::Write;
+-# impl Log {
++
++use std::fs::OpenOptions;
++use std::io::Write;
++impl Log {
+ async fn log(&self, message: String) -> Result<()> {
+     let mut file = OpenOptions::new()
+         .append(true)
+@@ -665,7 +667,7 @@ async fn log(&self, message: String) -> Result<()> {
+         .await
+         .map(drop)
+ }
+-# }
++}
+ ```
+ 
+ ## Constructors vs. structs with all fields public
+@@ -688,14 +690,13 @@ If there is no reasonable `Default` implementation, use a builder instead.
+ Avoid namespace pollution by putting helper types into the most local scope they may be reasonably defined in.
+ Further, if common patterns start to arise, make sure to use standard names for each type, for example `Test` for test-specific builder-pattern test cases or `Message`/`Response` for serde-structs which represent a foreign API.
+ Note that by using predictable names in very predictable, local-scale patterns, the reader is able to safely forget details unimportant to them.
+-When helper types are local to a function, place the definitions at the bottom, below a marker comment such as `// test types` or `// serde types`.
+-Such marker comments let the reader know that unless they wish to know the finer details about how a test works or how a foreign API is handled, they do not need to read any further.
++When helper types are local to a function, place the definitions at the bottom, together under their owning responsibility.
++This keeps the details of a test or foreign API below the main flow of the function.
+ 
+ This pattern is particularly useful to significantly reduce the blast-radius of incoming remote API changes by closely matching the expected form with a set of local (de)serialization types independent to those understood internally by our crate.
+ Let’s say we have a function called `get_image_info`, which makes a web-request to get information associated with given container image name (e.g.
+ author, description, latest version).
+ To nicely transfer data from some remote format into one we govern, say `ImageInfo`, add an explicit `return` at the end of `get_image_info` and _below_ this, create a new type called `Response`, which implements `Deserialize`.
+-Add a comment which says `// serde types.` to let the reader know that everything beyond this point only relates to modelling the remote API—thus saving them time as they will likely only care about these details if something is broken.
+ Add as many new local types as are necessary to maintain a 1:1 relationship between Rust types and the remote’s format—
+ 
+ ```rust,ignore
+@@ -746,81 +747,81 @@ Expressions which end in a `)` or `]` follow the same rule unless that expressio
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# fn snippet() -> Result<()> {
+-# struct FooConfig {
+-#     bar: &'static str,
+-#     baz: &'static str,
+-# }
+-# fn foo(_: FooConfig) -> Result<()> {
+-#     Ok(())
+-# }
++
++fn snippet() -> Result<()> {
++struct FooConfig {
++    bar: &'static str,
++    baz: &'static str,
++}
++fn foo(_: FooConfig) -> Result<()> {
++    Ok(())
++}
+ foo(FooConfig {
+     bar: "asdf",
+     baz: "fdsa",
+ })?;
+ 
+-# let some_condition = true;
+-# let value_a = "";
+-# let value_b = "";
++let some_condition = true;
++let value_a = "";
++let value_b = "";
+ let value = if some_condition {
+     value_a
+ } else {
+     value_b
+ };
+ value.to_string()
+-# ;
++;
+ 
+ // ...
+-# ['?'].iter()
++['?'].iter()
+     .filter(|c| {
+         let exceptions = [ 'a', 'b', 'c', 'd' ];
+         !exceptions.contains(c)
+     })
+-# ;
++;
+ // ...
+-# Ok(())
+-# }
++Ok(())
++}
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/code_discipline.rs}}
+-# fn snippet() -> Result<()> {
+-# struct Foo {
+-#     bar: &'static str,
+-#     baz: &'static str,
+-# }
+-# impl Foo {
+-#     fn do_thing(self) -> Result<()> {
+-#         Ok(())
+-#     }
+-# }
++
++fn snippet() -> Result<()> {
++struct Foo {
++    bar: &'static str,
++    baz: &'static str,
++}
++impl Foo {
++    fn do_thing(self) -> Result<()> {
++        Ok(())
++    }
++}
+ Foo {
+     bar: "asdf",
+     baz: "fdsa",
+ }
+ .do_thing()?;
+ 
+-# let some_condition = true;
+-# let value_a = "";
+-# let value_b = "";
++let some_condition = true;
++let value_a = "";
++let value_b = "";
+ if some_condition {
+     value_a
+ } else {
+     value_b
+ }
+ .to_string()
+-# ;
++;
+ 
+ // ...
+-# ['?'].iter()
++['?'].iter()
+     .filter(|c| ![ 'a', 'b', 'c', 'd' ].contains(c))
+-# ;
++;
+ // ...
+-# Ok(())
+-# }
++Ok(())
++}
+ ```
+ 
+ ## Format arg inlining
+@@ -833,17 +834,21 @@ _NB: older Rust versions may not support this syntax._
+ ✅ Do this:
+ 
+ ```rust
+-# let path = "";
+-# let file = "";
++let path = "";
++let file = "";
+ format!("{path}/{file}")
+-# ;
++;
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-# let path = "";
+-# let file = "";
++let path = "";
++let file = "";
+ format!("{}/{}", path, file)
+-# ;
++;
+ ```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/code-discipline.md).
+diff --git a/omp/comments.md b/omp/comments.md
+index 62c0ba4996883c509953ea93011c3b5a52e0add0..6809db74c2eda2ca922b00a45c0d3b4b6d152025 100644
+--- a/omp/comments.md
++++ b/omp/comments.md
+@@ -1,5 +1,9 @@
+ # Comment discipline
+ 
++Example support: [comments](skill://rust/references/canonical/examples/comments.md).
++
++Apply these rules to existing documentation and to comments explicitly requested or required by tooling.
++
+ ## First doc-sentence form
+ 
+ When wrapped, the first sentence of a doc comment should be at most two lines.
+@@ -9,28 +13,28 @@ After reading this first sentence, it should be clear _when_ to use the given fu
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/comment_discipline.rs}}
+-# impl Arbitrary {
++
++impl Arbitrary {
+ /// This function reports an increase in the number of steps taken by this
+ /// thread.
+ fn add_steps(&self, delta: i64) -> Result<()> {
+     /* ... */
+-#   Ok(())
++  Ok(())
++}
+ }
+-# }
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/comment_discipline.rs}}
+-# impl Arbitrary {
++
++impl Arbitrary {
+ /// This function adds a given delta to the current step counter.
+ fn add_steps(&self, delta: i64) -> Result<()> {
+     /* ... */
+-#   Ok(())
++  Ok(())
++}
+ }
+-# }
+ ```
+ 
+ ## Definite vs. Indefinite articles
+@@ -42,25 +46,29 @@ Leave no room for ambiguity and hence misunderstanding.
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/comment_discipline.rs}}
+-# impl Arbitrary {
++
++impl Arbitrary {
+ /// Increments this counter by the given `delta`.
+ fn incr_by(&self, delta: u64) -> Result<()> {
+     /* ... */
+-#   Ok(())
++  Ok(())
++}
+ }
+-# }
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/comment_discipline.rs}}
+-# impl Arbitrary {
++
++impl Arbitrary {
+ /// Increments a counter by a given amount.
+ fn incr_by(&self, delta: u64) -> Result<()> {
+     /* ... */
+-#   Ok(())
++  Ok(())
++}
+ }
+-# }
+ ```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/comment-discipline.md).
+diff --git a/omp/contributing.md b/omp/contributing.md
+index 854139a319a943d95ca525c8be994c4dfe83e00e..e6978c93d2cff96e72df05290961244c8aab4ac0 100644
+--- a/omp/contributing.md
++++ b/omp/contributing.md
+@@ -1 +1,5 @@
+ # Contributing
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/contributing.md).
+diff --git a/omp/cosmetic.md b/omp/cosmetic.md
+index 48fbc198c576ac2487904f62b376ba3212b02957..d691b012db93511466c86b04c1ff99ff9c7e4890 100644
+--- a/omp/cosmetic.md
++++ b/omp/cosmetic.md
+@@ -1,5 +1,7 @@
+ # Cosmetic discipline
+ 
++Example support: [cosmetic](skill://rust/references/canonical/examples/cosmetic.md).
++
+ ## Spacing
+ 
+ Use blank lines semantically, rather than aesthetically.
+@@ -16,8 +18,8 @@ There are no hard and fast rules for this strong association, but the following
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/cosmetic_discipline.rs}}
+-# fn snippet() -> Result<Arbitrary> {
++
++fn snippet() -> Result<Arbitrary> {
+ let x = foo();
+ if !x.is_valid() {
+     return Err(Error::Invalid);
+@@ -29,14 +31,14 @@ if !y.is_valid() {
+     return Err(Error::Invalid);
+ }
+ return Ok(y);
+-# }
++}
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/cosmetic_discipline.rs}}
+-# fn snippet() -> Result<Arbitrary> {
++
++fn snippet() -> Result<Arbitrary> {
+ let x = foo();
+ 
+ if !x.is_valid() {
+@@ -50,7 +52,7 @@ if !y.is_valid() {
+ }
+ 
+ return Ok(y);
+-# }
++}
+ ```
+ 
+ ## Grouping
+@@ -70,8 +72,8 @@ _The following snippets assume that functions `foo`, `bar` and `baz` are free of
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/cosmetic_discipline.rs}}
+-# fn snippet() -> Result<()> {
++
++fn snippet() -> Result<()> {
+ let x = foo();
+ let b = baz();
+ if !b.is_valid() {
+@@ -83,16 +85,16 @@ let y = bar();
+ if !y.is_valid() {
+     return Err(Error::Invalid);
+ }
+-# Ok(())
+-# }
++Ok(())
++}
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/cosmetic_discipline.rs}}
+-# fn snippet() -> Result<()> {
+-# type X = Arbitrary;
++
++fn snippet() -> Result<()> {
++type X = Arbitrary;
+ let x = foo();
+ let check = |x: X| {
+     if !x.is_valid() {
+@@ -103,8 +105,8 @@ let check = |x: X| {
+ let y = bar();
+ let z = x + check(baz())?;
+ check(y)?;
+-# Ok(())
+-# }
++Ok(())
++}
+ ```
+ 
+ ## Hex values
+@@ -123,3 +125,7 @@ const SOME_SPECIFIC_IMPORTANT_VALUE: u64 = 0xab5c4d320974a3bc;
+ ```rust
+ const SOME_SPECIFIC_IMPORTANT_VALUE: u64 = 0xAB5C4D320974A3BC;
+ ```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/cosmetic-discipline.md).
+diff --git a/omp/errors.md b/omp/errors.md
+index c6f9b5a118c49b83a14534d5d347b51feb24969d..689e5ce228e34747317a756e4dd554fcdb829a5a 100644
+--- a/omp/errors.md
++++ b/omp/errors.md
+@@ -1,5 +1,7 @@
+ # Error and panic discipline
+ 
++Example support: [panics](skill://rust/references/canonical/examples/panics.md).
++
+ ## Error messages
+ 
+ In Rust, it is a good idea to start writing a project by first making its `Error` type. This not only encourages message consistency, but also highlights the necessary information for these good error messages.
+@@ -130,10 +132,10 @@ By maintaining the same convention with short chains, our code becomes more pred
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/error_and_panic_discipline.rs}}
+-# fn snippet() -> Result<()> {
+-# use std::env;
+-# use url::Url;
++
++fn snippet() -> Result<()> {
++use std::env;
++use url::Url;
+ let override_url = env::var("URL")
+     .ok()
+     .map(|override_url| {
+@@ -143,16 +145,16 @@ let override_url = env::var("URL")
+         })
+     })
+     .transpose()?;
+-# Ok(())
+-# }
++Ok(())
++}
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/error_and_panic_discipline.rs}}
+-# use std::env;
+-# fn snippet() -> Result<()> {
++
++use std::env;
++fn snippet() -> Result<()> {
+ let override_url = env::var("URL")
+     .ok()
+     .map(|override_url| url::Url::parse(&override_url))
+@@ -161,8 +163,8 @@ let override_url = env::var("URL")
+         env_var: "URL",
+         source,
+     })?;
+-# Ok(())
+-# }
++Ok(())
++}
+ ```
+ 
+ ## Panic calmly
+@@ -204,3 +206,7 @@ A failed `.unwrap()` will result in a trace pointing to where the panic occurred
+ If a thread panics whilst it has acquired a `Mutex` lock, we have no guarantee that the contents of the mutex represents a valid state and hence the lock gets _poisoned._
+ This means that any other thread which attempts to lock the mutex will get an error.
+ In this case, panicking is acceptable because it effectively propagates an existing panic from another thread.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/error-and-panic-discipline.md).
+diff --git a/omp/examples/code.md b/omp/examples/code.md
+index 364b6394b823d0d11a32c9ed95d22d4928058e6c..951bf13871739b238d2b8ddb5f8ac0a03e91d2f2 100644
+--- a/omp/examples/code.md
++++ b/omp/examples/code.md
+@@ -1,57 +1,65 @@
+-{{#include error_handling.rs}}
+-#
+-# struct Arbitrary;
+-# impl Arbitrary {
+-#     fn new() -> Self {
+-#         Self
+-#     }
+-#
+-#     fn something_else(self) -> Self {
+-#         self
+-#     }
+-#
+-#     fn another_thing(self) -> Self {
+-#         self
+-#     }
+-#
+-#     fn chained_with_something_else(self) -> Result<Self> {
+-#         Ok(self)
+-#     }
+-#
+-#     fn format_as(self, fmt: &str) -> String {
+-#         String::new()
+-#     }
+-# }
+-#
+-# fn some_long_computation() -> Result<Arbitrary> {
+-#     Ok(Arbitrary)
+-# }
+-#
+-# fn some_other_long_computation() -> Arbitrary {
+-#     Arbitrary
+-# }
+-#
+-# struct Input;
+-# trait Responder {
+-#     type Response;
+-#     type Err;
+-#     fn respond(&self, input: Input) -> std::result::Result<Self::Response, Self::Err>;
+-# }
+-#
+-#
+-# struct Message;
+-#
+-# impl Message {
+-#     fn text(&self) {}
+-# }
+-#
+-#
+-# struct Log {
+-#     log_file_path: String,
+-# }
+-#
+-# impl Log {
+-#     async fn transmit_log(&self, _: &str) -> Result<usize> {
+-#         Ok(0)
+-#     }
+-# }
++# Code example support
++
++Example support: [errors](skill://rust/references/canonical/examples/errors.md).
++
++```rust
++struct Arbitrary;
++impl Arbitrary {
++    fn new() -> Self {
++        Self
++    }
++
++    fn something_else(self) -> Self {
++        self
++    }
++
++    fn another_thing(self) -> Self {
++        self
++    }
++
++    fn chained_with_something_else(self) -> Result<Self> {
++        Ok(self)
++    }
++
++    fn format_as(self, fmt: &str) -> String {
++        String::new()
++    }
++}
++
++fn some_long_computation() -> Result<Arbitrary> {
++    Ok(Arbitrary)
++}
++
++fn some_other_long_computation() -> Arbitrary {
++    Arbitrary
++}
++
++struct Input;
++trait Responder {
++    type Response;
++    type Err;
++    fn respond(&self, input: Input) -> std::result::Result<Self::Response, Self::Err>;
++}
++
++
++struct Message;
++
++impl Message {
++    fn text(&self) {}
++}
++
++
++struct Log {
++    log_file_path: String,
++}
++
++impl Log {
++    async fn transmit_log(&self, _: &str) -> Result<usize> {
++        Ok(0)
++    }
++}
++```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/snippet_helpers/code_discipline.rs).
+diff --git a/omp/examples/comments.md b/omp/examples/comments.md
+index 6d31e7c5c1285b1da83c6572a2002ad1605a9b58..b56edde89079a52326a47e31cbe87cefcaa2fe6c 100644
+--- a/omp/examples/comments.md
++++ b/omp/examples/comments.md
+@@ -1,3 +1,11 @@
+-{{#include error_handling.rs}}
+-#
+-# struct Arbitrary;
++# Comments example support
++
++Example support: [errors](skill://rust/references/canonical/examples/errors.md).
++
++```rust
++struct Arbitrary;
++```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/snippet_helpers/comment_discipline.rs).
+diff --git a/omp/examples/cosmetic.md b/omp/examples/cosmetic.md
+index 458903b7ba250e3fb94227e2328521b88c27dc3c..71f2c7530eb9f25bea7ccf9dcb5a501a2184ac35 100644
+--- a/omp/examples/cosmetic.md
++++ b/omp/examples/cosmetic.md
+@@ -1,32 +1,41 @@
+-{{#include error_handling.rs}}
+-# struct Arbitrary;
+-#
+-# impl Arbitrary {
+-#     fn is_valid(&self) -> bool {
+-#         true
+-#     }
+-# }
+-#
+-# impl std::ops::Add for Arbitrary {
+-#     type Output = Self;
+-#
+-#     fn add(self, _: Self) -> Self {
+-#         Self
+-#     }
+-# }
+-#
+-# impl std::fmt::Display for Arbitrary {
+-#     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+-#         write!(f, "Arbitrary")
+-#     }
+-# }
+-#
+-# fn foo() -> Arbitrary {
+-#     Arbitrary
+-# }
+-# fn bar() -> Arbitrary {
+-#     Arbitrary
+-# }
+-# fn baz() -> Arbitrary {
+-#     Arbitrary
+-# }
++# Cosmetic example support
++
++Example support: [errors](skill://rust/references/canonical/examples/errors.md).
++
++```rust
++struct Arbitrary;
++
++impl Arbitrary {
++    fn is_valid(&self) -> bool {
++        true
++    }
++}
++
++impl std::ops::Add for Arbitrary {
++    type Output = Self;
++
++    fn add(self, _: Self) -> Self {
++        Self
++    }
++}
++
++impl std::fmt::Display for Arbitrary {
++    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
++        write!(f, "Arbitrary")
++    }
++}
++
++fn foo() -> Arbitrary {
++    Arbitrary
++}
++fn bar() -> Arbitrary {
++    Arbitrary
++}
++fn baz() -> Arbitrary {
++    Arbitrary
++}
++```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/snippet_helpers/cosmetic_discipline.rs).
+diff --git a/omp/examples/errors.md b/omp/examples/errors.md
+index e79c2d6b845042ade917ece38e1b6fd9d9a43280..f9b3f3a2bbbfdb9d5119e00edee522b446dde170 100644
+--- a/omp/examples/errors.md
++++ b/omp/examples/errors.md
+@@ -1,21 +1,29 @@
+-# type Result<T> = std::result::Result<T, Error>;
+-#
+-# enum Error {
+-#     Invalid,
+-#     NetworkUnavailable,
+-#     MalformedEnvUrl {
+-#         env_var: &'static str,
+-#         source: Box<dyn std::error::Error>,
+-#     },
+-#     Unsupported,
+-#     Unknown(Box<dyn std::error::Error>),
+-# }
+-#
+-# impl<E> From<E> for Error
+-# where
+-#     E: std::error::Error + 'static,
+-# {
+-#     fn from(err: E) -> Self {
+-#         Error::Unknown(Box::new(err))
+-#     }
+-# }
++# Errors example support
++
++```rust
++type Result<T> = std::result::Result<T, Error>;
++
++enum Error {
++    Invalid,
++    NetworkUnavailable,
++    MalformedEnvUrl {
++        env_var: &'static str,
++        source: Box<dyn std::error::Error>,
++    },
++    Unsupported,
++    Unknown(Box<dyn std::error::Error>),
++}
++
++impl<E> From<E> for Error
++where
++    E: std::error::Error + 'static,
++{
++    fn from(err: E) -> Self {
++        Error::Unknown(Box::new(err))
++    }
++}
++```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/snippet_helpers/error_handling.rs).
+diff --git a/omp/examples/functions.md b/omp/examples/functions.md
+index 0c6395611dd3bb66661e8a026035a2e1132796cd..2c3cc6d5cc5f49672fcd1ed8ab136167cd4774f1 100644
+--- a/omp/examples/functions.md
++++ b/omp/examples/functions.md
+@@ -1,55 +1,63 @@
+-{{#include error_handling.rs}}
+-#
+-# struct Arbitrary;
+-#
+-# impl Arbitrary {
+-#     fn new() -> Self {
+-#         Self
+-#     }
+-#
+-#     fn builder() -> Self {
+-#         Self
+-#     }
+-#
+-#     fn foo(self, _: &str) -> Self {
+-#         self
+-#     }
+-#
+-#     fn bar(self, _: &str) -> Self {
+-#         self
+-#     }
+-#
+-#     fn build(self) -> Result<Self> {
+-#         Ok(self)
+-#     }
+-# }
+-#
+-# mod some_crate {
+-#     pub struct Foo;
+-#
+-#     impl Foo {
+-#         pub fn builder() -> FooBuilder {
+-#             FooBuilder
+-#         }
+-#     }
+-#
+-#     pub struct FooBuilder;
+-#
+-#     impl FooBuilder {
+-#         pub fn new() -> Self {
+-#             Self
+-#         }
+-#
+-#         pub fn foo(self, _: &'static str) -> Self {
+-#             self
+-#         }
+-#
+-#         pub fn bar(self, _: &'static str) -> Self {
+-#             self
+-#         }
+-#
+-#         pub fn build(self) -> std::result::Result<Foo, Box<dyn std::error::Error>> {
+-#             Ok(Foo)
+-#         }
+-#     }
+-# }
++# Functions example support
++
++Example support: [errors](skill://rust/references/canonical/examples/errors.md).
++
++```rust
++struct Arbitrary;
++
++impl Arbitrary {
++    fn new() -> Self {
++        Self
++    }
++
++    fn builder() -> Self {
++        Self
++    }
++
++    fn foo(self, _: &str) -> Self {
++        self
++    }
++
++    fn bar(self, _: &str) -> Self {
++        self
++    }
++
++    fn build(self) -> Result<Self> {
++        Ok(self)
++    }
++}
++
++mod some_crate {
++    pub struct Foo;
++
++    impl Foo {
++        pub fn builder() -> FooBuilder {
++            FooBuilder
++        }
++    }
++
++    pub struct FooBuilder;
++
++    impl FooBuilder {
++        pub fn new() -> Self {
++            Self
++        }
++
++        pub fn foo(self, _: &'static str) -> Self {
++            self
++        }
++
++        pub fn bar(self, _: &'static str) -> Self {
++            self
++        }
++
++        pub fn build(self) -> std::result::Result<Foo, Box<dyn std::error::Error>> {
++            Ok(Foo)
++        }
++    }
++}
++```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/snippet_helpers/function_discipline.rs).
+diff --git a/omp/examples/imports.md b/omp/examples/imports.md
+index 832a3a3c837a75f79bc3f10b57d77333e8226a92..bcc06f1ebc2b0b7f6a1145d38686e5700fc16c1a 100644
+--- a/omp/examples/imports.md
++++ b/omp/examples/imports.md
+@@ -1,51 +1,59 @@
+-{{#include error_handling.rs}}
+-#
+-# mod some_crate {
+-#     pub struct SpecificItem1;
+-#     pub struct SpecificItem2;
+-# }
+-#
+-# mod some_other_crate {
+-#     pub mod prelude {}
+-#     pub struct SpecificItem3;
+-# }
+-#
+-# mod another_crate {
+-#     pub enum SomeEnum {
+-#         Variant1,
+-#         Variant2,
+-#     }
+-# }
+-#
+-# mod allocative {
+-#     pub struct Allocative;
+-# }
+-#
+-# mod derive_more {
+-#     pub struct Display;
+-# }
+-#
+-# mod starlark {
+-#     pub mod environment {
+-#         pub struct FrozenModule;
+-#         pub struct Module;
+-#     }
+-#
+-#     pub mod eval {
+-#         pub struct Evaluator;
+-#     }
+-#
+-#     pub mod values {
+-#         pub struct AllocValue;
+-#         pub struct Freeze;
+-#         pub struct ProvidesStaticType;
+-#         pub struct StarlarkValue;
+-#         pub struct ValueLike;
+-#     }
+-# }
+-#
+-# mod starlark_derive {
+-#     pub fn starlark_value() {}
+-#     pub struct NoSerialize;
+-#     pub struct Trace;
+-# }
++# Imports example support
++
++Example support: [errors](skill://rust/references/canonical/examples/errors.md).
++
++```rust
++mod some_crate {
++    pub struct SpecificItem1;
++    pub struct SpecificItem2;
++}
++
++mod some_other_crate {
++    pub mod prelude {}
++    pub struct SpecificItem3;
++}
++
++mod another_crate {
++    pub enum SomeEnum {
++        Variant1,
++        Variant2,
++    }
++}
++
++mod allocative {
++    pub struct Allocative;
++}
++
++mod derive_more {
++    pub struct Display;
++}
++
++mod starlark {
++    pub mod environment {
++        pub struct FrozenModule;
++        pub struct Module;
++    }
++
++    pub mod eval {
++        pub struct Evaluator;
++    }
++
++    pub mod values {
++        pub struct AllocValue;
++        pub struct Freeze;
++        pub struct ProvidesStaticType;
++        pub struct StarlarkValue;
++        pub struct ValueLike;
++    }
++}
++
++mod starlark_derive {
++    pub fn starlark_value() {}
++    pub struct NoSerialize;
++    pub struct Trace;
++}
++```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/snippet_helpers/import_discipline.rs).
+diff --git a/omp/examples/matching.md b/omp/examples/matching.md
+index d2724ee9898863bb13ffd3e0e8dbf5d6b18c04bf..e468f0d40accba5925f461efaaddee6f57d17799 100644
+--- a/omp/examples/matching.md
++++ b/omp/examples/matching.md
+@@ -1,22 +1,30 @@
+-{{#include error_handling.rs}}
+-#
+-# #[derive(Eq, PartialEq, PartialOrd)]
+-# struct MyStruct {
+-#     my: String,
+-#     thing: String,
+-#     with: String,
+-#     some: String,
+-#     unused: String,
+-#     fields: String,
+-# }
+-#
+-# struct Line {
+-#     gradient: f64,
+-#     y_intercept: f64,
+-# }
+-#
+-# struct Server;
+-# struct ServerConfig {
+-#     db_path: (),
+-#     working_path: (),
+-# }
++# Matching example support
++
++Example support: [errors](skill://rust/references/canonical/examples/errors.md).
++
++```rust
++#[derive(Eq, PartialEq, PartialOrd)]
++struct MyStruct {
++    my: String,
++    thing: String,
++    with: String,
++    some: String,
++    unused: String,
++    fields: String,
++}
++
++struct Line {
++    gradient: f64,
++    y_intercept: f64,
++}
++
++struct Server;
++struct ServerConfig {
++    db_path: (),
++    working_path: (),
++}
++```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/snippet_helpers/pattern_matching_discipline.rs).
+diff --git a/omp/examples/naming.md b/omp/examples/naming.md
+index 8e41b9b77132e81706fcae390cc58607efb5f68a..90cdb92a7278cc7f318b47443ae78d870a52bcfd 100644
+--- a/omp/examples/naming.md
++++ b/omp/examples/naming.md
+@@ -1,25 +1,34 @@
+-{{#include error_handling.rs}}
+-# struct Arbitrary;
+-#
+-# impl Arbitrary {
+-#     fn builder() -> Self {
+-#         Self
+-#     }
+-#
+-#     fn bar(self, _: Self) -> Self {
+-#         Self
+-#     }
+-#
+-#     fn build(self) -> Result<Self> {
+-#         Ok(Self)
+-#     }
+-# }
+-#
+-# struct Event {
+-#     response: Option<()>,
+-# }
+-#
+-# struct File {
+-#     name: (),
+-#     path: (),
+-# }
++# Naming example support
++
++Example support: [errors](skill://rust/references/canonical/examples/errors.md).
++
++```rust
++struct Arbitrary;
++
++impl Arbitrary {
++    fn builder() -> Self {
++        Self
++    }
++
++    fn bar(self, _: Self) -> Self {
++        Self
++    }
++
++    fn build(self) -> Result<Self> {
++        Ok(Self)
++    }
++}
++
++struct Event {
++    response: Option<()>,
++}
++
++struct File {
++    name: (),
++    path: (),
++}
++```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/snippet_helpers/naming_discipline.rs).
+diff --git a/omp/examples/ordering.md b/omp/examples/ordering.md
+index 6d31e7c5c1285b1da83c6572a2002ad1605a9b58..ed868339dc1b130ba0284505446996e67537d703 100644
+--- a/omp/examples/ordering.md
++++ b/omp/examples/ordering.md
+@@ -1,3 +1,11 @@
+-{{#include error_handling.rs}}
+-#
+-# struct Arbitrary;
++# Ordering example support
++
++Example support: [errors](skill://rust/references/canonical/examples/errors.md).
++
++```rust
++struct Arbitrary;
++```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/snippet_helpers/ordering_discipline.rs).
+diff --git a/omp/examples/panics.md b/omp/examples/panics.md
+index c5d501c8795ab19139bcda882f9b2aab829bd857..3d93e7425d3064c411f2afaed45f9af5b706ac52 100644
+--- a/omp/examples/panics.md
++++ b/omp/examples/panics.md
+@@ -1,11 +1,19 @@
+-{{#include error_handling.rs}}
+-#
+-# mod url {
+-#     pub struct Url;
+-#
+-#     impl Url {
+-#         pub fn parse(_: &str) -> std::result::Result<Self, Box<dyn std::error::Error>> {
+-#             Ok(Self)
+-#         }
+-#     }
+-# }
++# Panics example support
++
++Example support: [errors](skill://rust/references/canonical/examples/errors.md).
++
++```rust
++mod url {
++    pub struct Url;
++
++    impl Url {
++        pub fn parse(_: &str) -> std::result::Result<Self, Box<dyn std::error::Error>> {
++            Ok(Self)
++        }
++    }
++}
++```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/snippet_helpers/error_and_panic_discipline.rs).
+diff --git a/omp/functions.md b/omp/functions.md
+index 77545d1b3be304983acbe52b30bb796dbab57e41..9e7e5ccd04c5c035d64c663dfcaf833c17c2c91f 100644
+--- a/omp/functions.md
++++ b/omp/functions.md
+@@ -1,5 +1,7 @@
+ # Function discipline
+ 
++Example support: [functions](skill://rust/references/canonical/examples/functions.md).
++
+ ## No-information returns
+ 
+ Any expression or statement which returns the unit (i.e. `()` such as `println!`) or which never returns anything (i.e. `!` such as `std::process::exit`) should end with a semicolon.
+@@ -19,14 +21,14 @@ Therefore, do-nothing `match` branches should be written as `.. => {}` rather th
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/function_discipline.rs}}
+-# struct Foo {
+-#     foo_type: FooType
+-# }
+-# enum FooType {
+-#     A,
+-# }
+-# impl Foo {
++
++struct Foo {
++    foo_type: FooType
++}
++enum FooType {
++    A,
++}
++impl Foo {
+ fn setup_foo(&self) -> Result<()> {
+     match self.foo_type {
+         FooType::A => {}
+@@ -35,24 +37,24 @@ fn setup_foo(&self) -> Result<()> {
+     self.setup_bar()?;
+     Ok(())
+ }
+-#
+-#   fn setup_bar(&self) -> Result<()> {
+-#       Ok(())
+-#   }
+-# }
++
++  fn setup_bar(&self) -> Result<()> {
++      Ok(())
++  }
++}
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/function_discipline.rs}}
+-# struct Foo {
+-#     foo_type: FooType
+-# }
+-# enum FooType {
+-#     A,
+-# }
+-# impl Foo {
++
++struct Foo {
++    foo_type: FooType
++}
++enum FooType {
++    A,
++}
++impl Foo {
+ fn setup_foo(&self) -> Result<()> {
+     match self.foo_type {
+         FooType::A => ()
+@@ -60,11 +62,11 @@ fn setup_foo(&self) -> Result<()> {
+     }
+     self.setup_bar()
+ }
+-#
+-#   fn setup_bar(&self) -> Result<()> {
+-#       Ok(())
+-#   }
+-# }
++
++  fn setup_bar(&self) -> Result<()> {
++      Ok(())
++  }
++}
+ ```
+ 
+ ## Hide generic type parameters
+@@ -85,24 +87,24 @@ If a lifetime is present, _always_ communicate that fact (i.e. always prefer `My
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/function_discipline.rs}}
+-# trait Transmitter {}
+-# struct Message<'a>(&'a ());
++
++trait Transmitter {}
++struct Message<'a>(&'a ());
+ fn transmit(tx: impl Transmitter, message: &Message<'_>) -> Result<()> {
+     // ...
+-#   Ok(())
++  Ok(())
+ }
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/function_discipline.rs}}
+-# trait Transmitter {}
+-# struct Message<'a>(&'a ());
++
++trait Transmitter {}
++struct Message<'a>(&'a ());
+ fn transmit<'a, T: Transmitter>(tx: T, message: &Message<'a>) -> Result<()> {
+     // ...
+-#   Ok(())
++  Ok(())
+ }
+ ```
+ 
+@@ -118,8 +120,8 @@ Similarly, we could individually annotate each unused parameter, however this wo
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/function_discipline.rs}}
+-# struct Value<'v>(&'v ());
++
++struct Value<'v>(&'v ());
+ trait CustomScriptValue<'v> {
+     fn at(&self, index: Value<'v>) -> Result<Value<'v>> {
+         let _ = index;
+@@ -131,17 +133,17 @@ trait CustomScriptValue<'v> {
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/function_discipline.rs}}
+-# struct Value<'v>(&'v ());
++
++struct Value<'v>(&'v ());
+ trait CustomScriptValue<'v> {
+     fn at(&self, _index: Value<'v>) -> Result<Value<'v>> {
+         Err(Error::Unsupported)
+     }
+-# }
++}
+ 
+     // OR
+ 
+-# trait CustomScriptValue2<'v> {
++trait CustomScriptValue2<'v> {
+     #[allow(unused_variables)]
+     fn at(&self, index: Value<'v>) -> Result<Value<'v>> {
+         Err(Error::Unsupported)
+@@ -157,31 +159,31 @@ In typical usage, users of `MyType` shouldn’t need to import `MyTypeBuilder`,
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/function_discipline.rs}}
+-# fn snippet() -> std::result::Result<(), Box<dyn std::error::Error>> {
++
++fn snippet() -> std::result::Result<(), Box<dyn std::error::Error>> {
+ use some_crate::Foo;
+ 
+ let foo = Foo::builder()
+     .foo("foo")
+     .bar("bar")
+     .build()?;
+-# Ok(())
+-# }
++Ok(())
++}
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/function_discipline.rs}}
+-# fn snippet() -> std::result::Result<(), Box<dyn std::error::Error>> {
++
++fn snippet() -> std::result::Result<(), Box<dyn std::error::Error>> {
+ use some_crate::{Foo, FooBuilder};
+ 
+ let foo = FooBuilder::new()
+     .foo("foo")
+     .bar("bar")
+     .build()?;
+-# Ok(())
+-# }
++Ok(())
++}
+ ```
+ 
+ ## Builder ownership
+@@ -190,15 +192,15 @@ In Rust, there are two forms of the builder pattern, depending on the receiver t
+ Consider the following builder—
+ 
+ ```rust
+-{{#include snippet_helpers/function_discipline.rs}}
+-# fn snippet() -> Result<()> {
+-# type Foo = Arbitrary;
++
++fn snippet() -> Result<()> {
++type Foo = Arbitrary;
+ let frobnicator = Foo::builder()
+     .foo("foo")
+     .bar("bar")
+     .build()?;
+-# Ok(())
+-# }
++Ok(())
++}
+ ```
+ 
+ The methods `foo`, `bar` and `build` can either take ownership of `self` or take `&mut self` by value.
+@@ -211,3 +213,7 @@ Although the optimiser may remove some unnecessary cloning, this should not be r
+ Besides, if the `.build` method takes a reference to the builder—allowing it to be called multiple times—this feels more like a _factory_ than a _builder._
+ 
+ [elision]: https://doc.rust-lang.org/nomicon/lifetime-elision.html
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/function-discipline.md).
+diff --git a/omp/imports.md b/omp/imports.md
+index ea0d4fc596995ff094114e3d8ca1a18852678dfb..abda27d70dcb35611bc7841ee78dab52a86052af 100644
+--- a/omp/imports.md
++++ b/omp/imports.md
+@@ -1,5 +1,7 @@
+ # Import discipline
+ 
++Example support: [imports](skill://rust/references/canonical/examples/imports.md).
++
+ ## Don’t import all
+ 
+ In general, do not use `*` from a crate.
+@@ -13,7 +15,7 @@ Nevertheless, they remain a handy tool for others to use when prototyping, so we
+ 
+ Do not bring enum variants into scope using `*` as this obscures the types and in some cases the fact that an enum is being handled.
+ If the name of an enum is too long, can't reasonably be edited and the problematic usage is in a small scope, it may be renamed locally using `use ... as ...`.
+-The new name should be an acronym of the type used, e.g. `TaskStatus` would be shortened to `Ts`.
++Use a complete-word alias that retains the meaning of the type, such as `Status` for a locally unambiguous `TaskStatus`.
+ Due to scoping rules around `use`, these renaming statements should be placed at the top of the function definition which requires it.
+ 
+ The only exception to these rules is that in the context of a unit test module, inserting use `super::*` is acceptable as it is a well-defined idiom.
+@@ -21,25 +23,25 @@ The only exception to these rules is that in the context of a unit test module,
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/import_discipline.rs}}
++
+ use some_crate::{SpecificItem1, SpecificItem2};
+ use some_other_crate::SpecificItem3;
+ use another_crate::SomeEnum;
+ 
+ fn some_fn(some_enum: SomeEnum) -> SomeEnum {
+-    use SomeEnum as Se;
++    use SomeEnum as Status;
+     match some_enum {
+-        Se::Variant1 => { /* ... */ }
+-        Se::Variant2 => { /* ... */ },
++        Status::Variant1 => { /* ... */ }
++        Status::Variant2 => { /* ... */ },
+     }
+-    Se::Variant2
++    Status::Variant2
+ }
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/import_discipline.rs}}
++
+ use some_crate::*;
+ use some_other_crate::prelude::*;
+ use another_crate::{SomeEnum, SomeEnum::*};
+@@ -65,7 +67,7 @@ To clearly delimit whether an import is from the standard library, from a third
+ Note that this order follows the currently-unstable `rustfmt` option—
+ 
+ ```toml
+-import_group = "StdExternCrate"
++group_imports = "StdExternalCrate"
+ ```
+ 
+ ✅ Do this:
+@@ -82,7 +84,7 @@ use crate::{Error, Result};
+ ⚠️ Avoid this:
+ 
+ ```rust,ignore
+-{{#include snippet_helpers/import_discipline.rs}}
++
+ use camino::Utf8PathBuf;
+ use crate::{Error, Result};
+ use std::path::PathBuf;
+@@ -98,7 +100,7 @@ If a path contains _n_ parts, merge the first _n-1,_ so that only the final part
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/import_discipline.rs}}
++
+ use allocative::Allocative;
+ use derive_more::Display;
+ use starlark::environment::{FrozenModule, Module};
+@@ -110,7 +112,7 @@ use starlark_derive::{starlark_value, NoSerialize, Trace};
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/import_discipline.rs}}
++
+ use allocative::Allocative;
+ use derive_more::Display;
+ use starlark::environment::FrozenModule;
+@@ -149,3 +151,7 @@ mod bar;
+ pub use foo::Foo;
+ pub use bar::Bar;
+ ```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/import-discipline.md).
+diff --git a/omp/index.md b/omp/index.md
+index 6f4c010ab7a045f9dec9af125de3003919462e83..1825c26bc3da2dd074ba1f7e5de946590818624d 100644
+--- a/omp/index.md
++++ b/omp/index.md
+@@ -1,21 +1,25 @@
+ # Summary
+ 
+-[Introduction](./introduction.md)
+-[Preconditions](./preconditions.md)
++[Introduction](skill://rust/references/canonical/introduction.md)
++[Preconditions](skill://rust/references/canonical/preconditions.md)
+ 
+-- [Cosmetic discipline](./cosmetic-discipline.md)
+-- [Naming discipline](./naming-discipline.md)
+-- [Import discipline](./import-discipline.md)
+-- [Pattern matching discipline](./pattern-matching-discipline.md)
+-- [Code discipline](./code-discipline.md)
+-- [Error and panic discipline](./error-and-panic-discipline.md)
+-- [Function discipline](./function-discipline.md)
+-- [Ordering discipline](./ordering-discipline.md)
+-- [Unsafe discipline](./unsafe-discipline.md)
+-- [Structural discipline](./structural-discipline.md)
+-- [Comment discipline](./comment-discipline.md)
+-- [Further reading](./further-reading.md)
++- [Cosmetic discipline](skill://rust/references/canonical/cosmetic.md)
++- [Naming discipline](skill://rust/references/canonical/naming.md)
++- [Import discipline](skill://rust/references/canonical/imports.md)
++- [Pattern matching discipline](skill://rust/references/canonical/matching.md)
++- [Code discipline](skill://rust/references/canonical/code.md)
++- [Error and panic discipline](skill://rust/references/canonical/errors.md)
++- [Function discipline](skill://rust/references/canonical/functions.md)
++- [Ordering discipline](skill://rust/references/canonical/ordering.md)
++- [Unsafe discipline](skill://rust/references/canonical/unsafe.md)
++- [Structural discipline](skill://rust/references/canonical/structure.md)
++- [Comment discipline](skill://rust/references/canonical/comments.md)
++- [Further reading](skill://rust/references/canonical/resources.md)
+ 
+ ---
+ 
+-[Contributing](./contributing.md)
++[Contributing](skill://rust/references/canonical/contributing.md)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/SUMMARY.md).
+diff --git a/omp/introduction.md b/omp/introduction.md
+index a4ba28add8c24cbc61af72132cee00d77c9c4c09..a336f8dc6f1fa2518bbc663865538f9e04f4cf76 100644
+--- a/omp/introduction.md
++++ b/omp/introduction.md
+@@ -17,3 +17,7 @@ _Disclaimer: this is not a complete list, more items can and likely will be adde
+ _If you find an item which you believe should be in this document, please do open an [RFC][new-rfc]._
+ 
+ [new-rfc]: https://github.com/canonical/rust-best-practices/issues/new/choose
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/introduction.md).
+diff --git a/omp/matching.md b/omp/matching.md
+index ad0d9e49354db550f9d1642b0fd940796ff9b856..c3f965673f46db301fd39bd756a9fb6f156038a8 100644
+--- a/omp/matching.md
++++ b/omp/matching.md
+@@ -1,5 +1,7 @@
+ # Pattern matching discipline
+ 
++Example support: [matching](skill://rust/references/canonical/examples/matching.md).
++
+ ## Exhaustively match to draw attention
+ 
+ Pattern matching is an excellent way to ensure that all items of data in internal structures have been considered, not only by the author of the current change, but also by the authors of any future changes.
+@@ -9,8 +11,8 @@ This in turn will draw the attention of the next maintainer and help them correc
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/pattern_matching_discipline.rs}}
+-# use std::cmp::Ordering;
++
++use std::cmp::Ordering;
+ impl Ord for MyStruct {
+     fn cmp(&self, other: &Self) -> Ordering {
+         let Self {
+@@ -30,8 +32,8 @@ impl Ord for MyStruct {
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/pattern_matching_discipline.rs}}
+-# use std::cmp::Ordering;
++
++use std::cmp::Ordering;
+ impl Ord for MyStruct {
+     fn cmp(&self, other: &Self) -> Ordering {
+         (&self.my, &self.thing, &self.with, &self.some)
+@@ -48,17 +50,17 @@ Although it may seem convenient, it ultimately harms readability—it is clearer
+ ✅ Do this:
+ 
+ ```rust
+-# [0].iter()
++[0].iter()
+     .map(|x| *x)
+-# ;
++;
+ ```
+ 
+ ⚠️ Avoid this:
+ 
+ ```rust
+-# [0].iter()
++[0].iter()
+     .map(|&x| x)
+-# ;
++;
+ ```
+ 
+ ## Avoid numeric tuple-indexing
+@@ -70,7 +72,7 @@ Note that this advice does not apply in the `impl` blocks of newtype-pattern str
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/pattern_matching_discipline.rs}}
++
+ fn line_through(point1: (f64, f64), point2: (f64, f64)) -> Line {
+ 	let (x1, y1) = point1;
+ 	let (x2, y2) = point2;
+@@ -86,7 +88,7 @@ fn line_through(point1: (f64, f64), point2: (f64, f64)) -> Line {
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/pattern_matching_discipline.rs}}
++
+ fn line_through(point1: (f64, f64), point2: (f64, f64)) -> Line {
+ 	let gradient = (point2.1 - point1.1) / (point2.0 - point1.0);
+ 	let y_intercept = point1.1 - gradient * point1.0;
+@@ -109,12 +111,12 @@ Note that this guidance does not apply to closures, which are commonly used as s
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/pattern_matching_discipline.rs}}
++
+ impl Server {
+     fn new(config: ServerConfig) -> Result<Self> {
+         let ServerConfig { db_path, working_path } = config;
+         /* ... */
+-#       Ok(Server)
++      Ok(Server)
+     }
+ }
+ ```
+@@ -122,11 +124,15 @@ impl Server {
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/pattern_matching_discipline.rs}}
++
+ impl Server {
+     fn new(ServerConfig { db_path, working_path }: ServerConfig) -> Result<Self> {
+         /* ... */
+-#       Ok(Server)
++      Ok(Server)
+     }
+ }
+ ```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/pattern-matching-discipline.md).
+diff --git a/omp/naming.md b/omp/naming.md
+index a3a3c9acf02b8651681282b29105218a8338b7cb..2439b96ef5813599b5ad7aee8b9e17537c383ce3 100644
+--- a/omp/naming.md
++++ b/omp/naming.md
+@@ -1,5 +1,7 @@
+ # Naming discipline
+ 
++Example support: [naming](skill://rust/references/canonical/examples/naming.md).
++
+ ## Name content
+ 
+ Naming is one of the three hardest problems in programming (along with off-by-one errors).
+@@ -43,41 +45,41 @@ These names do not have the luxury of being able to be tweaked without consequen
+ To reduce cognitive load, pattern-matched variables should be named consistently, that is, the new variable must be either:
+ 
+ - The same as the variable/field it comes from
+-- The first letter of the variable/field it comes from
++- A descriptive complete-word name when the original field name cannot be used
+ 
+ When matching structs and struct-like enum variants, try to use the original field names.
+ 
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/naming_discipline.rs}}
+-# let response = Some(());
++
++let response = Some(());
+ if let Some(response) = response { /* ... */ }
+-#
+-# let event = Event { response: None };
++
++let event = Event { response: None };
+ if let Some(response) = event.response { /* ... */ }
+ if let Some(event_response) = event.response { /* ... */ }
+ 
+-# impl File {
+-#   fn f(self) {
++impl File {
++  fn f(self) {
+ let Self { name, path } = self;
+-#   }
+-# }
++  }
++}
+ 
+-# use std::fs;
+-# type Workload = ();
++use std::fs;
++type Workload = ();
+ enum State {
+     Reading(fs::File),
+     Evaluating {
+         workload: Workload,
+-#       other_fields: (),
++      other_fields: (),
+         /* ... */
+     }
+ }
+-# let state = State::Evaluating {
+-#     workload: (),
+-#     other_fields: ()
+-# };
++let state = State::Evaluating {
++    workload: (),
++    other_fields: ()
++};
+ match state {
+     State::Reading(file) => { /* ... */ }
+     State::Evaluating{ workload, .. } => { /* ... */ }
+@@ -87,33 +89,33 @@ match state {
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/naming_discipline.rs}}
+-# let response = Some(());
++
++let response = Some(());
+ if let Some(r) = response { /* ... */ }
+-#
+-# let event = Event { response: None };
++
++let event = Event { response: None };
+ if let Some(r) = event.response { /* ... */ }
+ if let Some(er) = event.response { /* ... */ }
+ 
+-# impl File {
+-#   fn f(self) {
++impl File {
++  fn f(self) {
+ let Self { name: some_name, path: name } = self;
+-#   }
+-# }
+-
+-# use std::fs;
+-# type Workload = ();
+-# enum State {
+-#     Reading(fs::File),
+-#     Evaluating {
+-#         workload: Workload,
+-#         other_fields: (),
+-#     }
+-# }
+-# let state = State::Evaluating {
+-#     workload: (),
+-#     other_fields: ()
+-# };
++  }
++}
++
++use std::fs;
++type Workload = ();
++enum State {
++    Reading(fs::File),
++    Evaluating {
++        workload: Workload,
++        other_fields: (),
++    }
++}
++let state = State::Evaluating {
++    workload: (),
++    other_fields: ()
++};
+ match state {
+     State::Reading(data_source) => { /* ... */ }
+     State::Evaluating{ workload: to_eval, .. } => { /* ... */ }
+@@ -122,7 +124,7 @@ match state {
+ 
+ ## Generic type parameter naming
+ 
+-To avoid them being mistaken for concrete types, generic type parameters must have single-letter names.
++Use descriptive complete-word names for project-controlled generic parameters. Preserve parameter names required by a language, framework, or external interface.
+ 
+ ## Lifetime parameter naming
+ 
+@@ -130,28 +132,23 @@ Lifetime parameters give a unique opportunity to link together different parts o
+ If the same data is used in multiple places in an API, make sure the lifetime names match.
+ 
+ Lifetime names should be derived from the reference they represent, not from the type they are passed to.
+-Further, they should consist of either a single letter, short word or extremely well understood acronym.
++For project-controlled lifetime names, use a complete word describing the referenced data. Preserve names required by an external interface.
+ Numbers should not be used in lifetime names.
+ 
+-Single-letter lifetime names are acceptable if a structure is expected to be used very many times (e.g. a script interface may make heavy use of some `Value<'h>` which contains a reference to a heap upon which it is allocated).
+-NB: the compiler will occasionally recommend the use `'a` as it lacks wider context information.
+-The name `'a` is nearly always a bad one.
+-
+ Lifetime parameters should aim to be concise without losing meaning.
+-Given the difficulty new users face when understanding lifetimes in an interface, try to give them a hand by being explicit.
+-Single-letter lifetime names should generally be avoided.
++Given the difficulty new users face when understanding lifetimes in an interface, link the name to the data whose lifetime it represents.
+ 
+ ✅ Do this:
+ 
+ ```rust
+ struct ASTQueryMatch<'cursor, 'tree> {
+     /* ... */
+-# ignore: &'cursor &'tree (),
++ignore: &'cursor &'tree (),
+ }
+ 
+ struct Value<'h> {
+     /* ... */
+-# ignore: &'h (),
++ignore: &'h (),
+ }
+ ```
+ 
+@@ -160,12 +157,12 @@ struct Value<'h> {
+ ```rust
+ struct ASTQueryMatch<'a, 'b> {
+     /* ... */
+-# ignore: &'a &'b (),
++ignore: &'a &'b (),
+ }
+ 
+ struct Value<'value> {
+     /* ... */
+-# ignore: &'value (),
++ignore: &'value (),
+ }
+ ```
+ 
+@@ -177,17 +174,21 @@ This `MyTypeBuilder` must also have a fallible `.build()` method, which returns
+ Typical usage is hence—
+ 
+ ```rust
+-{{#include snippet_helpers/naming_discipline.rs}}
+-# fn snippet() -> Result<()> {
+-# type Foo = Arbitrary;
+-# let bar = Arbitrary;
++
++fn snippet() -> Result<()> {
++type Foo = Arbitrary;
++let bar = Arbitrary;
+ let foo = Foo::builder()
+     .bar(bar)
+     // ...
+     .build()?;
+-# Ok(())
+-# }
++Ok(())
++}
+ ```
+ 
+ [dictionary]: https://www.dictionary.com/
+ [thesaurus]: https://www.thesaurus.com/
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/naming-discipline.md).
+diff --git a/omp/ordering.md b/omp/ordering.md
+index 41e5a8f388465d1e996bbae3935335407ded4b40..82bb743406cd335b69d7b76ed025f4798f400394 100644
+--- a/omp/ordering.md
++++ b/omp/ordering.md
+@@ -1,5 +1,7 @@
+ # Ordering discipline
+ 
++Example support: [ordering](skill://rust/references/canonical/examples/ordering.md).
++
+ ## General definition ordering
+ 
+ When read from top to bottom, a file should feel like a tour of the APIs it defines.
+@@ -10,8 +12,8 @@ In this way, lower-level implementation details are hidden from the reader until
+ ✅ Do this:
+ 
+ ```rust
+-{{#include snippet_helpers/ordering_discipline.rs}}
+-# type Foo = Arbitrary;
++
++type Foo = Arbitrary;
+ impl Foo {
+     pub fn some_func(&self) {
+         self.some_helper_func();
+@@ -26,8 +28,8 @@ impl Foo {
+ ⚠️ Avoid this:
+ 
+ ```rust
+-{{#include snippet_helpers/ordering_discipline.rs}}
+-# type Foo = Arbitrary;
++
++type Foo = Arbitrary;
+ impl Foo {
+     fn some_helper_func(&self) {
+         // ...
+@@ -69,8 +71,10 @@ Put all derive items in a single `#[derive(...)]` (the formatter will preserve r
+ Derived items should be ordered as follows:
+ 
+ - `Copy` should come first (this has the most surprising effect on how the consumer will interact with values of the given type)
+-- Standard library items, ordered lexicographically (these form a common expectation for basic behaviour and missing items are surprising)
+-- Third party items, ordered lexicographically
++- Independent standard-library items, ordered lexicographically (these form a common expectation for basic behaviour and missing items are surprising)
++- Independent third-party items, ordered lexicographically
++
++Preserve derive ordering when macros have an ordering dependency.
+ 
+ ✅ Do this:
+ 
+@@ -102,6 +106,8 @@ Declarations should be ordered as follows:
+ - `let`
+ - `let mut`
+ 
++This ordering applies to independent declarations. Preserve initialization dependencies and side-effect ordering.
++
+ ## Struct field ordering
+ 
+ The more public a field, the more likely a user will to want to know more about it and understand it.
+@@ -114,16 +120,15 @@ Specifically, this means that we should place:
+ 
+ Structs neatly organised in this way make it clear when the reader has entered implementation details and hence when they are less likely to glean useful information.
+ 
+-If the reason for ordering fields in a different way to the above is due to a derivation such as `Ord` or `PartialOrd`, this is not a good reason for deviation from the norm.
+-Maintaining consistency is of a higher priority than a single derivation, hence the relevant implementations should be written out by hand.
+-The reader is more likely to be looking at the entire struct rather than just one trait implementation.
++Preserve field ordering when it affects derived comparison, serialization, layout, or a public contract.
++Use visibility ordering where the fields are semantically independent.
+ 
+ ✅ Do this:
+ 
+ ```rust
+-# use std::collections::BTreeMap;
+-# type StackFrame = ();
+-# type Value<'h> = &'h ();
++use std::collections::BTreeMap;
++type StackFrame = ();
++type Value<'h> = &'h ();
+ struct ScriptExecutionContext<'h, T> {
+     pub user_data: T,
+ 
+@@ -138,9 +143,9 @@ struct ScriptExecutionContext<'h, T> {
+ ⚠️ Avoid this:
+ 
+ ```rust
+-# use std::collections::BTreeMap;
+-# type StackFrame = ();
+-# type Value<'h> = &'h ();
++use std::collections::BTreeMap;
++type StackFrame = ();
++type Value<'h> = &'h ();
+ struct ScriptExecutionContext<'h, T> {
+     stack: Vec<StackFrame>,
+     pub(crate) global_vars: BTreeMap<String, Value<'h>>,
+@@ -149,3 +154,7 @@ struct ScriptExecutionContext<'h, T> {
+     max_steps: Option<u64>,
+ }
+ ```
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/ordering-discipline.md).
+diff --git a/omp/preconditions.md b/omp/preconditions.md
+index 78d44894d122c41f49e1d4951559d7263df840c5..a06fcc718b008cb4dc68d7354448a5e0ef4f0d10 100644
+--- a/omp/preconditions.md
++++ b/omp/preconditions.md
+@@ -1,4 +1,10 @@
+ # Preconditions
+ 
+-All new code should abide by `cargo fmt`, `cargo clippy`, and `cargo clippy --tests`.
+-If your crate uses features, be careful to ensure that `clippy` is definitely being run on all of your code, for example by using `--all-features`.
++When Rust verification is required by the project, explicitly requested, or needed to verify a significant behavior change, use the repository's formatting and Clippy checks. Typical checks are `cargo fmt --check`, `cargo clippy`, and `cargo clippy --tests`.
++Include the feature-gated code and targets affected by the change using the project's supported combinations; use `--all-features` only when that combination is supported.
++Delegated workers leave checks to the parent unless assigned. Add tests only when requested or needed to reproduce an observed bug that existing tests miss.
++Check installed tools before running commands; installation of toolchains, components, or dependencies requires approval.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/preconditions.md).
+diff --git a/omp/resources.md b/omp/resources.md
+index e6fc22f758b5d16d4318e7972a36a5f4fcae1490..cf830aa0e64c35bb7df00e215e5842172e87b8f0 100644
+--- a/omp/resources.md
++++ b/omp/resources.md
+@@ -4,3 +4,7 @@ Checkout the [`rust-analyzer` style guide][rust-analyzer-style-guide].
+ Note that those style guidelines are intended for a single project, hence it is possible for its developers to make more specific requirements which only make sense in the context of that project, unlike the guidelines provided here.
+ 
+ [rust-analyzer-style-guide]: https://github.com/rust-lang/rust-analyzer/blob/master/docs/book/src/contributing/style.md
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/further-reading.md).
+diff --git a/omp/structure.md b/omp/structure.md
+index 51a2cedd27ecdac94313f12b9bea5dd0cb602ee8..d677c60a3a03e64269aee855e616c9f46d688526 100644
+--- a/omp/structure.md
++++ b/omp/structure.md
+@@ -11,10 +11,10 @@ The `mod.rs` file must be separated into distinct blocks in the following order,
+ 3. `mod _` declarations
+ 4. `pub use _` declarations
+ 5. `pub(crate) use _` declarations
+-6. `pub use _` declarations
++6. `use _` declarations
+ 
+ Any items gated behind a `#[cfg(...)]` must be placed at the end of the file, in the same order as the above.
+-Like-gated items should be wrapped in a block, i.e. `#[cfg(...)] { /* items here */ }`.
++Apply `#[cfg(...)]` to each gated item and keep like-gated declarations together in the same ordering. Preserve their public paths.
+ 
+ No other items should be present.
+ 
+@@ -50,6 +50,10 @@ Some editors group files and folders separately, so in the above example, the fa
+ A crate’s `Error` and `Result` types are likely the most important types it contains and should therefore be declared in a standard, outward-facing place.
+ 
+ In library crates, the `Error` type should be defined in the crate-root, `lib.rs` immediately below the `mod` and `use` declarations.
+-The custom `Result` type alias, `type Result<T> = std::result::Result<T, Error>` must be immediately below `Error`.
++The custom `Result` type alias must be immediately below `Error`, for example `type Result<Value> = std::result::Result<Value, Error>`.
+ 
+ In binary crates, the `Error` type should be defined `error.rs` and the `Result` alias in `result.rs`, both in the crate’s root directory.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/structural-discipline.md).
+diff --git a/omp/unsafe.md b/omp/unsafe.md
+index 125c56ff48c029d3aaa84bdac97cf6ed63d2fba3..a689c53fe0c486f32a78df683e8b77ca5dc19e77 100644
+--- a/omp/unsafe.md
++++ b/omp/unsafe.md
+@@ -22,6 +22,10 @@ Rust is an extremely fast language anyway.
+ 
+ ## Document preconditions
+ 
+-Both `unsafe` functions and `unsafe` blocks must document their preconditions in a comment with the prefix `// SAFETY: `.
+-If something goes wrong in future, this will help the future maintainer understand which conditions have been violated.
+-These comments must be carefully maintained and updated as changes are made.
++Both `unsafe` functions and `unsafe` blocks must have a documented safety argument for their preconditions.
++Preserve and carefully maintain existing `// SAFETY: ` comments. Add new safety comments when explicitly requested or required by tooling.
++If essential safety documentation falls outside the authorized scope, resolve that conflict before implementing the unsafe change.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [canonical/rust-best-practices](https://github.com/canonical/rust-best-practices/blob/main/site/src/unsafe-discipline.md).

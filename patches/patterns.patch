@@ -1,0 +1,1535 @@
+diff --git a/src/anti_patterns/borrow_clone.md b/omp/antipatterns/cloning.md
+similarity index 100%
+rename from src/anti_patterns/borrow_clone.md
+rename to omp/antipatterns/cloning.md
+diff --git a/src/anti_patterns/deref.md b/omp/antipatterns/dereferencing.md
+similarity index 100%
+rename from src/anti_patterns/deref.md
+rename to omp/antipatterns/dereferencing.md
+diff --git a/src/anti_patterns/index.md b/omp/antipatterns/index.md
+similarity index 100%
+rename from src/anti_patterns/index.md
+rename to omp/antipatterns/index.md
+diff --git a/src/anti_patterns/deny-warnings.md b/omp/antipatterns/warnings.md
+similarity index 100%
+rename from src/anti_patterns/deny-warnings.md
+rename to omp/antipatterns/warnings.md
+diff --git a/src/functional/generics-type-classes.md b/omp/functional/generics.md
+similarity index 100%
+rename from src/functional/generics-type-classes.md
+rename to omp/functional/generics.md
+diff --git a/src/functional/index.md b/omp/functional/index.md
+similarity index 100%
+rename from src/functional/index.md
+rename to omp/functional/index.md
+diff --git a/src/functional/optics.md b/omp/functional/optics.md
+similarity index 100%
+rename from src/functional/optics.md
+rename to omp/functional/optics.md
+diff --git a/src/functional/paradigms.md b/omp/functional/paradigms.md
+similarity index 100%
+rename from src/functional/paradigms.md
+rename to omp/functional/paradigms.md
+diff --git a/src/idioms/coercion-arguments.md b/omp/idioms/arguments.md
+similarity index 100%
+rename from src/idioms/coercion-arguments.md
+rename to omp/idioms/arguments.md
+diff --git a/src/idioms/pass-var-to-closure.md b/omp/idioms/closures.md
+similarity index 100%
+rename from src/idioms/pass-var-to-closure.md
+rename to omp/idioms/closures.md
+diff --git a/src/idioms/deref.md b/omp/idioms/collections.md
+similarity index 100%
+rename from src/idioms/deref.md
+rename to omp/idioms/collections.md
+diff --git a/src/idioms/ctor.md b/omp/idioms/construction.md
+similarity index 100%
+rename from src/idioms/ctor.md
+rename to omp/idioms/construction.md
+diff --git a/src/idioms/default.md b/omp/idioms/default.md
+similarity index 100%
+rename from src/idioms/default.md
+rename to omp/idioms/default.md
+diff --git a/src/idioms/dtor-finally.md b/omp/idioms/destruction.md
+similarity index 100%
+rename from src/idioms/dtor-finally.md
+rename to omp/idioms/destruction.md
+diff --git a/src/idioms/on-stack-dyn-dispatch.md b/omp/idioms/dispatch.md
+similarity index 100%
+rename from src/idioms/on-stack-dyn-dispatch.md
+rename to omp/idioms/dispatch.md
+diff --git a/src/idioms/rustdoc-init.md b/omp/idioms/documentation.md
+similarity index 100%
+rename from src/idioms/rustdoc-init.md
+rename to omp/idioms/documentation.md
+diff --git a/src/idioms/priv-extend.md b/omp/idioms/extensibility.md
+similarity index 100%
+rename from src/idioms/priv-extend.md
+rename to omp/idioms/extensibility.md
+diff --git a/src/idioms/ffi/errors.md b/omp/idioms/foreign/errors.md
+similarity index 100%
+rename from src/idioms/ffi/errors.md
+rename to omp/idioms/foreign/errors.md
+diff --git a/src/idioms/ffi/intro.md b/omp/idioms/foreign/index.md
+similarity index 100%
+rename from src/idioms/ffi/intro.md
+rename to omp/idioms/foreign/index.md
+diff --git a/src/idioms/ffi/accepting-strings.md b/omp/idioms/foreign/input.md
+similarity index 100%
+rename from src/idioms/ffi/accepting-strings.md
+rename to omp/idioms/foreign/input.md
+diff --git a/src/idioms/ffi/passing-strings.md b/omp/idioms/foreign/output.md
+similarity index 100%
+rename from src/idioms/ffi/passing-strings.md
+rename to omp/idioms/foreign/output.md
+diff --git a/src/idioms/concat-format.md b/omp/idioms/formatting.md
+similarity index 100%
+rename from src/idioms/concat-format.md
+rename to omp/idioms/formatting.md
+diff --git a/src/idioms/index.md b/omp/idioms/index.md
+similarity index 100%
+rename from src/idioms/index.md
+rename to omp/idioms/index.md
+diff --git a/src/idioms/option-iter.md b/omp/idioms/iteration.md
+similarity index 100%
+rename from src/idioms/option-iter.md
+rename to omp/idioms/iteration.md
+diff --git a/src/idioms/temporary-mutability.md b/omp/idioms/mutability.md
+similarity index 100%
+rename from src/idioms/temporary-mutability.md
+rename to omp/idioms/mutability.md
+diff --git a/src/idioms/return-consumed-arg-on-error.md b/omp/idioms/recovery.md
+similarity index 100%
+rename from src/idioms/return-consumed-arg-on-error.md
+rename to omp/idioms/recovery.md
+diff --git a/src/idioms/mem-replace.md b/omp/idioms/replacement.md
+similarity index 100%
+rename from src/idioms/mem-replace.md
+rename to omp/idioms/replacement.md
+diff --git a/src/SUMMARY.md b/omp/index.md
+similarity index 100%
+rename from src/SUMMARY.md
+rename to omp/index.md
+diff --git a/src/intro.md b/omp/introduction.md
+similarity index 100%
+rename from src/intro.md
+rename to omp/introduction.md
+diff --git a/src/patterns/behavioural/command.md b/omp/patterns/behaviour/command.md
+similarity index 100%
+rename from src/patterns/behavioural/command.md
+rename to omp/patterns/behaviour/command.md
+diff --git a/src/patterns/behavioural/RAII.md b/omp/patterns/behaviour/guards.md
+similarity index 100%
+rename from src/patterns/behavioural/RAII.md
+rename to omp/patterns/behaviour/guards.md
+diff --git a/src/patterns/behavioural/intro.md b/omp/patterns/behaviour/index.md
+similarity index 100%
+rename from src/patterns/behavioural/intro.md
+rename to omp/patterns/behaviour/index.md
+diff --git a/src/patterns/behavioural/interpreter.md b/omp/patterns/behaviour/interpreter.md
+similarity index 100%
+rename from src/patterns/behavioural/interpreter.md
+rename to omp/patterns/behaviour/interpreter.md
+diff --git a/src/patterns/behavioural/newtype.md b/omp/patterns/behaviour/newtype.md
+similarity index 100%
+rename from src/patterns/behavioural/newtype.md
+rename to omp/patterns/behaviour/newtype.md
+diff --git a/src/patterns/behavioural/strategy.md b/omp/patterns/behaviour/strategy.md
+similarity index 100%
+rename from src/patterns/behavioural/strategy.md
+rename to omp/patterns/behaviour/strategy.md
+diff --git a/src/patterns/behavioural/visitor.md b/omp/patterns/behaviour/visitor.md
+similarity index 100%
+rename from src/patterns/behavioural/visitor.md
+rename to omp/patterns/behaviour/visitor.md
+diff --git a/src/patterns/creational/builder.md b/omp/patterns/construction/builder.md
+similarity index 100%
+rename from src/patterns/creational/builder.md
+rename to omp/patterns/construction/builder.md
+diff --git a/src/patterns/creational/fold.md b/omp/patterns/construction/fold.md
+similarity index 100%
+rename from src/patterns/creational/fold.md
+rename to omp/patterns/construction/fold.md
+diff --git a/src/patterns/creational/intro.md b/omp/patterns/construction/index.md
+similarity index 100%
+rename from src/patterns/creational/intro.md
+rename to omp/patterns/construction/index.md
+diff --git a/src/patterns/ffi/intro.md b/omp/patterns/foreign/index.md
+similarity index 100%
+rename from src/patterns/ffi/intro.md
+rename to omp/patterns/foreign/index.md
+diff --git a/src/patterns/ffi/export.md b/omp/patterns/foreign/objects.md
+similarity index 100%
+rename from src/patterns/ffi/export.md
+rename to omp/patterns/foreign/objects.md
+diff --git a/src/patterns/ffi/wrappers.md b/omp/patterns/foreign/wrappers.md
+similarity index 100%
+rename from src/patterns/ffi/wrappers.md
+rename to omp/patterns/foreign/wrappers.md
+diff --git a/src/patterns/index.md b/omp/patterns/index.md
+similarity index 100%
+rename from src/patterns/index.md
+rename to omp/patterns/index.md
+diff --git a/src/patterns/structural/compose-structs.md b/omp/patterns/structure/composition.md
+similarity index 100%
+rename from src/patterns/structural/compose-structs.md
+rename to omp/patterns/structure/composition.md
+diff --git a/src/patterns/structural/small-crates.md b/omp/patterns/structure/crates.md
+similarity index 100%
+rename from src/patterns/structural/small-crates.md
+rename to omp/patterns/structure/crates.md
+diff --git a/src/patterns/structural/intro.md b/omp/patterns/structure/index.md
+similarity index 100%
+rename from src/patterns/structural/intro.md
+rename to omp/patterns/structure/index.md
+diff --git a/src/patterns/structural/trait-for-bounds.md b/omp/patterns/structure/traits.md
+similarity index 100%
+rename from src/patterns/structural/trait-for-bounds.md
+rename to omp/patterns/structure/traits.md
+diff --git a/src/patterns/structural/unsafe-mods.md b/omp/patterns/structure/unsafe.md
+similarity index 100%
+rename from src/patterns/structural/unsafe-mods.md
+rename to omp/patterns/structure/unsafe.md
+diff --git a/src/refactoring/index.md b/omp/refactoring.md
+similarity index 100%
+rename from src/refactoring/index.md
+rename to omp/refactoring.md
+diff --git a/src/additional_resources/index.md b/omp/resources/index.md
+similarity index 100%
+rename from src/additional_resources/index.md
+rename to omp/resources/index.md
+diff --git a/src/additional_resources/design-principles.md b/omp/resources/principles.md
+similarity index 100%
+rename from src/additional_resources/design-principles.md
+rename to omp/resources/principles.md
+diff --git a/src/translations.md b/omp/translations.md
+similarity index 100%
+rename from src/translations.md
+rename to omp/translations.md
+diff --git a/omp/antipatterns/cloning.md b/omp/antipatterns/cloning.md
+index ccc9a59ef5a579983769b47579fca53d31a29cad..74e7d0e76e43f6d27af5c9a803b8243fdfe7c21d 100644
+--- a/omp/antipatterns/cloning.md
++++ b/omp/antipatterns/cloning.md
+@@ -64,7 +64,11 @@ some cases in which `.clone()` is not necessary.
+ 
+ ## See also
+ 
+-- [`mem::{take(_), replace(_)}` to keep owned values in changed enums](../idioms/mem-replace.md)
++- [`mem::{take(_), replace(_)}` to keep owned values in changed enums](skill://rust/references/design/idioms/replacement.md)
+ - [`Rc<T>` documentation, which handles .clone() intelligently](http://doc.rust-lang.org/std/rc/)
+ - [`Arc<T>` documentation, a thread-safe reference-counting pointer](https://doc.rust-lang.org/std/sync/struct.Arc.html)
+ - [Tricks with ownership in Rust](https://web.archive.org/web/20210120233744/https://xion.io/post/code/rust-borrowchk-tricks.html)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/anti_patterns/borrow_clone.md).
+diff --git a/omp/antipatterns/dereferencing.md b/omp/antipatterns/dereferencing.md
+index 5e04f88f851bccde767aa4a7efcdcbe898fe19c4..72637e27bd333b43f4c5f3b9bec53e56c36a5990 100644
+--- a/omp/antipatterns/dereferencing.md
++++ b/omp/antipatterns/dereferencing.md
+@@ -123,8 +123,12 @@ conversion between arbitrary types.
+ 
+ ## See also
+ 
+-- [Collections are smart pointers idiom](../idioms/deref.md).
++- [Collections are smart pointers idiom](skill://rust/references/design/idioms/collections.md).
+ - Delegation crates for less boilerplate like
+   [delegate](https://crates.io/crates/delegate) or
+   [ambassador](https://crates.io/crates/ambassador)
+ - [Documentation for `Deref` trait](https://doc.rust-lang.org/std/ops/trait.Deref.html).
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/anti_patterns/deref.md).
+diff --git a/omp/antipatterns/index.md b/omp/antipatterns/index.md
+index 896a1239b9f96dd09ebb4877a1ea8ef20129f429..2be86b140072efe0e8a1de349d2a3629bfffd9a1 100644
+--- a/omp/antipatterns/index.md
++++ b/omp/antipatterns/index.md
+@@ -3,6 +3,10 @@
+ An [anti-pattern](https://en.wikipedia.org/wiki/Anti-pattern) is a solution to a
+ "recurring problem that is usually ineffective and risks being highly
+ counterproductive". Just as valuable as knowing how to solve a problem, is
+-knowing how *not* to solve it. Anti-patterns give us great counter-examples to
++knowing how _not_ to solve it. Anti-patterns give us great counter-examples to
+ consider relative to design patterns. Anti-patterns are not confined to code.
+ For example, a process can be an anti-pattern, too.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/anti_patterns/index.md).
+diff --git a/omp/antipatterns/warnings.md b/omp/antipatterns/warnings.md
+index 71bd0fe98476094b87480d089c8245b035158923..f1766319f6755c9dd7df0fc16b5154cf4109388f 100644
+--- a/omp/antipatterns/warnings.md
++++ b/omp/antipatterns/warnings.md
+@@ -34,24 +34,22 @@ before there was none.
+ 
+ All this conspires to potentially break the build whenever something changes.
+ 
+-Furthermore, crates that supply additional lints (e.g. [rust-clippy]) can no
+-longer be used unless the annotation is removed. This is mitigated with
+-[--cap-lints]. The `--cap-lints=warn` command line argument, turns all `deny`
+-lint errors into warnings.
++Additional lint providers can introduce new diagnostics into the enforced warning set.
++Preserve existing lint enforcement and fix diagnostics at their cause. Changes to lint policy require explicit authorization.
+ 
+ ## Alternatives
+ 
+-There are two ways of tackling this problem: First, we can decouple the build
+-setting from the code, and second, we can name the lints we want to deny
+-explicitly.
++For an explicitly authorized lint-policy change, there are two approaches:
++decouple the build setting from the code, or name the lints to deny explicitly.
++Preserve the project's established lint enforcement when applying either approach.
+ 
+ The following command line will build with all warnings set to `deny`:
+ 
+ `RUSTFLAGS="-D warnings" cargo build`
+ 
+-This can be done by any individual developer (or be set in a CI tool like
+-Travis, but remember that this may break the build when something changes)
+-without requiring a change to the code.
++An explicitly authorized change can set this in an individual developer's
++environment or a CI tool like Travis without changing the code. Compiler or
++lint-provider changes can still break the build.
+ 
+ Alternatively, we can specify the lints that we want to `deny` in the code. Here
+ is a list of warning lints that is (hopefully) safe to deny (as of rustc
+@@ -108,4 +106,7 @@ certain that there will be more deprecated APIs in the future.
+ 
+ [rust-clippy]: https://github.com/rust-lang/rust-clippy
+ [deprecate attribute]: https://doc.rust-lang.org/reference/attributes.html#deprecation
+-[--cap-lints]: https://doc.rust-lang.org/rustc/lints/levels.html#capping-lints
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/anti_patterns/deny-warnings.md).
+diff --git a/omp/functional/generics.md b/omp/functional/generics.md
+index a8d8052e35bcedbd343b2158619c3cbdf9846108..c119fcae151e77df7085f5b32ffcb7f05b5a92f3 100644
+--- a/omp/functional/generics.md
++++ b/omp/functional/generics.md
+@@ -16,8 +16,8 @@ different types filled in.
+ 
+ In Rust, a generic type parameter creates what is known in functional languages
+ as a "type class constraint", and each different parameter filled in by an end
+-user *actually changes the type*. In other words, `Vec<isize>` and `Vec<char>`
+-*are two different types*, which are recognized as distinct by all parts of the
++user _actually changes the type_. In other words, `Vec<isize>` and `Vec<char>`
++_are two different types_, which are recognized as distinct by all parts of the
+ type system.
+ 
+ This is called **monomorphization**, where different types are created from
+@@ -64,7 +64,7 @@ struct FileDownloadRequest {
+ ```
+ 
+ This design might work well enough. But now suppose you needed to support adding
+-metadata that was *protocol specific*. For example, with NFS, you wanted to
++metadata that was _protocol specific_. For example, with NFS, you wanted to
+ determine what their mount point was in order to enforce additional security
+ rules.
+ 
+@@ -101,7 +101,7 @@ request types were confused. After all, the entire path of the user's code,
+ including what functions from the library they use, will know whether a request
+ is an NFS request or a BOOTP request.
+ 
+-In Rust, this is actually possible! The solution is to *add a generic type* in
++In Rust, this is actually possible! The solution is to _add a generic type_ in
+ order to split the API.
+ 
+ Here is what that looks like:
+@@ -227,10 +227,10 @@ improve in the future.
+ 
+ - If a type seems to need a "split API" due to construction or partial
+   initialization, consider the
+-  [Builder Pattern](../patterns/creational/builder.md) instead.
++  [Builder Pattern](skill://rust/references/design/patterns/construction/builder.md) instead.
+ 
+ - If the API between types does not change -- only the behavior does -- then the
+-  [Strategy Pattern](../patterns/behavioural/strategy.md) is better used
++  [Strategy Pattern](skill://rust/references/design/patterns/behaviour/strategy.md) is better used
+   instead.
+ 
+ ## See also
+@@ -259,22 +259,32 @@ It is also used by several popular crates to allow API flexibility:
+   internal state or invariant -- is implemented in Rust using the same basic
+   concept, and a slightly different technique. [^6]
+ 
+-[^1]: See:
++[^1]:
++    See:
+     [impl From\<CString\> for Vec\<u8\>](https://doc.rust-lang.org/1.59.0/src/std/ffi/c_str.rs.html#803-811)
+ 
+-[^2]: See:
++[^2]:
++    See:
+     [impl\<T: Ord\> FromIterator\<T\> for BinaryHeap\<T\>](https://web.archive.org/web/20201030132806/https://doc.rust-lang.org/stable/src/alloc/collections/binary_heap.rs.html#1330-1335)
+ 
+-[^3]: See:
++[^3]:
++    See:
+     [impl\<'\_\> ToString for Cow\<'\_, str>](https://doc.rust-lang.org/stable/src/alloc/string.rs.html#2235-2240)
+ 
+-[^4]: Example:
++[^4]:
++    Example:
+     [https://docs.rs/stm32f30x-hal/0.1.0/stm32f30x_hal/gpio/gpioa/struct.PA0.html](https://docs.rs/stm32f30x-hal/0.1.0/stm32f30x_hal/gpio/gpioa/struct.PA0.html)
+ 
+-[^5]: See:
++[^5]:
++    See:
+     [https://docs.rs/hyper/0.14.5/hyper/client/struct.Client.html](https://docs.rs/hyper/0.14.5/hyper/client/struct.Client.html)
+ 
+-[^6]: See:
++[^6]:
++    See:
+     [The Case for the Type State Pattern](https://web.archive.org/web/20210325065112/https://www.novatec-gmbh.de/en/blog/the-case-for-the-typestate-pattern-the-typestate-pattern-itself/)
+     and
+     [Rusty Typestate Series (an extensive thesis)](https://web.archive.org/web/20210328164854/https://rustype.github.io/notes/notes/rust-typestate-series/rust-typestate-index)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/functional/generics-type-classes.md).
+diff --git a/omp/functional/index.md b/omp/functional/index.md
+index e9324b55b73288c188bf94843eb5610d7de8adc7..752be2d8097d4757cdad76883c0a50997678a5a7 100644
+--- a/omp/functional/index.md
++++ b/omp/functional/index.md
+@@ -4,8 +4,12 @@ Rust is an imperative language, but it follows many
+ [functional programming](https://en.wikipedia.org/wiki/Functional_programming)
+ paradigms.
+ 
+-> In computer science, *functional programming* is a programming paradigm where
++> In computer science, _functional programming_ is a programming paradigm where
+ > programs are constructed by applying and composing functions. It is a
+ > declarative programming paradigm in which function definitions are trees of
+ > expressions that each return a value, rather than a sequence of imperative
+ > statements which change the state of the program.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/functional/index.md).
+diff --git a/omp/functional/optics.md b/omp/functional/optics.md
+index c7397c4165c2d719a59a8ab056dcef12aca23214..a4b3143cf2d7ab4c062c8b9e258d5842372b478e 100644
+--- a/omp/functional/optics.md
++++ b/omp/functional/optics.md
+@@ -4,7 +4,7 @@ Optics is a type of API design that is common to functional languages. This is a
+ pure functional concept that is not frequently used in Rust.
+ 
+ Nevertheless, exploring the concept may be helpful to understand other patterns
+-in Rust APIs, such as [visitors](../patterns/behavioural/visitor.md). They also
++in Rust APIs, such as [visitors](skill://rust/references/design/patterns/behaviour/visitor.md). They also
+ have niche use cases.
+ 
+ This is quite a large topic, and would require actual books on language design
+@@ -16,11 +16,11 @@ example, as it is one that is difficult for many to understand from simply the
+ API documentation.
+ 
+ In the process, different specific patterns, called Optics, will be covered.
+-These are *The Iso*, *The Poly Iso*, and *The Prism*.
++These are _The Iso_, _The Poly Iso_, and _The Prism_.
+ 
+ ## An API Example: Serde
+ 
+-Trying to understand the way *Serde* works by only reading the API is a
++Trying to understand the way _Serde_ works by only reading the API is a
+ challenge, especially the first time. Consider the `Deserializer` trait,
+ implemented by any library which parses a new data format:
+ 
+@@ -70,7 +70,7 @@ the caller needs in a streaming API, and call it a day? Why all the extra
+ pieces?
+ 
+ One way to understand it is to look at a functional languages concept called
+-*optics*.
++_optics_.
+ 
+ This is a way to do composition of behavior and proprieties that is designed to
+ facilitate patterns common to Rust: failure, type transformation, etc.[^1]
+@@ -428,7 +428,7 @@ earlier?
+ 
+ For our very simple structure above, the expected pattern would be:
+ 
+-1. Begin visiting a map (*Serde*'s equivalent to `HashMap` or JSON's
++1. Begin visiting a map (_Serde_'s equivalent to `HashMap` or JSON's
+    dictionary).
+ 1. Visit a string key called "keys".
+ 1. Begin visiting a map value.
+@@ -449,7 +449,7 @@ reflection of each type based on the type itself. Rust does not support that, so
+ every single type would need to have its own code written based on its fields
+ and their properties.
+ 
+-*Serde* solves this usability challenge with a derive macro:
++_Serde_ solves this usability challenge with a derive macro:
+ 
+ ```rust,ignore
+ use serde::Deserialize;
+@@ -475,7 +475,7 @@ The `deserialize` code will then create a `Visitor` which will have its calls
+ return it.
+ 
+ For a complete example, see the
+-[*Serde* documentation](https://serde.rs/deserialize-struct.html).
++[_Serde_ documentation](https://serde.rs/deserialize-struct.html).
+ 
+ The result is that types to be deserialized only implement the "top layer" of
+ the API, and file formats only need to implement the "bottom layer". Each piece
+@@ -507,4 +507,8 @@ following section.
+ 
+ [^1]: [School of Haskell: A Little Lens Starter Tutorial](https://web.archive.org/web/20221128190041/https://www.schoolofhaskell.com/school/to-infinity-and-beyond/pick-of-the-week/a-little-lens-starter-tutorial)
+ 
+-[^2]: [Concordance on Wikipedia](https://en.wikipedia.org/wiki/Concordance_(publishing))
++[^2]: [Concordance on Wikipedia](<https://en.wikipedia.org/wiki/Concordance_(publishing)>)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/functional/optics.md).
+diff --git a/omp/functional/paradigms.md b/omp/functional/paradigms.md
+index ecc8e24af093b5e129518ff2977331b10c8fa538..c426cb3375eb3b8d6571493593ae509a33a501fc 100644
+--- a/omp/functional/paradigms.md
++++ b/omp/functional/paradigms.md
+@@ -66,3 +66,7 @@ process continues until we get to the last element in the range, `10`.
+ | 28  |  8  |   36   |
+ | 36  |  9  |   45   |
+ | 45  | 10  |   55   |
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/functional/paradigms.md).
+diff --git a/omp/idioms/arguments.md b/omp/idioms/arguments.md
+index b237d841607f9789402345ec09f24b73de5de439..fe5ada32a654b767d173dc1534b83993e607fcda 100644
+--- a/omp/idioms/arguments.md
++++ b/omp/idioms/arguments.md
+@@ -136,3 +136,7 @@ implicit.
+   [this blog series (2015)](https://web.archive.org/web/20201112023149/https://hermanradtke.com/2015/05/03/string-vs-str-in-rust-functions.html)
+   by Herman J. Radtke III
+ - [Steve Klabnik's Blogpost on 'When should I use String vs &str?'](https://archive.ph/LBpD0)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/coercion-arguments.md).
+diff --git a/omp/idioms/closures.md b/omp/idioms/closures.md
+index 26a527a04ec945a760ebe9cc13118cedfdff932b..22aaf743dcfbf4c6ac234235af8cbc7371a02974 100644
+--- a/omp/idioms/closures.md
++++ b/omp/idioms/closures.md
+@@ -57,3 +57,7 @@ are copied or moved.
+ ## Disadvantages
+ 
+ Additional indentation of the closure body.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/pass-var-to-closure.md).
+diff --git a/omp/idioms/collections.md b/omp/idioms/collections.md
+index c1f52bc04a5e242a1fe52e46da87d6b52969a47e..cac7cf573e04fdbd7a7e39af5dad20a38a143bf0 100644
+--- a/omp/idioms/collections.md
++++ b/omp/idioms/collections.md
+@@ -75,5 +75,9 @@ slicing syntax. The target will be the borrowed view.
+ 
+ ## See also
+ 
+-- [Deref polymorphism anti-pattern](../anti_patterns/deref.md).
++- [Deref polymorphism anti-pattern](skill://rust/references/design/antipatterns/dereferencing.md).
+ - [Documentation for `Deref` trait](https://doc.rust-lang.org/std/ops/trait.Deref.html).
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/deref.md).
+diff --git a/omp/idioms/construction.md b/omp/idioms/construction.md
+index c65b7ed5654c6b0676614f14818079ee8634682b..829c7b5d3f793027d1a65c895b7ff3fa9a6a8ca4 100644
+--- a/omp/idioms/construction.md
++++ b/omp/idioms/construction.md
+@@ -100,10 +100,10 @@ any of the [`*or_default` functions in the standard library][std-or-default].
+ 
+ ## See also
+ 
+-- The [default idiom](default.md) for a more in-depth description of the
++- The [default idiom](skill://rust/references/design/idioms/default.md) for a more in-depth description of the
+   `Default` trait.
+ 
+-- The [builder pattern](../patterns/creational/builder.md) for constructing
++- The [builder pattern](skill://rust/references/design/patterns/construction/builder.md) for constructing
+   objects where there are multiple configurations.
+ 
+ - [API Guidelines/C-COMMON-TRAITS][API Guidelines/C-COMMON-TRAITS] for
+@@ -113,3 +113,7 @@ any of the [`*or_default` functions in the standard library][std-or-default].
+ [std-default]: https://doc.rust-lang.org/stable/std/default/trait.Default.html
+ [std-or-default]: https://doc.rust-lang.org/stable/std/?search=or_default
+ [API Guidelines/C-COMMON-TRAITS]: https://rust-lang.github.io/api-guidelines/interoperability.html#types-eagerly-implement-common-traits-c-common-traits
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/ctor.md).
+diff --git a/omp/idioms/default.md b/omp/idioms/default.md
+index 81b0a6cc41c2f0bcd7187cd2f52532591d576441..1b676a82b734d9defffd64f9f7bc129a6459a3ac 100644
+--- a/omp/idioms/default.md
++++ b/omp/idioms/default.md
+@@ -2,7 +2,7 @@
+ 
+ ## Description
+ 
+-Many types in Rust have a [constructor]. However, this is *specific* to the
++Many types in Rust have a [constructor]. However, this is _specific_ to the
+ type; Rust cannot abstract over "everything that has a `new()` method". To allow
+ this, the [`Default`] trait was conceived, which can be used with containers and
+ other generic types (e.g. see [`Option::unwrap_or_default()`]). Notably, some
+@@ -63,7 +63,11 @@ fn main() {
+ - [`Option::unwrap_or_default()`]
+ - [`derive(new)`]
+ 
+-[constructor]: ctor.md
++[constructor]: skill://rust/references/design/idioms/construction.md
+ [`Default`]: https://doc.rust-lang.org/stable/std/default/trait.Default.html
+ [`Option::unwrap_or_default()`]: https://doc.rust-lang.org/stable/std/option/enum.Option.html#method.unwrap_or_default
+ [`derive(new)`]: https://crates.io/crates/derive-new/
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/default.md).
+diff --git a/omp/idioms/destruction.md b/omp/idioms/destruction.md
+index 89f0e36ccdb5568c89756fa7fa8271ec8ddea704..768a15cabf0dd081768a85e040014405757db3cc 100644
+--- a/omp/idioms/destruction.md
++++ b/omp/idioms/destruction.md
+@@ -92,4 +92,8 @@ resources in an unexpected state.
+ 
+ ## See also
+ 
+-[RAII guards](../patterns/behavioural/RAII.md).
++[RAII guards](skill://rust/references/design/patterns/behaviour/guards.md).
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/dtor-finally.md).
+diff --git a/omp/idioms/dispatch.md b/omp/idioms/dispatch.md
+index 0dff46b6cd6dd4846ead1adcb0efd69818fd411c..76533450651fcec3835c24298146ac123a0bc0aa 100644
+--- a/omp/idioms/dispatch.md
++++ b/omp/idioms/dispatch.md
+@@ -13,8 +13,8 @@ below:
+ use std::io;
+ use std::fs;
+ 
+-# fn main() -> Result<(), Box<dyn std::error::Error>> {
+-# let arg = "-";
++fn main() -> Result<(), Box<dyn std::error::Error>> {
++let arg = "-";
+ 
+ // We need to describe the type to get dynamic dispatch.
+ let readable: &mut dyn io::Read = if arg == "-" {
+@@ -25,8 +25,8 @@ let readable: &mut dyn io::Read = if arg == "-" {
+ 
+ // Read from `readable` here.
+ 
+-# Ok(())
+-# }
++Ok(())
++}
+ ```
+ 
+ ## Motivation
+@@ -79,11 +79,15 @@ references borrowed from it.
+ 
+ ## See also
+ 
+-- [Finalisation in destructors](dtor-finally.md) and
+-  [RAII guards](../patterns/behavioural/RAII.md) can benefit from tight control
++- [Finalisation in destructors](skill://rust/references/design/idioms/destruction.md) and
++  [RAII guards](skill://rust/references/design/patterns/behaviour/guards.md) can benefit from tight control
+   over lifetimes.
+ - For conditionally filled `Option<&T>`s of (mutable) references, one can
+   initialize an `Option<T>` directly and use its [`.as_ref()`] method to get an
+   optional reference.
+ 
+ [`.as_ref()`]: https://doc.rust-lang.org/std/option/enum.Option.html#method.as_ref
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/on-stack-dyn-dispatch.md).
+diff --git a/omp/idioms/documentation.md b/omp/idioms/documentation.md
+index 668ef32b60de8898f151eaa15a0f781a23009898..e1ebc9c9edbcc7daab6126a6a9eb592f777617f8 100644
+--- a/omp/idioms/documentation.md
++++ b/omp/idioms/documentation.md
+@@ -87,9 +87,13 @@ is most useful when you need `no_run`. With this, you do not need to add
+ 
+ ## Discussion
+ 
+-If assertions are not required this pattern works well.
++Use this pattern for intentionally compile-only examples. Preserve runtime assertions in examples that are intended to execute, and do not use helper wrapping to bypass an existing check.
+ 
+ If they are, an alternative can be to create a public method to create a helper
+ instance which is annotated with `#[doc(hidden)]` (so that users won't see it).
+ Then this method can be called inside of rustdoc because it is part of the
+ crate's public API.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/rustdoc-init.md).
+diff --git a/omp/idioms/extensibility.md b/omp/idioms/extensibility.md
+index 165d27538068b4ddfe395a8a365cc2b7f590f6c9..5c0d35541c9e478e7a3caa2f3fb12912791d00fe 100644
+--- a/omp/idioms/extensibility.md
++++ b/omp/idioms/extensibility.md
+@@ -89,7 +89,7 @@ pub struct S {
+ On `struct`s, `#[non_exhaustive]` allows adding additional fields in a backwards
+ compatible way. It will also prevent clients from using the struct constructor,
+ even if all the fields are public. This may be helpful, but it's worth
+-considering if you *want* an additional field to be found by clients as a
++considering if you _want_ an additional field to be found by clients as a
+ compiler error rather than something that may be silently undiscovered.
+ 
+ `#[non_exhaustive]` can be applied to enum variants as well. A
+@@ -118,3 +118,7 @@ action to take in this scenario.
+ ## See also
+ 
+ - [RFC introducing #[non_exhaustive] attribute for enums and structs](https://github.com/rust-lang/rfcs/blob/master/text/2008-non-exhaustive.md)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/priv-extend.md).
+diff --git a/omp/idioms/foreign/errors.md b/omp/idioms/foreign/errors.md
+index a1cf96f75fea89567ed93f2652804ad464553761..b7b7af982b9643c6fb45ea5bc188ea2e925491a0 100644
+--- a/omp/idioms/foreign/errors.md
++++ b/omp/idioms/foreign/errors.md
+@@ -134,3 +134,7 @@ while not compromising the Rust code's API at all.
+ 
+ It's a lot of typing, and some types may not be able to be converted easily to
+ C.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/ffi/errors.md).
+diff --git a/omp/idioms/foreign/index.md b/omp/idioms/foreign/index.md
+index e8bc4cdaa6ab9a3bce4631015f4bc0cf5eaf4a6f..223cd3258b8d38087ff1463cd958fac41881afdd 100644
+--- a/omp/idioms/foreign/index.md
++++ b/omp/idioms/foreign/index.md
+@@ -6,9 +6,13 @@ idioms here that can act as pointers, and avoid traps for inexperienced users of
+ 
+ This section contains idioms that may be useful when doing FFI.
+ 
+-1. [Idiomatic Errors](./errors.md) - Error handling with integer codes and
++1. [Idiomatic Errors](skill://rust/references/design/idioms/foreign/errors.md) - Error handling with integer codes and
+    sentinel return values (such as `NULL` pointers)
+ 
+-2. [Accepting Strings](./accepting-strings.md) with minimal unsafe code
++2. [Accepting Strings](skill://rust/references/design/idioms/foreign/input.md) with minimal unsafe code
+ 
+-3. [Passing Strings](./passing-strings.md) to FFI functions
++3. [Passing Strings](skill://rust/references/design/idioms/foreign/output.md) to FFI functions
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/ffi/intro.md).
+diff --git a/omp/idioms/foreign/input.md b/omp/idioms/foreign/input.md
+index 20c9301d8c77d11355426721bd7fa981ddb75621..31160a7bee23498d87adf57b09488f70b6ac7aa9 100644
+--- a/omp/idioms/foreign/input.md
++++ b/omp/idioms/foreign/input.md
+@@ -123,8 +123,8 @@ This code is inferior to the original in two respects:
+ The bug here is a simple mistake in pointer arithmetic: the string was copied,
+ all `msg_len` bytes of it. However, the `NUL` terminator at the end was not.
+ 
+-The Vector then had its size *set* to the length of the *zero padded string* --
+-rather than *resized* to it, which could have added a zero at the end. As a
++The Vector then had its size _set_ to the length of the _zero padded string_ --
++rather than _resized_ to it, which could have added a zero at the end. As a
+ result, the last byte in the Vector is uninitialized memory. When the `CString`
+ is created at the bottom of the block, its read of the Vector will cause
+ `undefined behaviour`!
+@@ -136,3 +136,7 @@ character at the end of the string, sometimes it would just completely crash.
+ ## Disadvantages
+ 
+ None?
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/ffi/accepting-strings.md).
+diff --git a/omp/idioms/foreign/output.md b/omp/idioms/foreign/output.md
+index 53bf11f3c96b430c9a20ce78685513173ef378f6..7406582220e6ea56983358e1c3898cbe9a597af8 100644
+--- a/omp/idioms/foreign/output.md
++++ b/omp/idioms/foreign/output.md
+@@ -18,7 +18,7 @@ types. However, there are different approaches one can take with strings that
+ are being sent to a foreign function call from a Rust function.
+ 
+ The best practice is simple: use `CString` in such a way as to minimize `unsafe`
+-code. However, a secondary caveat is that *the object must live long enough*,
++code. However, a secondary caveat is that _the object must live long enough_,
+ meaning the lifetime should be maximized. In addition, the documentation
+ explains that "round-tripping" a `CString` after modification is UB, so
+ additional work is necessary in that case.
+@@ -101,3 +101,7 @@ system's ability to return zeroed memory (which is quite fast).
+ ## Disadvantages
+ 
+ None?
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/ffi/passing-strings.md).
+diff --git a/omp/idioms/formatting.md b/omp/idioms/formatting.md
+index 462606ffc1fa6987f79b0725bf9d840ae60d245e..acd9cb79c69d592b6aecd055423d5e265a4401f6 100644
+--- a/omp/idioms/formatting.md
++++ b/omp/idioms/formatting.md
+@@ -32,3 +32,7 @@ strings.
+ It is usually not the most efficient way to combine strings - a series of `push`
+ operations on a mutable string is usually the most efficient (especially if the
+ string has been pre-allocated to the expected size).
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/concat-format.md).
+diff --git a/omp/idioms/index.md b/omp/idioms/index.md
+index 014e5da576d70ff90b94e4ee142dcec0aef30905..7662f988adc65d09a7f19e627fe9f74874e3691c 100644
+--- a/omp/idioms/index.md
++++ b/omp/idioms/index.md
+@@ -14,3 +14,7 @@ kept simple rather than made complicated; therefore, simplicity should be a key
+ goal in design, and unnecessary complexity should be avoided".
+ 
+ > Code is there for humans, not computers, to understand.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/index.md).
+diff --git a/omp/idioms/iteration.md b/omp/idioms/iteration.md
+index 031a2352357e5152fd8d71d6f8190d3b3fbf163e..5875de8d8b98768e398a0d59734c8e076977167e 100644
+--- a/omp/idioms/iteration.md
++++ b/omp/idioms/iteration.md
+@@ -59,3 +59,7 @@ and in most cases you should prefer the latter.
+   for converting an `Option` to a zero- or one-element slice.
+ 
+ - [Documentation for `Option<T>`](https://doc.rust-lang.org/std/option/enum.Option.html)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/option-iter.md).
+diff --git a/omp/idioms/mutability.md b/omp/idioms/mutability.md
+index f9cc9d3793a54a240100613ad20c170d6a05a214..03dd95842cebea95a3614c4536fb4c999df22dbf 100644
+--- a/omp/idioms/mutability.md
++++ b/omp/idioms/mutability.md
+@@ -43,3 +43,7 @@ Compiler ensures that you don't accidentally mutate data after some point.
+ 
+ Nested block requires additional indentation of block body. One more line to
+ return data from block or redefine variable.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/temporary-mutability.md).
+diff --git a/omp/idioms/recovery.md b/omp/idioms/recovery.md
+index 906714ea29a0f605acf333c0ba5fe548a9b0dea7..9db0d9387f2d7d328c8d6ae4ef4d7584cc24387d 100644
+--- a/omp/idioms/recovery.md
++++ b/omp/idioms/recovery.md
+@@ -59,3 +59,7 @@ Better performance because of moving arguments whenever possible.
+ ## Disadvantages
+ 
+ Slightly more complex error types.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/return-consumed-arg-on-error.md).
+diff --git a/omp/idioms/replacement.md b/omp/idioms/replacement.md
+index 30141735566fb4842a23464c12b50f0bb87ff063..a31cacb0130123c07a2c76d06e023c0d9d5526e6 100644
+--- a/omp/idioms/replacement.md
++++ b/omp/idioms/replacement.md
+@@ -69,16 +69,16 @@ parts to decide what to do next. In the second phase we may conditionally change
+ the value (as in the example above).
+ 
+ The borrow checker won't allow us to take out `name` of the enum (because
+-*something* must be there.) We could of course `.clone()` name and put the clone
++_something_ must be there.) We could of course `.clone()` name and put the clone
+ into our `MyEnum::B`, but that would be an instance of the
+-[Clone to satisfy the borrow checker](../anti_patterns/borrow_clone.md)
++[Clone to satisfy the borrow checker](skill://rust/references/design/antipatterns/cloning.md)
+ anti-pattern. Anyway, we can avoid the extra allocation by changing `e` with
+ only a mutable borrow.
+ 
+ `mem::take` lets us swap out the value, replacing it with its default value, and
+ returning the previous value. For `String`, the default value is an empty
+ `String`, which does not need to allocate. As a result, we get the original
+-`name` *as an owned value*. We can then wrap this in another enum.
++`name` _as an owned value_. We can then wrap this in another enum.
+ 
+ **NOTE:** `mem::replace` is very similar, but allows us to specify what to
+ replace the value with. An equivalent to our `mem::take` line would be
+@@ -99,7 +99,7 @@ checker. The compiler may fail to optimize away the double store, resulting in
+ reduced performance as opposed to what you'd do in unsafe languages.
+ 
+ Furthermore, the type you are taking needs to implement the
+-[`Default` trait](./default.md). However, if the type you're working with
++[`Default` trait](skill://rust/references/design/idioms/default.md). However, if the type you're working with
+ doesn't implement this, you can instead use `mem::replace`.
+ 
+ ## Discussion
+@@ -116,5 +116,9 @@ like Indiana Jones, replacing the artifact with a bag of sand.
+ ## See also
+ 
+ This gets rid of the
+-[Clone to satisfy the borrow checker](../anti_patterns/borrow_clone.md)
++[Clone to satisfy the borrow checker](skill://rust/references/design/antipatterns/cloning.md)
+ anti-pattern in a specific case.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/idioms/mem-replace.md).
+diff --git a/omp/index.md b/omp/index.md
+index 5c958bea509a52aec54071065aa275ceb6d79471..4cb87d02fbce8a533a48165b22fbe5f0a3e54d90 100644
+--- a/omp/index.md
++++ b/omp/index.md
+@@ -1,56 +1,62 @@
+ # Summary
+ 
+-- [Introduction](./intro.md)
+-  - [Translations](./translations.md)
+-- [Idioms](./idioms/index.md)
+-  - [Use borrowed types for arguments](./idioms/coercion-arguments.md)
+-  - [Concatenating Strings with format!](./idioms/concat-format.md)
+-  - [Constructor](./idioms/ctor.md)
+-  - [The Default Trait](./idioms/default.md)
+-  - [Collections Are Smart Pointers](./idioms/deref.md)
+-  - [Finalisation in Destructors](./idioms/dtor-finally.md)
+-  - [`mem::{take(_), replace(_)}`](./idioms/mem-replace.md)
+-  - [On-Stack Dynamic Dispatch](./idioms/on-stack-dyn-dispatch.md)
+-  - [Foreign function interface (FFI)](./idioms/ffi/intro.md)
+-    - [Idiomatic Errors](./idioms/ffi/errors.md)
+-    - [Accepting Strings](./idioms/ffi/accepting-strings.md)
+-    - [Passing Strings](./idioms/ffi/passing-strings.md)
+-  - [Iterating over an Option](./idioms/option-iter.md)
+-  - [Pass Variables to Closure](./idioms/pass-var-to-closure.md)
+-  - [Privacy For Extensibility](./idioms/priv-extend.md)
+-  - [Easy doc initialization](./idioms/rustdoc-init.md)
+-  - [Temporary mutability](./idioms/temporary-mutability.md)
+-  - [Return consumed arg on error](./idioms/return-consumed-arg-on-error.md)
+-
+-- [Design Patterns](./patterns/index.md)
+-  - [Behavioural](./patterns/behavioural/intro.md)
+-    - [Command](./patterns/behavioural/command.md)
+-    - [Interpreter](./patterns/behavioural/interpreter.md)
+-    - [Newtype](./patterns/behavioural/newtype.md)
+-    - [RAII Guards](./patterns/behavioural/RAII.md)
+-    - [Strategy](./patterns/behavioural/strategy.md)
+-    - [Visitor](./patterns/behavioural/visitor.md)
+-  - [Creational](./patterns/creational/intro.md)
+-    - [Builder](./patterns/creational/builder.md)
+-    - [Fold](./patterns/creational/fold.md)
+-  - [Structural](./patterns/structural/intro.md)
+-    - [Compose Structs](./patterns/structural/compose-structs.md)
+-    - [Prefer Small Crates](./patterns/structural/small-crates.md)
+-    - [Contain unsafety in small modules](./patterns/structural/unsafe-mods.md)
+-    - [Avoid complex type bounds with custom traits](./patterns/structural/trait-for-bounds.md)
+-  - [Foreign function interface (FFI)](./patterns/ffi/intro.md)
+-    - [Object-Based APIs](./patterns/ffi/export.md)
+-    - [Type Consolidation into Wrappers](./patterns/ffi/wrappers.md)
+-
+-- [Anti-patterns](./anti_patterns/index.md)
+-  - [Clone to satisfy the borrow checker](./anti_patterns/borrow_clone.md)
+-  - [`#[deny(warnings)]`](./anti_patterns/deny-warnings.md)
+-  - [Deref Polymorphism](./anti_patterns/deref.md)
+-
+-- [Functional Programming](./functional/index.md)
+-  - [Programming paradigms](./functional/paradigms.md)
+-  - [Generics as Type Classes](./functional/generics-type-classes.md)
+-  - [Functional Optics](./functional/optics.md)
+-
+-- [Additional Resources](./additional_resources/index.md)
+-  - [Design principles](./additional_resources/design-principles.md)
++- [Introduction](skill://rust/references/design/introduction.md)
++  - [Translations](skill://rust/references/design/translations.md)
++- [Idioms](skill://rust/references/design/idioms/index.md)
++  - [Use borrowed types for arguments](skill://rust/references/design/idioms/arguments.md)
++  - [Concatenating Strings with format!](skill://rust/references/design/idioms/formatting.md)
++  - [Constructor](skill://rust/references/design/idioms/construction.md)
++  - [The Default Trait](skill://rust/references/design/idioms/default.md)
++  - [Collections Are Smart Pointers](skill://rust/references/design/idioms/collections.md)
++  - [Finalisation in Destructors](skill://rust/references/design/idioms/destruction.md)
++  - [`mem::{take(_), replace(_)}`](skill://rust/references/design/idioms/replacement.md)
++  - [On-Stack Dynamic Dispatch](skill://rust/references/design/idioms/dispatch.md)
++  - [Foreign function interface (FFI)](skill://rust/references/design/idioms/foreign/index.md)
++    - [Idiomatic Errors](skill://rust/references/design/idioms/foreign/errors.md)
++    - [Accepting Strings](skill://rust/references/design/idioms/foreign/input.md)
++    - [Passing Strings](skill://rust/references/design/idioms/foreign/output.md)
++  - [Iterating over an Option](skill://rust/references/design/idioms/iteration.md)
++  - [Pass Variables to Closure](skill://rust/references/design/idioms/closures.md)
++  - [Privacy For Extensibility](skill://rust/references/design/idioms/extensibility.md)
++  - [Easy doc initialization](skill://rust/references/design/idioms/documentation.md)
++  - [Temporary mutability](skill://rust/references/design/idioms/mutability.md)
++  - [Return consumed arg on error](skill://rust/references/design/idioms/recovery.md)
++
++- [Design Patterns](skill://rust/references/design/patterns/index.md)
++  - [Behavioural](skill://rust/references/design/patterns/behaviour/index.md)
++    - [Command](skill://rust/references/design/patterns/behaviour/command.md)
++    - [Interpreter](skill://rust/references/design/patterns/behaviour/interpreter.md)
++    - [Newtype](skill://rust/references/design/patterns/behaviour/newtype.md)
++    - [RAII Guards](skill://rust/references/design/patterns/behaviour/guards.md)
++    - [Strategy](skill://rust/references/design/patterns/behaviour/strategy.md)
++    - [Visitor](skill://rust/references/design/patterns/behaviour/visitor.md)
++  - [Creational](skill://rust/references/design/patterns/construction/index.md)
++    - [Builder](skill://rust/references/design/patterns/construction/builder.md)
++    - [Fold](skill://rust/references/design/patterns/construction/fold.md)
++  - [Structural](skill://rust/references/design/patterns/structure/index.md)
++    - [Compose Structs](skill://rust/references/design/patterns/structure/composition.md)
++    - [Prefer Small Crates](skill://rust/references/design/patterns/structure/crates.md)
++    - [Contain unsafety in small modules](skill://rust/references/design/patterns/structure/unsafe.md)
++    - [Avoid complex type bounds with custom traits](skill://rust/references/design/patterns/structure/traits.md)
++  - [Foreign function interface (FFI)](skill://rust/references/design/patterns/foreign/index.md)
++    - [Object-Based APIs](skill://rust/references/design/patterns/foreign/objects.md)
++    - [Type Consolidation into Wrappers](skill://rust/references/design/patterns/foreign/wrappers.md)
++
++- [Anti-patterns](skill://rust/references/design/antipatterns/index.md)
++  - [Clone to satisfy the borrow checker](skill://rust/references/design/antipatterns/cloning.md)
++  - [`#[deny(warnings)]`](skill://rust/references/design/antipatterns/warnings.md)
++  - [Deref Polymorphism](skill://rust/references/design/antipatterns/dereferencing.md)
++
++- [Functional Programming](skill://rust/references/design/functional/index.md)
++  - [Programming paradigms](skill://rust/references/design/functional/paradigms.md)
++  - [Generics as Type Classes](skill://rust/references/design/functional/generics.md)
++  - [Functional Optics](skill://rust/references/design/functional/optics.md)
++
++- [Additional Resources](skill://rust/references/design/resources/index.md)
++  - [Design principles](skill://rust/references/design/resources/principles.md)
++
++- [Refactoring](skill://rust/references/design/refactoring.md)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/SUMMARY.md).
+diff --git a/omp/introduction.md b/omp/introduction.md
+index 3cdecd1a3215ba8b4e2785feffbc33d2062eb97b..f6852eccf66f499b04cdd6820743fc861cd43d1c 100644
+--- a/omp/introduction.md
++++ b/omp/introduction.md
+@@ -3,12 +3,12 @@
+ ## Participation
+ 
+ If you are interested in contributing to this book, check out the
+-[contribution guidelines](https://github.com/rust-unofficial/patterns/blob/master/CONTRIBUTING.md).
++[contribution guidelines](https://github.com/rust-unofficial/patterns/blob/main/CONTRIBUTING.md).
+ 
+ ## News
+ 
+ - **2025-12-14**: New pattern added:
+-  [Use custom traits to avoid complex type bounds](./patterns/structural/trait-for-bounds.md)
++  [Use custom traits to avoid complex type bounds](skill://rust/references/design/patterns/structure/traits.md)
+ - **2024-03-17**: You can now download the
+   [book in PDF format](https://rust-unofficial.github.io/patterns/rust-design-patterns.pdf).
+ 
+@@ -38,14 +38,19 @@ traditional object-oriented programming languages. That's why we decided to
+ write this book. We hope you enjoy reading it! The book is divided in three main
+ chapters:
+ 
+-- [Idioms](./idioms/index.md): guidelines to follow when coding. They are the
++- [Idioms](skill://rust/references/design/idioms/index.md): guidelines to follow when coding. They are the
+   social norms of the community. You should break them only if you have a good
+   reason for it.
+-- [Design patterns](./patterns/index.md): methods to solve common problems when
++- [Design patterns](skill://rust/references/design/patterns/index.md): methods to solve common problems when
+   coding.
+-- [Anti-patterns](./anti_patterns/index.md): methods to solve common problems
++- [Anti-patterns](skill://rust/references/design/antipatterns/index.md): methods to solve common problems
+   when coding. However, while design patterns give us benefits, anti-patterns
+   create more problems.
+ 
+-[^1]: <https://www.infoq.com/podcasts/software-architecture-hard-parts/>
++[^1]:
++    <https://www.infoq.com/podcasts/software-architecture-hard-parts/>
+     ([Archive](https://web.archive.org/web/20240124025806/https://www.infoq.com/podcasts/software-architecture-hard-parts/))
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/intro.md).
+diff --git a/omp/patterns/behaviour/command.md b/omp/patterns/behaviour/command.md
+index 58b62db6ae42aed915dce22da88daa55222932d9..869619eca5244b0cf95a15b2ba06f1e90ad727a2 100644
+--- a/omp/patterns/behaviour/command.md
++++ b/omp/patterns/behaviour/command.md
+@@ -220,3 +220,7 @@ dynamic dispatch provides flexibility when we structure our application.
+ - [Command pattern](https://en.wikipedia.org/wiki/Command_pattern)
+ 
+ - [Another example for the `command` pattern](https://web.archive.org/web/20210223131236/https://chercher.tech/rust/command-design-pattern-rust)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/behavioural/command.md).
+diff --git a/omp/patterns/behaviour/guards.md b/omp/patterns/behaviour/guards.md
+index c5b63e6e28251636dd9d3e82bbefcf7a0bb46f84..f77fce29dd2ae5d6124356d3ce33c2a9e56d7ee0 100644
+--- a/omp/patterns/behaviour/guards.md
++++ b/omp/patterns/behaviour/guards.md
+@@ -111,7 +111,7 @@ works just as well.
+ 
+ ## See also
+ 
+-[Finalisation in destructors idiom](../../idioms/dtor-finally.md)
++[Finalisation in destructors idiom](skill://rust/references/design/idioms/destruction.md)
+ 
+ RAII is a common pattern in C++:
+ [cppreference.com](https://web.archive.org/web/20260918073742/https://en.cppreference.com/cpp/language/raii),
+@@ -121,3 +121,7 @@ RAII is a common pattern in C++:
+ 
+ [Style guide entry](https://doc.rust-lang.org/1.0.0/style/ownership/raii.html)
+ (currently just a placeholder).
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/behavioural/RAII.md).
+diff --git a/omp/patterns/behaviour/index.md b/omp/patterns/behaviour/index.md
+index 3151247b4691d75d8a17d1c6a895047c34e4fbc5..d278c3e476e8e6b006ddff87aa9917e455d03b3b 100644
+--- a/omp/patterns/behaviour/index.md
++++ b/omp/patterns/behaviour/index.md
+@@ -4,3 +4,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Behavioral_pattern):
+ 
+ > Design patterns that identify common communication patterns among objects. By
+ > doing so, these patterns increase flexibility in carrying out communication.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/behavioural/intro.md).
+diff --git a/omp/patterns/behaviour/interpreter.md b/omp/patterns/behaviour/interpreter.md
+index de6f4712ec8185cedf1797d933bdb8a10c9c0b37..9aa3852ad77254afa5b20f8faeb7521fce53ab83 100644
+--- a/omp/patterns/behaviour/interpreter.md
++++ b/omp/patterns/behaviour/interpreter.md
+@@ -146,3 +146,7 @@ fn main() {
+ - [Interpreter pattern](https://en.wikipedia.org/wiki/Interpreter_pattern)
+ - [Context free grammar](https://en.wikipedia.org/wiki/Context-free_grammar)
+ - [macro_rules!](https://doc.rust-lang.org/rust-by-example/macros.html)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/behavioural/interpreter.md).
+diff --git a/omp/patterns/behaviour/newtype.md b/omp/patterns/behaviour/newtype.md
+index 8d19f8fdad21b5f072556b4223ae096aad6b1e17..49695755cbf022ecacbadfe4647e934769523128 100644
+--- a/omp/patterns/behaviour/newtype.md
++++ b/omp/patterns/behaviour/newtype.md
+@@ -66,7 +66,7 @@ field is private, which it is by default).
+ ## Disadvantages
+ 
+ The downside of newtypes (especially compared with type aliases), is that there
+-is no special language support. This means there can be *a lot* of boilerplate.
++is no special language support. This means there can be _a lot_ of boilerplate.
+ You need a 'pass through' method for every method you want to expose on the
+ wrapped type, and an impl for every trait you want to also be implemented for
+ the wrapper type.
+@@ -99,3 +99,7 @@ how they are used with `Bar`.
+ - [derive_more](https://crates.io/crates/derive_more), a crate for deriving many
+   builtin traits on newtypes.
+ - [The Newtype Pattern In Rust](https://web.archive.org/web/20230519162111/https://www.worthe-it.co.za/blog/2020-10-31-newtype-pattern-in-rust.html)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/behavioural/newtype.md).
+diff --git a/omp/patterns/behaviour/strategy.md b/omp/patterns/behaviour/strategy.md
+index a799ded4408658183921db2aaf2be935309cd895..600e7be6839a5f984edac3223c3f16146601928b 100644
+--- a/omp/patterns/behaviour/strategy.md
++++ b/omp/patterns/behaviour/strategy.md
+@@ -181,3 +181,7 @@ fn main() {
+ - [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection)
+ - [Policy Based Design](https://en.wikipedia.org/wiki/Modern_C++_Design#Policy-based_design)
+ - [Implementing a TCP server for Space Applications in Rust using the Strategy Pattern](https://web.archive.org/web/20231003171500/https://robamu.github.io/posts/rust-strategy-pattern/)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/behavioural/strategy.md).
+diff --git a/omp/patterns/behaviour/visitor.md b/omp/patterns/behaviour/visitor.md
+index be8236e6cb22a58bd4e9a482652ca912eb04e40f..e29a9d11ee1eaea3fc609d2d199ca94e3e2f42d2 100644
+--- a/omp/patterns/behaviour/visitor.md
++++ b/omp/patterns/behaviour/visitor.md
+@@ -111,5 +111,9 @@ The visitor pattern is a common pattern in most OO languages.
+ 
+ [Wikipedia article](https://en.wikipedia.org/wiki/Visitor_pattern)
+ 
+-The [fold](../creational/fold.md) pattern is similar to visitor but produces a
++The [fold](skill://rust/references/design/patterns/construction/fold.md) pattern is similar to visitor but produces a
+ new version of the visited data structure.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/behavioural/visitor.md).
+diff --git a/omp/patterns/construction/builder.md b/omp/patterns/construction/builder.md
+index 2cafd677025fc87d02625b2a00d459e00c97408c..e89f281b0b1c460a5596ff3a3528e150c97a00a8 100644
+--- a/omp/patterns/construction/builder.md
++++ b/omp/patterns/construction/builder.md
+@@ -114,6 +114,10 @@ as well as the `FooBuilder::new().a().b().build()` style.
+ - [Description in the style guide](https://web.archive.org/web/20210104103100/https://doc.rust-lang.org/1.12.0/style/ownership/builders.html)
+ - [derive_builder](https://crates.io/crates/derive_builder), a crate for
+   automatically implementing this pattern while avoiding the boilerplate.
+-- [Constructor pattern](../../idioms/ctor.md) for when construction is simpler.
++- [Constructor pattern](skill://rust/references/design/idioms/construction.md) for when construction is simpler.
+ - [Builder pattern (wikipedia)](https://en.wikipedia.org/wiki/Builder_pattern)
+ - [Construction of complex values](https://web.archive.org/web/20210104103000/https://rust-lang.github.io/api-guidelines/type-safety.html#c-builder)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/creational/builder.md).
+diff --git a/omp/patterns/construction/fold.md b/omp/patterns/construction/fold.md
+index 2874563fc4ba8b1dc26400876aaf74ce572353ce..15a549928d3c2739a83dfc20ab21499e0f026b46 100644
+--- a/omp/patterns/construction/fold.md
++++ b/omp/patterns/construction/fold.md
+@@ -116,7 +116,11 @@ In other languages, fold is usually used in the sense of Rust's iterators,
+ rather than this pattern. Some functional languages have powerful constructs for
+ performing flexible maps over data structures.
+ 
+-The [visitor](../behavioural/visitor.md) pattern is closely related to fold.
++The [visitor](skill://rust/references/design/patterns/behaviour/visitor.md) pattern is closely related to fold.
+ They share the concept of walking a data structure performing an operation on
+ each node. However, the visitor does not create a new data structure nor consume
+ the old one.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/creational/fold.md).
+diff --git a/omp/patterns/construction/index.md b/omp/patterns/construction/index.md
+index 318e2bf61eb396185313b06c28cbb2fe68d2f923..94a5c617b8e8bf4d86141d66b5262e1d4cae3c9c 100644
+--- a/omp/patterns/construction/index.md
++++ b/omp/patterns/construction/index.md
+@@ -7,3 +7,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Creational_pattern):
+ > creation could result in design problems or in added complexity to the design.
+ > Creational design patterns solve this problem by somehow controlling this
+ > object creation.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/creational/intro.md).
+diff --git a/omp/patterns/foreign/index.md b/omp/patterns/foreign/index.md
+index bc9bd596aff449777099fed2770163ae69030351..3115134985575bab066b014fc94587e33d424da6 100644
+--- a/omp/patterns/foreign/index.md
++++ b/omp/patterns/foreign/index.md
+@@ -6,8 +6,12 @@ unsafe Rust.
+ 
+ This section contains design patterns that may be useful when doing FFI.
+ 
+-1. [Object-Based API](./export.md) design that has good memory safety
++1. [Object-Based API](skill://rust/references/design/patterns/foreign/objects.md) design that has good memory safety
+    characteristics, and a clean boundary of what is safe and what is unsafe
+ 
+-2. [Type Consolidation into Wrappers](./wrappers.md) - group multiple Rust types
++2. [Type Consolidation into Wrappers](skill://rust/references/design/patterns/foreign/wrappers.md) - group multiple Rust types
+    together into an opaque "object"
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/ffi/intro.md).
+diff --git a/omp/patterns/foreign/objects.md b/omp/patterns/foreign/objects.md
+index a715e4bde89b1c368675bf0bba27879b6d0b17ac..0730d7783f00899a1189b00bf1f45f4303dca92b 100644
+--- a/omp/patterns/foreign/objects.md
++++ b/omp/patterns/foreign/objects.md
+@@ -5,13 +5,13 @@
+ When designing APIs in Rust which are exposed to other languages, there are some
+ important design principles which are contrary to normal Rust API design:
+ 
+-1. All Encapsulated types should be *owned* by Rust, *managed* by the user, and
+-   *opaque*.
+-2. All Transactional data types should be *owned* by the user, and
+-   *transparent*.
++1. All Encapsulated types should be _owned_ by Rust, _managed_ by the user, and
++   _opaque_.
++2. All Transactional data types should be _owned_ by the user, and
++   _transparent_.
+ 3. All library behavior should be functions acting upon Encapsulated types.
+ 4. All library behavior should be encapsulated into types not based on
+-   structure, but *provenance/lifetime*.
++   structure, but _provenance/lifetime_.
+ 
+ ## Motivation
+ 
+@@ -73,7 +73,7 @@ contain internal state, and acts as an entry point for the library's behavior.
+ 
+ It is completely opaque to the user, who cannot create a `DBM` themselves since
+ they don't know its size or layout. Instead, they must call `dbm_open`, and that
+-only gives them *a pointer to one*.
++only gives them _a pointer to one_.
+ 
+ This means all `DBM`s are "owned" by the library in a Rust sense. The internal
+ state of unknown size is kept in memory controlled by the library, not the user.
+@@ -93,22 +93,22 @@ user likely has some type they are using, which has a known size. But the
+ library does not care, and by the rules of C casting, any type behind a pointer
+ can be cast to `void`.
+ 
+-As noted earlier, this type is *transparent* to the user. But also, this type is
+-*owned* by the user. This has subtle ramifications, due to that pointer inside
++As noted earlier, this type is _transparent_ to the user. But also, this type is
++_owned_ by the user. This has subtle ramifications, due to that pointer inside
+ it. The question is, who owns the memory that pointer points to?
+ 
+ The answer for best memory safety is, "the user". But in cases such as
+ retrieving a value, the user does not know how to allocate it correctly (since
+ they don't know how long the value is). In this case, the library code is
+ expected to use the heap that the user has access to -- such as the C library
+-`malloc` and `free` -- and then *transfer ownership* in the Rust sense.
++`malloc` and `free` -- and then _transfer ownership_ in the Rust sense.
+ 
+ This may all seem speculative, but this is what a pointer means in C. It means
+ the same thing as Rust: "user defined lifetime." The user of the library needs
+ to read the documentation in order to use it correctly. That said, there are
+ some decisions that have fewer or greater consequences if users do it wrong.
+ Minimizing those are what this best practice is about, and the key is to
+-*transfer ownership of everything that is transparent*.
++_transfer ownership of everything that is transparent_.
+ 
+ ## Advantages
+ 
+@@ -223,7 +223,7 @@ The C code simply must "play nice".
+ 
+ The programmer must read and understand the API documentation. While some
+ consider that par for the course in C, a good API design can mitigate this risk.
+-The POSIX API for `DBM` did this by *consolidating the ownership* of the
++The POSIX API for `DBM` did this by _consolidating the ownership_ of the
+ iterator with its parent:
+ 
+ ```C
+@@ -248,15 +248,19 @@ Second, depending on the relationships of the API's parts, significant design
+ effort may be involved. Many of the easier design points have other patterns
+ associated with them:
+ 
+-- [Wrapper Type Consolidation](./wrappers.md) groups multiple Rust types
++- [Wrapper Type Consolidation](skill://rust/references/design/patterns/foreign/wrappers.md) groups multiple Rust types
+   together into an opaque "object"
+ 
+-- [FFI Error Passing](../../idioms/ffi/errors.md) explains error handling with
++- [FFI Error Passing](skill://rust/references/design/idioms/foreign/errors.md) explains error handling with
+   integer codes and sentinel return values (such as `NULL` pointers)
+ 
+-- [Accepting Foreign Strings](../../idioms/ffi/accepting-strings.md) allows
++- [Accepting Foreign Strings](skill://rust/references/design/idioms/foreign/input.md) allows
+   accepting strings with minimal unsafe code, and is easier to get right than
+-  [Passing Strings to FFI](../../idioms/ffi/passing-strings.md)
++  [Passing Strings to FFI](skill://rust/references/design/idioms/foreign/output.md)
+ 
+ However, not every API can be done this way. It is up to the best judgement of
+ the programmer as to who their audience is.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/ffi/export.md).
+diff --git a/omp/patterns/foreign/wrappers.md b/omp/patterns/foreign/wrappers.md
+index b61bf762ed21443ef6555ed3a55234e404f0e2bd..4a399e0d927f532fd3b237a7acb0b9407309e14a 100644
+--- a/omp/patterns/foreign/wrappers.md
++++ b/omp/patterns/foreign/wrappers.md
+@@ -64,7 +64,7 @@ As a result, the wrapper is simple and contains no `unsafe` code.
+ ## Advantages
+ 
+ This makes APIs safer to use, avoiding issues with lifetimes between types. See
+-[Object-Based APIs](./export.md) for more on the advantages and pitfalls this
++[Object-Based APIs](skill://rust/references/design/patterns/foreign/objects.md) for more on the advantages and pitfalls this
+ avoids.
+ 
+ ## Disadvantages
+@@ -83,9 +83,9 @@ To wrap any type of iterator into the API correctly, the wrapper would need to
+ do what a C version of the code would do: erase the lifetime of the iterator,
+ and manage it manually.
+ 
+-Suffice it to say, this is *incredibly* difficult.
++Suffice it to say, this is _incredibly_ difficult.
+ 
+-Here is an illustration of just *one* pitfall.
++Here is an illustration of just _one_ pitfall.
+ 
+ A first version of `MySetWrapper` would look like this:
+ 
+@@ -99,8 +99,8 @@ struct MySetWrapper {
+ ```
+ 
+ With `transmute` being used to extend a lifetime, and a pointer to hide it, it's
+-ugly already. But it gets even worse: *any other operation can cause Rust
+-`undefined behaviour`*.
++ugly already. But it gets even worse: _any other operation can cause Rust
++`undefined behaviour`_.
+ 
+ Consider that the `MySet` in the wrapper could be manipulated by other functions
+ during iteration, such as storing a new value to the key it was iterating over.
+@@ -133,7 +133,7 @@ pub mod unsafe_module {
+ 
+ If the iterator exists when this function is called, we have violated one of
+ Rust's aliasing rules. According to Rust, the mutable reference in this block
+-must have *exclusive* access to the object. If the iterator simply exists, it's
++must have _exclusive_ access to the object. If the iterator simply exists, it's
+ not exclusive, so we have `undefined behaviour`! [^1]
+ 
+ To avoid this, we must have a way of ensuring that mutable reference really is
+@@ -152,9 +152,14 @@ Rust would rather make everything memory safe all the time, for both safety and
+ optimizations that C code cannot attain. Being denied access to certain
+ shortcuts is the price Rust programmers need to pay.
+ 
+-[^1]: For the C programmers out there scratching their heads, the iterator need
+-    not be read *during* this code to cause the UB. The exclusivity rule also
++[^1]:
++    For the C programmers out there scratching their heads, the iterator need
++    not be read _during_ this code to cause the UB. The exclusivity rule also
+     enables compiler optimizations which may cause inconsistent observations by
+     the iterator's shared reference (e.g. stack spills or reordering
+-    instructions for efficiency). These observations may happen *any time after*
++    instructions for efficiency). These observations may happen _any time after_
+     the mutable reference is created.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/ffi/wrappers.md).
+diff --git a/omp/patterns/index.md b/omp/patterns/index.md
+index 87c40c318ee1473e5be2d7689e14ba41751cef96..b87b69275594c95ebbcaeacd5717b97cebb1b6ec 100644
+--- a/omp/patterns/index.md
++++ b/omp/patterns/index.md
+@@ -14,7 +14,7 @@ about a programming language.
+ ## Design patterns in Rust
+ 
+ Rust has many unique features. These features give us great benefit by removing
+-whole classes of problems. Some of them are also patterns that are *unique* to
++whole classes of problems. Some of them are also patterns that are _unique_ to
+ Rust.
+ 
+ ## YAGNI
+@@ -28,3 +28,7 @@ If we apply YAGNI to design patterns, we see that the features of Rust allow us
+ to throw out many patterns. For instance, there is no need for the
+ [strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) in Rust
+ because we can just use [traits](https://doc.rust-lang.org/book/traits.html).
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/index.md).
+diff --git a/omp/patterns/structure/composition.md b/omp/patterns/structure/composition.md
+index dd7077d177c80100dd7bdf0b1cf3eb904db1345e..18af205de259534358e5c3c459cff5ad875bda75 100644
+--- a/omp/patterns/structure/composition.md
++++ b/omp/patterns/structure/composition.md
+@@ -125,3 +125,7 @@ This pattern relies on Rust's borrow checker to be able to borrow fields
+ independently of each other. In the example, the borrow checker knows that `a.b`
+ and `a.c` are distinct and can be borrowed independently, it does not try to
+ borrow all of `a`, which would make this pattern useless.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/structural/compose-structs.md).
+diff --git a/omp/patterns/structure/crates.md b/omp/patterns/structure/crates.md
+index a95eb0a1a6554a465fcf3747484d5f1f05e4400b..7eb2ffa0772d608eaaa0f20d3ccce1d169a19528 100644
+--- a/omp/patterns/structure/crates.md
++++ b/omp/patterns/structure/crates.md
+@@ -45,3 +45,7 @@ for converting `&T` to `&[T]`. (Historical example)
+ ## See also
+ 
+ - [crates.io: The Rust community crate host](https://crates.io/)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/structural/small-crates.md).
+diff --git a/omp/patterns/structure/index.md b/omp/patterns/structure/index.md
+index d0f0c60d984febc5578cf5a3eb7ff1e903387fff..be51afada1b9d2429c9b7270bf511f4310c4ec8b 100644
+--- a/omp/patterns/structure/index.md
++++ b/omp/patterns/structure/index.md
+@@ -4,3 +4,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Structural_pattern):
+ 
+ > Design patterns that ease the design by identifying a simple way to realize
+ > relationships among entities.
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/structural/intro.md).
+diff --git a/omp/patterns/structure/traits.md b/omp/patterns/structure/traits.md
+index 2e05545a598cb1f4f74c1553dfea0ab425a9e2c6..04d80b5fa47982e1ce0db79e238a5d03f4c2f699 100644
+--- a/omp/patterns/structure/traits.md
++++ b/omp/patterns/structure/traits.md
+@@ -67,7 +67,7 @@ returns a `Result`. Introducing a bound for "getters" allows a more expressive
+ bound and eliminate one of the type parameters:
+ 
+ ```rust
+-# use std::fmt::Display;
++use std::fmt::Display;
+ trait Getter {
+     type Output: Display;
+ 
+@@ -89,8 +89,8 @@ struct Value<G: Getter, S: Fn(&G::Output) -> Status> {
+ }
+ 
+ // ...
+-# enum Status {}
+-# struct Error;
++enum Status {}
++struct Error;
+ ```
+ 
+ ## Advantages
+@@ -115,3 +115,7 @@ example above.
+ [^fn-traits]: i.e. `Fn`, `FnOnce` and `FnMut`
+ 
+ [^read-docs]: meaning they may need to read more documentation
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/structural/trait-for-bounds.md).
+diff --git a/omp/patterns/structure/unsafe.md b/omp/patterns/structure/unsafe.md
+index 76a7a66788955645aa321d0fb7bc11b818ab0c22..73622ae676d09d965defcf9f254bc2eae629bce5 100644
+--- a/omp/patterns/structure/unsafe.md
++++ b/omp/patterns/structure/unsafe.md
+@@ -33,3 +33,7 @@ benefits.
+ ## See also
+ 
+ - [Ralf Jung's Blog about invariants in unsafe code](https://www.ralfj.de/blog/2018/08/22/two-kinds-of-invariants.html)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/patterns/structural/unsafe-mods.md).
+diff --git a/omp/refactoring.md b/omp/refactoring.md
+index 63c893fc6e95d3c00194cba5c68c1e5681e2e6fc..12c4b58d228356b3f346261ca327dd87f1fe4dd2 100644
+--- a/omp/refactoring.md
++++ b/omp/refactoring.md
+@@ -4,14 +4,14 @@ Refactoring is very important in relation to these topics. Just as important as
+ the other topics covered here, is how to take good code and turn it into great
+ code.
+ 
+-We can use [design patterns](../patterns/index.md) to [DRY] up code and
++We can use [design patterns](skill://rust/references/design/patterns/index.md) to [DRY] up code and
+ generalize abstractions. We must avoid
+-[anti-patterns](../anti_patterns/index.md) while we do this. While they may be
++[anti-patterns](skill://rust/references/design/antipatterns/index.md) while we do this. While they may be
+ tempting to employ, their costs outweigh their benefits.
+ 
+ > Shortcuts make for long days.
+ 
+-We can also use [idioms](../idioms/index.md) to structure our code in a way that
++We can also use [idioms](skill://rust/references/design/idioms/index.md) to structure our code in a way that
+ is understandable.
+ 
+ ## Tests
+@@ -21,3 +21,7 @@ Tests are of vital importance during refactoring.
+ ## Small changes
+ 
+ [DRY]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/refactoring/index.md).
+diff --git a/omp/resources/index.md b/omp/resources/index.md
+index 290229373c525357daa57712c635c5115bfa475a..743f840026352fee8ff536d0880c69c9639aabbf 100644
+--- a/omp/resources/index.md
++++ b/omp/resources/index.md
+@@ -14,3 +14,7 @@ A collection of complementary helpful content
+ ## Books (Online)
+ 
+ - [The Rust API Guidelines](https://rust-lang.github.io/api-guidelines)
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/additional_resources/index.md).
+diff --git a/omp/resources/principles.md b/omp/resources/principles.md
+index c62e71133be91024e32869b6fe3a754b4bf1aecd..0bd22402a80e3e570ca35e651737444571886ce6 100644
+--- a/omp/resources/principles.md
++++ b/omp/resources/principles.md
+@@ -52,7 +52,7 @@ software designers should define formal, precise and verifiable interface
+ specifications for software components, which extend the ordinary definition of
+ abstract data types with preconditions, postconditions and invariants
+ 
+-## [Encapsulation](https://en.wikipedia.org/wiki/Encapsulation_(computer_programming))
++## [Encapsulation](<https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)>)
+ 
+ bundling of data with the methods that operate on that data, or the restricting
+ of direct access to some of an object's components. Encapsulation is used to
+@@ -99,3 +99,7 @@ Object-Oriented Software Construction
+ dependents of that object. Whenever a retrieval mechanism retrieves a previously
+ stored object, it must also retrieve any dependent of that object that has not
+ yet been retrieved.” - Bertrand Meyer: Object-Oriented Software Construction
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/additional_resources/design-principles.md).
+diff --git a/omp/translations.md b/omp/translations.md
+index 786d6189d7631e82c80d7cf494aee3cdeff0e4a0..3e40a380b34706a9945d2f8ba51315345424418f 100644
+--- a/omp/translations.md
++++ b/omp/translations.md
+@@ -2,7 +2,7 @@
+ 
+ We are utilizing
+ [mdbook-i18n-helper](https://github.com/google/mdbook-i18n-helpers). Please read
+-up on how to *add* and *update* translations in
++up on how to _add_ and _update_ translations in
+ [their repository](https://github.com/google/mdbook-i18n-helpers#creating-and-updating-translations)
+ 
+ ## External translations
+@@ -11,3 +11,7 @@ up on how to *add* and *update* translations in
+ 
+ If you want to add a translation, please open an issue in the
+ [main repository](https://github.com/rust-unofficial/patterns).
++
++## Source
++
++Adapted for OMP on 2026-10-09 from [rust-unofficial/patterns](https://github.com/rust-unofficial/patterns/blob/main/src/translations.md).

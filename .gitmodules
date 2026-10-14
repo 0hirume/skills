@@ -1,0 +1,15 @@
+[submodule "upstream/impeccable"]
+	path = upstream/impeccable
+	url = https://github.com/pbakaus/impeccable.git
+[submodule "upstream/interface"]
+	path = upstream/interface
+	url = https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git
+[submodule "upstream/patterns"]
+	path = upstream/patterns
+	url = https://github.com/rust-unofficial/patterns.git
+[submodule "upstream/canonical"]
+	path = upstream/canonical
+	url = https://github.com/canonical/rust-best-practices.git
+[submodule "upstream/pstack"]
+	path = upstream/pstack
+	url = https://github.com/cursor/plugins.git
