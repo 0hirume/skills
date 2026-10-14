@@ -6,7 +6,6 @@ def execute [directory: path, ...arguments: string]: nothing -> string {
     if $result.exit_code != 0 {
         error make {
             msg: $"Git failed in ($directory): ($result.stderr | str trim)"
-
             labels: [
                 {
                     text: "Git command failed"
@@ -20,12 +19,13 @@ def execute [directory: path, ...arguments: string]: nothing -> string {
 }
 
 def link [target: path, destination: path]: nothing -> nothing {
+    let target = $target | path expand --no-symlink
+    let destination = $destination | path expand --no-symlink
     let kind = $destination | path type | default missing
 
     if $kind != missing and $kind != symlink {
         error make {
             msg: $"Refusing to replace a non-link: ($destination)"
-
             labels: [
                 {
                     text: "Destination is not a symbolic link"
@@ -34,13 +34,18 @@ def link [target: path, destination: path]: nothing -> nothing {
             ]
         }
     }
+    mkdir ($destination | path dirname)
 
     if $kind == symlink {
         rm $destination
     }
 
     let result = if $nu.os-info.name == windows {
-        cmd /c mklink /D $destination $target | complete
+        if ($target | path type) == dir {
+            cmd /c mklink /D $destination $target | complete
+        } else {
+            cmd /c mklink $destination $target | complete
+        }
     } else {
         ln -s $target $destination | complete
     }
@@ -48,7 +53,6 @@ def link [target: path, destination: path]: nothing -> nothing {
     if $result.exit_code != 0 {
         error make {
             msg: $"Could not link ($destination): ($result.stderr | str trim)"
-
             labels: [
                 {
                     text: "Link creation failed"
@@ -74,9 +78,9 @@ def clean [...worktrees: record<name: string, repository: string, path: string>]
 }
 
 def main [
-    --agent: path # Agent directory to receive the skills and hooks links.
-    --prepare-only # Prepare skills and hooks without changing agent links.
-]: nothing -> record<skills: string, hooks: string, linked: bool> {
+    --agent: path # Agent directory to receive workflow links.
+    --prepare-only # Prepare workflow content without changing agent links.
+]: nothing -> record<skills: string, hooks: string, agents: string, commands: string, linked: bool> {
     let destination = if $agent != null {
         $agent | path expand
     } else {
@@ -85,7 +89,7 @@ def main [
         | path expand
     }
 
-    let links = [skills hooks] | each {|name|
+    let links = [skills hooks commands agents/poteto.md agents/researcher.md] | each {|name|
         let path = $destination | path join $name
         let kind = $path | path type | default missing
 
@@ -138,7 +142,7 @@ def main [
     }
 
     try {
-        for name in [skills hooks] {
+        for name in [skills hooks agents commands] {
             cp --recursive ($REPOSITORY | path join local $name) ($stage | path join $name)
         }
 
@@ -150,7 +154,6 @@ def main [
             if (execute $source status '--porcelain') != '' {
                 error make {
                     msg: $"Upstream checkout has local changes: ($source)"
-
                     labels: [
                         {
                             text: "Upstream checkout must be pristine"
@@ -168,7 +171,6 @@ def main [
             if ($entry | length) != 4 or $entry.0 != '160000' or $entry.2 != '0' {
                 error make {
                     msg: $"Missing or unresolved submodule pin: ($name)"
-
                     labels: [
                         {
                             text: "Submodule pin is unavailable"
@@ -194,7 +196,6 @@ def main [
                     cp --recursive ($worktree | path join skill) $target
                     mv ($target | path join SKILL.src.md) ($target | path join SKILL.md)
                 }
-
                 'interface' => {
                     let package = $worktree | path join src ui-ux-pro-max
                     let target = $stage | path join skills interface
@@ -213,16 +214,13 @@ def main [
                     cp ($package | path join templates base skill-content.md) ($target | path join references application.md)
                     cp ($package | path join templates base quick-reference.md) ($target | path join references guide.md)
                 }
-
                 'patterns' => {
                     mkdir ($stage | path join skills rust references)
                     cp --recursive ($worktree | path join omp) ($stage | path join skills rust references design)
                 }
-
                 'canonical' => {
                     cp --recursive ($worktree | path join omp) ($stage | path join skills rust references canonical)
                 }
-
                 'pstack' => {
                     let package = $worktree | path join pstack skills
 
@@ -309,7 +307,6 @@ def main [
         if $executable.exit_code != 0 {
             error make {
                 msg: 'Impeccable is not installed through mise; installation requires approval.'
-
                 labels: [
                     {
                         text: "Impeccable executable was not found"
@@ -330,7 +327,6 @@ def main [
         if $probe.exit_code != 0 or ($probe.stdout | str trim) != $"impeccable-engine ($version)" {
             error make {
                 msg: $"Installed Impeccable engine does not match the prepared skill's required version ($version)."
-
                 labels: [
                     {
                         text: "Required engine version"
@@ -348,7 +344,6 @@ def main [
             rm --recursive $stage
         } catch {|cleanup| error make {
             msg: $"($failure.msg) Cleanup also failed: ($cleanup.msg)"
-
             labels: [
                 {
                     text: "Preparation cleanup failed"
@@ -359,7 +354,6 @@ def main [
 
         error make {
             msg: $failure.msg
-
             labels: [
                 {
                     text: "Preparation failed"
@@ -387,7 +381,6 @@ def main [
 
             error make {
                 msg: $failure.msg
-
                 labels: [
                     {
                         text: "Agent linking failed"
@@ -401,6 +394,8 @@ def main [
     {
         skills: ($stage | path join skills)
         hooks: ($stage | path join hooks)
+        agents: ($stage | path join agents)
+        commands: ($stage | path join commands)
         linked: (not $prepare_only)
     }
 }
