@@ -1,7 +1,3 @@
 #:schema https://raw.githubusercontent.com/0hirume/breathers/main/schema.json
 
 exclude = ["prepared", "upstream"]
-
-[nushell]
-match_arms = false
-record_fields = false
