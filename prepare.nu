@@ -133,7 +133,14 @@ def main [
     mkdir $prepared
     let stage = (mktemp --directory --tmpdir-path $prepared XXXXXXXX)
 
-    let worktrees = [impeccable interface patterns canonical pstack] | each {|name|
+    let worktrees = [
+        impeccable
+        interface
+        patterns
+        canonical
+        pstack
+        humanlayer
+    ] | each {|name|
         {
             name: $name
             repository: ($REPOSITORY | path join upstream $name)
@@ -297,6 +304,19 @@ def main [
                             $target
                             | path join references principles $"($principle.destination).md"
                         )
+                    }
+                }
+                'humanlayer' => {
+                    for skill in [
+                        design-control-loop
+                        rpi
+                        show-me
+                        visual-pr
+                    ] {
+                        cp --recursive (
+                            $worktree
+                            | path join plugins $skill skills $skill
+                        ) ($stage | path join skills $skill)
                     }
                 }
             }
