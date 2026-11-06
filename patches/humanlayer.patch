@@ -613,7 +613,7 @@ index 3093c3496b789cb87d29d07dd5b2d34fe62978a0..61930cdf918229658d9aea68405e095f
        - name: Upload agent output
          if: always() && steps.agent_gate.outputs.run_agent == 'true'
 diff --git a/plugins/rpi/skills/rpi/SKILL.md b/plugins/rpi/skills/rpi/SKILL.md
-index 56eb2dba8ecd28f9dc071feac86b38b392bd9df5..8566d428385ba34e227dea1d4fec807016ea7cf8 100644
+index 5a1b7da6b4813cc44d81b8f034a6d4191bcc2f0f..072ff0e1c75f956f0cf977f58991368cb638b7f1 100644
 --- a/plugins/rpi/skills/rpi/SKILL.md
 +++ b/plugins/rpi/skills/rpi/SKILL.md
 @@ -1,27 +1,36 @@
@@ -668,7 +668,7 @@ index 56eb2dba8ecd28f9dc071feac86b38b392bd9df5..8566d428385ba34e227dea1d4fec8070
  
  ## Use the Task Directory
  
-@@ -42,36 +51,31 @@ Use the directory supplied by the user.
+@@ -42,40 +51,35 @@ Use the directory supplied by the user.
  
  Otherwise, look for existing task directories in `.agents/artifacts/` whose names and workflow filenames match the request or current task branch. Reuse an obvious match without asking. If a directory looks close but could belong to a different task, or several directories look plausible, ask the user which to use before writing. Read only documents allowed by the selected phase when checking a match.
  
@@ -683,6 +683,11 @@ index 56eb2dba8ecd28f9dc071feac86b38b392bd9df5..8566d428385ba34e227dea1d4fec8070
 +Number requested new workflow documents using the next available `NN-` prefix in the task directory. Keep the existing path when updating a requested document. Save explicitly requested supporting mockups and diagrams beside the documents and link them as ordinary local files; otherwise present visuals in chat.
  
  Workflow document frontmatter includes `repos`, a list of zero or more repositories with `identifier` and `sha` for each entry. Use `repos: []` when none apply. Quote string values as needed for valid YAML.
+ 
+ ## Review the Document
+ 
+-After writing or updating a workflow document, read `$SKILLBASE/references/prose.md` and `$SKILLBASE/references/show-me.md`, then review the document against both. Make it shorter, more visual, and easier for a person to digest: cut words and sections that do not earn their place, replace dense prose with the smallest view that makes the point, and keep each visual beside the short text it supports.
++After writing or updating a workflow document, read [prose](skill://rpi/references/prose.md) and [show-me](skill://show-me), then review the document against both. Make it shorter, more visual, and easier for a person to digest: cut words and sections that do not earn their place, replace dense prose with the smallest view that makes the point, and keep each visual beside the short text it supports.
  
  ## Suggest the Next Step
  
@@ -2155,7 +2160,7 @@ index 371182203d35bde2cc17d4006b11e8e83d998ce0..b7d8620115dbd0b947d8b8cfd5fca0fa
 +- Resolve facts and routine implementation decisions within scope.
 +- Report material mismatches or inaccessible prerequisites precisely to the parent, with evidence and a recommended next step.
 diff --git a/plugins/rpi/skills/rpi/references/subagents/web-search-researcher.md b/plugins/rpi/skills/rpi/references/subagents/web-search-researcher.md
-index ea0d8f2c5cddca454edd61d6f23b1d122028f12a..5ea6dfa0a0c6c0ea50aa79324257dea7ec9e5785 100644
+index ea0d8f2c5cddca454edd61d6f23b1d122028f12a..6e5b6b52c19f4481cfda8e84d1ab002a7efab6c7 100644
 --- a/plugins/rpi/skills/rpi/references/subagents/web-search-researcher.md
 +++ b/plugins/rpi/skills/rpi/references/subagents/web-search-researcher.md
 @@ -1,11 +1,8 @@
@@ -2201,10 +2206,11 @@ index ea0d8f2c5cddca454edd61d6f23b1d122028f12a..5ea6dfa0a0c6c0ea50aa79324257dea7
  
  ### For API/Library Documentation:
  - Search for official docs first: "[library name] official documentation [specific feature]"
-@@ -114,4 +110,3 @@ Structure your findings as:
+@@ -113,5 +109,3 @@ Structure your findings as:
+ - Consider searching in different forms: tutorials, documentation, Q&A sites, and discussion forums
  
  Remember: You are the user's expert guide to web information. Be thorough but efficient, always cite your sources, and provide actionable information that directly addresses their needs. Think deeply as you work.
- 
+-
 -do not use control-chrome or control-browser or browser related skills unless the user explicitly requests them, stick to the web search/fetch tools
 diff --git a/plugins/rpi/skills/rpi/references/workflow-choice.md b/plugins/rpi/skills/rpi/references/workflow-choice.md
 index 1fb060f25ca96316885db76a0a83f15f28150ae7..cee95fe027400b83d8bc97492d1611c775855c5b 100644

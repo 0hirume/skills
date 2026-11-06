@@ -34,6 +34,7 @@ def link [target: path, destination: path]: nothing -> nothing {
             ]
         }
     }
+
     mkdir ($destination | path dirname)
 
     if $kind == symlink {
@@ -80,6 +81,7 @@ def clean [...worktrees: record<name: string, repository: string, path: string>]
 def main [
     --agent: path # Agent directory to receive workflow links.
     --prepare-only # Prepare workflow content without changing agent links.
+    --update # Refresh upstream pins and adaptation patches before activation.
 ]: nothing -> record<skills: string, agents: string, commands: string, linked: bool> {
     let destination = if $agent != null {
         $agent | path expand
@@ -128,7 +130,43 @@ def main [
         {name: $name, path: $path, previous: $previous}
     }
 
-    execute $REPOSITORY submodule update '--init' '--recursive'
+    let executable = mise which impeccable | complete
+
+    if $executable.exit_code != 0 {
+        error make {
+            msg: 'Impeccable is not installed through mise; installation requires approval.'
+            labels: [
+                {
+                    text: "Impeccable executable was not found"
+                    span: (metadata $executable).span
+                }
+            ]
+        }
+    }
+
+    let engine = $executable.stdout | str trim
+    let probe = (^$engine engine-probe | complete)
+
+    if $probe.exit_code != 0 {
+        error make {
+            msg: $"Impeccable engine probe failed: ($probe.stderr | str trim)"
+            labels: [
+                {
+                    text: "Engine probe failed"
+                    span: (metadata $probe).span
+                }
+            ]
+        }
+    }
+
+    let version = (
+        $probe.stdout
+        | str trim
+        | parse --regex '^impeccable-engine (?<version>[0-9]+\.[0-9]+\.[0-9]+)$'
+        | get version
+        | first
+    )
+
     let prepared = $REPOSITORY | path join prepared
     mkdir $prepared
     let stage = (mktemp --directory --tmpdir-path $prepared XXXXXXXX)
@@ -157,6 +195,18 @@ def main [
             let name = $item.name
             let source = $item.repository
             let worktree = $item.path
+
+            if not ($source | path join .git | path exists) {
+                (execute
+                    $REPOSITORY
+                    submodule
+                    update
+                    '--init'
+                    '--recursive'
+                    '--'
+                    $"upstream/($name)"
+                )
+            }
 
             if (execute $source status '--porcelain') != '' {
                 error make {
@@ -187,7 +237,18 @@ def main [
                 }
             }
 
-            execute $source worktree add '--detach' $worktree $entry.1
+            let revision = if $name == impeccable {
+                let release = $"refs/tags/engine-v($version)"
+                execute $source fetch origin $release
+                execute $source rev-parse FETCH_HEAD
+            } else if $update {
+                execute $source fetch '--no-tags' origin HEAD
+                execute $source rev-parse FETCH_HEAD
+            } else {
+                execute $source rev-parse HEAD
+            }
+
+            execute $source worktree add '--detach' $worktree $revision
 
             (execute
                 $worktree
@@ -251,11 +312,6 @@ def main [
 
                         cp --recursive ($package | path join $directory) ($stage | path join skills $skill)
                     }
-
-                    rm (
-                        $stage
-                        | path join skills interrogate references code-quality-review.md
-                    )
 
                     let target = $stage | path join skills poteto
                     mkdir ($target | path join playbooks) ($target | path join references principles)
@@ -322,23 +378,6 @@ def main [
             }
         }
 
-        let executable = mise which impeccable | complete
-
-        if $executable.exit_code != 0 {
-            error make {
-                msg: 'Impeccable is not installed through mise; installation requires approval.'
-                labels: [
-                    {
-                        text: "Impeccable executable was not found"
-                        span: (metadata $executable).span
-                    }
-                ]
-            }
-        }
-
-        let engine = $executable.stdout | str trim
-        let probe = (^$engine engine-probe | complete)
-
         let version = (
             open --raw ($stage | path join skills impeccable scripts VERSION)
             | str trim
@@ -353,6 +392,24 @@ def main [
                         span: (metadata $version).span
                     }
                 ]
+            }
+        }
+
+        if $update {
+            for item in $worktrees {
+                let revision = execute $item.path rev-parse HEAD
+                if $revision != (execute $item.repository rev-parse HEAD) {
+                    let patch = $REPOSITORY | path join patches $"($item.name).patch"
+                    execute $item.repository checkout '--detach' $revision
+                    (execute
+                        $item.path
+                        diff
+                        '--cached'
+                        '--binary'
+                        '--full-index'
+                        $"--output=($patch)"
+                    )
+                }
             }
         }
 

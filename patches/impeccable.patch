@@ -1,11 +1,11 @@
 diff --git a/skill/SKILL.src.md b/skill/SKILL.src.md
-index c413ae26e832b36d54603353f1c7a0ae04784eea..d883109b9aa53f94de8cd5c2782af6c332e1268f 100644
+index 2aedc373dc6834d11a823816fac6696f47af4bfe..a65445947dafdcee7a7aea5d4eb58b9c62f59179 100644
 --- a/skill/SKILL.src.md
 +++ b/skill/SKILL.src.md
 @@ -1,15 +1,23 @@
  ---
  name: impeccable
- description: "Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks."
+ description: "Use when the user wants to design, redesign, shape, critique, audit, polish, simplify, harden, animate, or otherwise improve a frontend interface: websites, landing pages, dashboards, product UI, components, forms, settings, onboarding, empty states, and native iOS or Android screens. Handles UX review, hierarchy, layout, typography, color, motion, UX copy, accessibility, responsive behavior, edge cases, and capturing or documenting design systems (DESIGN.md, tokens). Also for making bland UI bolder, loud UI quieter, or ambitious visual effects. Not for backend-only or non-UI tasks."
 -argument-hint: "[{{command_hint}}] [target]"
 -user-invocable: true
 -allowed-tools:
@@ -16,7 +16,7 @@ index c413ae26e832b36d54603353f1c7a0ae04784eea..d883109b9aa53f94de8cd5c2782af6c3
 +version: 4.5.2
  ---
  
--This skill gives you the tools and permission to create design that earns to be called out-of-distribution craft: Whereas before, your design work would have been safe, timid and measured, you now approach every design task as an award-winning design director with impeccable understanding for what makes exceptional design work: production-grade code, peak creativity, a clear POV, deep understanding of the needs of the client and users, and exceptional craft.
+-This skill gives you the tools and permission to make design that earns the name out-of-distribution craft. Work as an award-winning design director would: production-grade code, a clear POV, a deep grasp of what the client and its users need, and exceptional craft.
 +Approach the authorized design task as an award-winning design director: production-grade code, peak creativity, a clear point of view, deep understanding of the client and users, and exceptional craft.
 +
 +## OMP scope
@@ -32,7 +32,7 @@ index c413ae26e832b36d54603353f1c7a0ae04784eea..d883109b9aa53f94de8cd5c2782af6c3
 +The complete role instructions are in `agents/`. When independent substantial work or explicitly requested parallel work warrants delegation, use OMP `task` with the matching role's full instructions and a scoped contract; use `researcher` for read-only reviews, and the default agent for role-specific implementation. Do not assume the role filenames register agents. Otherwise perform the same role inline and accurately report assessment independence. Workers skip build, lint, tests, and formatters mid-flight; the integration owner performs required verification afterward.
  
  Core principles:
- - Go all out. No hedging, no shortcuts. The deliverable must be complete (except assets the user must provide).
+ - Finish the job. No hedging, no shortcuts: the deliverable is complete, except assets the user must provide.
 @@ -18,11 +26,11 @@ Core principles:
  
  ## Setup
@@ -44,8 +44,8 @@ index c413ae26e832b36d54603353f1c7a0ae04784eea..d883109b9aa53f94de8cd5c2782af6c3
 +2. Load the request's playbook: its Commands-table reference for an explicit/implied sub-command, or [reference/new-work.md](skill://impeccable/reference/new-work.md) for a new surface or replacement visual world. Inspect target and incumbent visual truth before editing. When the app cannot run, start with committed visual-regression goldens or screenshot fixtures; verify target and freshness against current tokens, CSS, components, or assets, resolve conflicts, and compare theme/variant captures. <!-- rule:skill-setup-command-ref --> <!-- rule:skill-setup-read-project -->
 +3. After resolving analysis and direction, read [reference/craft-floor.md](skill://impeccable/reference/craft-floor.md) immediately before any UI edit, including small refinements. It carries the quality floor, the absolute bans, and the reflexes no detector catches. Do not load it for planning-only work. <!-- rule:skill-craft-floor-load -->
  
--**Launcher unavailable:** On refusal or failure, send a separate message **before the next tool call**: “Context loading did not run; I’ll read the existing project context directly.” Then read existing PRODUCT.md and DESIGN.md without inventing missing context, follow applicable steps 2–3, and continue through permitted tools. This applies to planning and editing; launcher failure alone does not block either.
-+**Engine unavailable:** Report the concrete failure before continuing, read existing PRODUCT.md and DESIGN.md without inventing missing context, and follow applicable steps 2–3 through permitted tools. Report engine-dependent checks and live features as unavailable rather than claiming they ran. Installation is the user's choice: `mise use -g "github:pbakaus/impeccable[version_prefix=engine-v]@0.1.15"` installs the engine version recorded in `scripts/VERSION`. Do not run it without installation approval.
+-**Launcher unavailable:** On refusal or failure, send a separate message **before the next tool call**: “Context loading did not run; I’ll read the existing project context directly.” Then read existing PRODUCT.md and DESIGN.md without inventing missing context, follow applicable steps 2–3, including reading [reference/craft-floor.md](reference/craft-floor.md) immediately before any UI edit, and continue through permitted tools. This applies to planning and editing; launcher failure alone does not block either.
++**Engine unavailable:** Report the concrete failure before continuing, read existing PRODUCT.md and DESIGN.md without inventing missing context, and follow applicable steps 2–3, including reading [reference/craft-floor.md](skill://impeccable/reference/craft-floor.md) immediately before any UI edit, through permitted tools. Report engine-dependent checks and live features as unavailable rather than claiming they ran. Installation is the user's choice: install the engine version recorded in `scripts/VERSION` through mise. Do not run it without installation approval.
  
  ## How to design
  
@@ -206,7 +206,7 @@ index d2c4e107c8031e932bbdab6bb2cfb3efe0edd225..48ec01b7874108f4fa6cb4b8ed6359fc
  effort: medium
  max-turns: 30
 diff --git a/skill/agents/impeccable-finish-reviewer.md b/skill/agents/impeccable-finish-reviewer.md
-index ab1afa66103d709bdb1cf6a63388321facdd9e71..352914d39b02900a68d794d3ccd4f4e120a56e11 100644
+index d8c9443137eed1ddeb4b3bf98f35c3ff99766b77..352914d39b02900a68d794d3ccd4f4e120a56e11 100644
 --- a/skill/agents/impeccable-finish-reviewer.md
 +++ b/skill/agents/impeccable-finish-reviewer.md
 @@ -1,8 +1,7 @@
@@ -235,7 +235,7 @@ index ab1afa66103d709bdb1cf6a63388321facdd9e71..352914d39b02900a68d794d3ccd4f4e1
 -4. **Contract, promise by promise.** First verify FORM carries the seed reference the concept roll printed (`seed:` and 16 hex), corroborated against the roll output the parent saw or with `impeccable concept-seed --check-seed <reference>` (exit 0 means this machine rolled it). A raw seed key in FORM is itself a material fix: the brief is committed, and the key must not be. `seed: none (unavailable)` stands only when the roll printed SEED REFERENCE unavailable, which `--check-seed none` confirms with exit 0. Any other contract with no reference, or one neither source corroborates, means the roll was skipped, a material fix ahead of any craft point. Then, for each of the five blocks: does the render keep the promise? Apply the memory test to the first viewport.
 +4. **Contract, promise by promise.** First verify FORM carries the seed reference the concept roll printed (`seed:` and 16 hex), corroborated against the roll output the parent saw or with `mise exec -- impeccable concept-seed --check-seed <reference>` (exit 0 means this machine rolled it). A raw seed key in FORM is itself a material fix: the brief is committed, and the key must not be. `seed: none (unavailable)` stands only when the roll printed SEED REFERENCE unavailable, which `--check-seed none` confirms with exit 0. Any other contract with no reference, or one neither source corroborates, means the roll was skipped, a material fix ahead of any craft point. Then, for each of the five blocks: does the render keep the promise? Apply the memory test to the first viewport.
  5. **Truth.** Demonstration data authored and labeled synthetic; no invented commercial claims; unanswered claims present as marked placeholders, not omissions. Every raster region of the spec shipped as its plate (the spec names the file; the page references it; the region's diff row is not `missing`), not a gradient, an inline SVG, or a many-vertex `clip-path` standing in for it, and every produced asset visibly present in the screenshots; an asset applied at near-zero opacity or buried behind a wash is a compliance token, not a shipped material, and the detector's `buried-raster` and `organic-clip-path` findings in the packet are material fixes.
--6. **Floor.** Read the craft floor's Refuse list and hold the screenshots against it: kickers and eyebrows, hard offset shadows outside a neobrutalist world, glyph icons, system display faces, gradient text, side stripes, and the rest. A banned element is a material fix even when it matches nothing in the comp: the builder loaded the same ban before writing it, and fidelity to a comp cannot authorize what the floor refuses. The parent's hook findings cover this mechanically where hooks run; this check exists because hookless harnesses reach you with none, and the last two live sessions shipped five kickers past a reviewer that never looked.
+-6. **Floor.** Read the craft floor's Refuse list and hold the screenshots against it: kickers and eyebrows, hard offset shadows outside a neobrutalist world, glyph icons, system display faces, gradient text, side stripes, and the rest. A banned element is a material fix even when it matches nothing in the comp: the builder loaded the same ban before writing it, and fidelity to a comp cannot authorize what the floor refuses. The parent's hook findings cover this mechanically where hooks run; this check exists because hookless harnesses reach you with none, and on those harnesses a banned element you miss ships.
 +6. **Floor.** Read the craft floor's Refuse list and hold the screenshots against it: kickers and eyebrows, hard offset shadows outside a neobrutalist world, glyph icons, system display faces, gradient text, side stripes, and the rest. A banned element is a material fix even when it matches nothing in the comp: the builder loaded the same ban before writing it, and fidelity to a comp cannot authorize what the floor refuses.
  
 -Do not run a second detector pass; mechanical findings belong to the parent's hooks.
@@ -267,7 +267,7 @@ index 81fe9fd8170738e4f66c1831f654285a7582592b..03b426b4b8a2354b6d9718c90c667bb7
  ## Workflow
  
 diff --git a/skill/reference/adapt.md b/skill/reference/adapt.md
-index 25a95fcf6f15093d904da416d18a9f795b9e757a..9325c515d836d0e570eeeb0c2298f8c577ff1148 100644
+index e6add003e67fa841655d906fd55458b2473f2127..7599efd4b8a4cce800bdfc67e9b3940dc183f78f 100644
 --- a/skill/reference/adapt.md
 +++ b/skill/reference/adapt.md
 @@ -2,7 +2,7 @@
@@ -289,7 +289,7 @@ index 25a95fcf6f15093d904da416d18a9f795b9e757a..9325c515d836d0e570eeeb0c2298f8c5
  ---
  
 diff --git a/skill/reference/adapt.native.md b/skill/reference/adapt.native.md
-index 4307b559f458f01c0ba50da83b7467656b596970..1e2495350d95d112ae4bd388a0e22a6ce31a237d 100644
+index f601c33dc26a28712a504ada0d3a786a260c877e..5e33c64da18cf6169d0886871149e746ba9f696b 100644
 --- a/skill/reference/adapt.native.md
 +++ b/skill/reference/adapt.native.md
 @@ -1,6 +1,6 @@
@@ -307,7 +307,7 @@ index 4307b559f458f01c0ba50da83b7467656b596970..1e2495350d95d112ae4bd388a0e22a6c
 -When the adaptation feels native to each context, hand off to `{{command_prefix}}impeccable polish` for the final pass.
 +When the adaptation feels native to each context, hand off to `/skill:impeccable polish` for the final pass.
  
- **NEVER**:
+ **Avoid**:
  - Ship a stretched phone layout on a tablet
 diff --git a/skill/reference/animate.md b/skill/reference/animate.md
 index f80ebd154cd0b51ac713f3a535ca9640a30ab966..4058255e07f3660829166c508c31233e2174d78b 100644
@@ -329,7 +329,7 @@ index f80ebd154cd0b51ac713f3a535ca9640a30ab966..4058255e07f3660829166c508c31233e
 -When motion earns its place, hand off to `{{command_prefix}}impeccable polish` for the final pass.
 +When motion earns its place, hand off to `/skill:impeccable polish` for the final pass.
 diff --git a/skill/reference/audit.md b/skill/reference/audit.md
-index 11f035a44bdb417ba204ce740ce4e69d71cfb4b6..5012610ae38b79a5a88b58be925d290b0ed681e8 100644
+index 51bde6ce806816e74b7ba0d6f526040e05d9e086..756cc2dc2887face17564bcd98fe3162e8a59b02 100644
 --- a/skill/reference/audit.md
 +++ b/skill/reference/audit.md
 @@ -2,7 +2,7 @@ Run systematic **technical** quality checks and generate a comprehensive report.
@@ -341,7 +341,16 @@ index 11f035a44bdb417ba204ce740ce4e69d71cfb4b6..5012610ae38b79a5a88b58be925d290b
  
  ## Diagnostic Scan
  
-@@ -100,7 +100,7 @@ For each issue, document:
+@@ -59,7 +59,7 @@ Run comprehensive checks across 5 dimensions. Score each dimension 0-4 using the
+ 
+ Run the bundled detector and verify each finding in context. Look for repeated implementation shortcuts, design-system drift, misleading or decorative content, and structure that is interchangeable with an unrelated product. Keep deterministic findings separate from visual judgment and call out false positives.
+ 
+-**Desktop apps** (Electron, NW.js, CEF, WebView2): launch the app with a local DevTools port (`--remote-debugging-port=9222`, or `WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS=--remote-debugging-port=9222` for WebView2; keep it on 127.0.0.1, never exposed), seed the state to audit, keep the window on screen (a hidden one skips the pixel contrast reads), then run `{{scripts_path}}/impeccable detect --cdp 9222 --target <part of the page URL or title> --json`. It returns the same JSON as a URL scan and leaves the window as found. Take screenshots through the harness's CDP tooling, and leave the window as you found it too. Tauri on macOS (WKWebView) and on Linux (WebKitGTK) expose no CDP: scan the source and say the rendered check did not run.
++**Desktop apps** (Electron, NW.js, CEF, WebView2): launch the app with a local DevTools port (`--remote-debugging-port=9222`, or `WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS=--remote-debugging-port=9222` for WebView2; keep it on 127.0.0.1, never exposed), seed the state to audit, keep the window on screen (a hidden one skips the pixel contrast reads), then run `mise exec -- impeccable detect --cdp 9222 --target <part of the page URL or title> --json`. It returns the same JSON as a URL scan and leaves the window as found. Take screenshots through the harness's CDP tooling, and leave the window as you found it too. Tauri on macOS (WKWebView) and on Linux (WebKitGTK) expose no CDP: scan the source and say the rendered check did not run.
+ 
+ **Score 0-4**: 0=systemic drift, 1=major repeated failures, 2=several verified issues, 3=minor isolated issues, 4=coherent and intentional
+ 
+@@ -102,7 +102,7 @@ For each issue, document:
  - **Impact**: How it affects users
  - **WCAG/Standard**: Which standard it violates (if applicable)
  - **Recommendation**: How to fix it
@@ -350,7 +359,7 @@ index 11f035a44bdb417ba204ce740ce4e69d71cfb4b6..5012610ae38b79a5a88b58be925d290b
  
  ### Patterns & Systemic Issues
  
-@@ -116,16 +116,16 @@ Note what's working well: good practices to maintain and replicate.
+@@ -118,16 +118,16 @@ Note what's working well: good practices to maintain and replicate.
  
  List recommended commands in priority order (P0 first, then P1, then P2):
  
@@ -369,10 +378,10 @@ index 11f035a44bdb417ba204ce740ce4e69d71cfb4b6..5012610ae38b79a5a88b58be925d290b
 -> Re-run `{{command_prefix}}impeccable audit` after fixes to see your score improve.
 +> Re-run `/skill:impeccable audit` after fixes to see your score improve.
  
- **IMPORTANT**: Be thorough but actionable. Too many P3 issues creates noise. Focus on what actually matters.
+ Keep P3s few: a long tail of minor issues buries the ones that matter.
  
 diff --git a/skill/reference/audit.native.md b/skill/reference/audit.native.md
-index 9a51dd8a24aaf54e5c75affbf14ae0ba2e07beee..da00dd10f36b7208bc099f4e1eda596680bc6cd9 100644
+index b158b602f0d79367487d0012c745a6317499fa9b..988aa3f9dd0b1fe673b4283f14353aa1370faa64 100644
 --- a/skill/reference/audit.native.md
 +++ b/skill/reference/audit.native.md
 @@ -1,6 +1,6 @@
@@ -411,7 +420,7 @@ index 9a51dd8a24aaf54e5c75affbf14ae0ba2e07beee..da00dd10f36b7208bc099f4e1eda5966
 -> Re-run `{{command_prefix}}impeccable audit` after fixes to see your score improve.
 +> Re-run `/skill:impeccable audit` after fixes to see your score improve.
  
- **IMPORTANT**: Be thorough but actionable. Too many P3 issues creates noise. Focus on what actually matters.
+ Keep P3s few: a long tail of minor issues buries the ones that matter.
  
 diff --git a/skill/reference/bolder.md b/skill/reference/bolder.md
 index e06aa32121b7de5b21c7bd83f3be1ec851ffa7a5..32e4518954e8012c0e5dca5784fe3318c2f0a376 100644
@@ -504,14 +513,14 @@ index 44962913269431a96fa9d2b5871c72193959ad3e..dd953b9bd857d3428f822d1c9814169e
  Then run `plan`, `capture` and `serve` again. Unchanged decisions carry over, so the user sees only what changed. Any spec change, or a plate replaced after acceptance, needs a new round; the build-phase gate stays closed until the review of the current spec is accepted.
  
 diff --git a/skill/reference/craft-floor.md b/skill/reference/craft-floor.md
-index 0252f5b9cd77acaafce46dd57cb93b054c76ac0a..6b11748a837c8b9c39150e10f619e81e58d3bb9b 100644
+index 3331f4845d00756869e48edc0277ba8bc8e5826e..099d0292e0c951d26f820f0568edccff32aaf9c9 100644
 --- a/skill/reference/craft-floor.md
 +++ b/skill/reference/craft-floor.md
 @@ -1,6 +1,6 @@
  # Craft floor
  
--Load this after the direction is settled, and build without announcing the checklist. A pinned brief or the committed visual world overrides anything here; your own habit does not. When the design hook is active it already enforces the mechanical checks below as you edit: act on its findings instead of re-auditing each rule. <!-- rule:skill-craft-floor -->
-+Load this after the direction is settled, and build without announcing the checklist. A pinned brief or the committed visual world overrides anything here; your own habit does not. <!-- rule:skill-craft-floor -->
+-Load this after the direction is settled, and build without announcing the checklist. A pinned brief or the committed visual world overrides anything here except a line marked as a ban; your own habit does not. When the design hook is active it already enforces the mechanical checks below as you edit: act on its findings instead of re-auditing each rule. <!-- rule:skill-craft-floor -->
++Load this after the direction is settled, and build without announcing the checklist. A pinned brief or the committed visual world overrides anything here except a line marked as a ban; your own habit does not. <!-- rule:skill-craft-floor -->
  
  ## Verify
  
@@ -541,7 +550,7 @@ index dbbc9402c07cdab21f2b6eb69279b8435fecfd7f..0813f121dddbb12a3f2ee9b9f3fe2e63
  
  Do not tell users they need to invoke `craft`. Natural requests such as “build this feature,” “make a landing page,” or “redesign this screen” use the same flow.
 diff --git a/skill/reference/critique.md b/skill/reference/critique.md
-index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec640d0ead3 100644
+index 03acd2f77a484abb736fd4f8230bc3bc78503565..26af7775877be2d41c85d409f99abe8cc0df3bc7 100644
 --- a/skill/reference/critique.md
 +++ b/skill/reference/critique.md
 @@ -5,10 +5,10 @@ Resolve one stable target, run two independent assessments, synthesize a design
@@ -557,7 +566,7 @@ index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec6
  - Viewable targets require browser inspection when available.
  - Any local server started only for critique visualization must run in the background, have a recorded stop method, and be stopped before final reporting unless the user asks to keep it.
  - Do not claim a user-visible overlay exists unless script injection succeeded and the detector ran in the page.
-@@ -23,33 +23,28 @@ Resolve one stable target, run two independent assessments, synthesize a design
+@@ -23,34 +23,29 @@ Resolve one stable target, run two independent assessments, synthesize a design
     - "this page" -> the current URL or source file
  2. **Confirm the target slugs cleanly**:
     ```bash
@@ -576,9 +585,11 @@ index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec6
  
  Sub-agent gate (all harnesses):
 -- Unless a harness-specific gate below overrides this, spawn A and B as two isolated, parallel sub-agents whenever a sub-agent/Task tool is exposed. This is the default and is mandatory; do not run them inline because it is faster.
+-- Desktop apps (see **Desktop apps** under Assessment B) are the one exception to parallel: both sub-agents would drive the app's single window at once. Seed the window, spawn A, wait until it has finished and put the window back, then spawn B. They are still two isolated sub-agents, so this is not the degraded path.
 -- "Unavailable" means exactly one thing: no sub-agent/Task tool is exposed in this session (or, on harnesses that ask, the user declined). It does not mean inconvenient.
 -- If and only if sub-agents are unavailable, fall back sequentially: finish and record Assessment A, then run Assessment B, then synthesize, and emit the degraded banner.
 +- Apply the OMP sub-agent gate below before spawning Assessment A and B; a skill does not authorize extra delegation.
++- Desktop apps share one window: seed the window, run Assessment A, restore the window, then run Assessment B. Keep the assessments isolated when delegation is warranted.
 +- Distinguish unavailable tools, declined delegation, and a task whose scope does not warrant separate workers; report the actual reason.
 +- When the gate selects sequential work, finish and record Assessment A before running Assessment B, then synthesize and emit the single-context banner.
  - Whichever path you take, declare it in the report header (see Report header provenance). Skipping sub-agents without the banner is the most common failure of this command.
@@ -586,9 +597,9 @@ index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec6
 -<codex>
 -Codex sub-agent gate (overrides the default above; Codex's permission model requires asking before spawning):
 -- Asking is the normal path, not a degradation. Approving and spawning is the dual-agent path; do not emit the degraded banner just for asking.
--- If `spawn_agent` is exposed and the user explicitly allowed sub-agents, delegation, or parallel agent work, spawn A and B immediately.
+-- If `spawn_agent` is exposed and the user explicitly allowed sub-agents, delegation, or parallel agent work, spawn A and B immediately (for a desktop app, A first and B once A has finished, as the default gate above says).
 -- If `spawn_agent` is exposed but the user did not explicitly allow sub-agents, ask exactly once: "Impeccable critique is designed to run two independent sub-agents for an unanchored assessment. May I use sub-agents for this critique?" Then stop until the user answers.
--- If allowed, spawn A and B. If declined, run sequentially and lead the report with `⚠️ DEGRADED: single-context (sub-agents declined by user)`.
+-- If allowed, spawn A and B (in sequence for a desktop app). If declined, run sequentially and lead the report with `⚠️ DEGRADED: single-context (sub-agents declined by user)`.
 -- If `spawn_agent` is not exposed, do not ask; run sequentially and lead with `⚠️ DEGRADED: single-context (spawn_agent unavailable in this session)`.
 -- If spawning fails after permission, run sequentially and lead with `⚠️ DEGRADED: single-context (sub-agent spawn failed: <exact error>)`.
 -Prefer `fork_context: false` with self-contained prompts containing cwd, target, live URL, references, product context, and output contract. If using `fork_context: true`, omit `agent_type`, `model`, and `reasoning_effort`.
@@ -599,9 +610,9 @@ index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec6
 +- Workers do not run build, lint, tests, or formatters mid-flight. The parent owns requested detector execution and runtime evidence; complete Assessment A before exposing detector output to the synthesis context.
 +- Report tool availability, actual independence, and failed delegation accurately.
  
- If browser automation is available, each assessment creates its own new tab. Never reuse an existing tab, even if it is already at the right URL.
+ If browser automation is available, each assessment creates its own new tab. Never reuse an existing tab, even if it is already at the right URL. Desktop apps are the exception (see **Desktop apps** under Assessment B).
  
-@@ -72,7 +67,7 @@ Run the bundled detector and browser visualization evidence. On web, Assessment
+@@ -73,7 +68,7 @@ Run the bundled detector and browser visualization evidence. On web, Assessment
  
  CLI scan:
  ```bash
@@ -610,14 +621,24 @@ index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec6
  ```
  
  - Pass markup files/directories as `[target]`; do not pass CSS-only files.
-@@ -86,31 +81,19 @@ Browser visualization is required for a viewable target when browser automation
+@@ -87,40 +82,29 @@ Browser visualization is required for a viewable target when browser automation
  1. Create a fresh tab and navigate. Prefer the harness's native/browser-canvas screenshot path before hand-rolling a Playwright/Puppeteer script; only fall back to a custom script when no native browser tool is exposed.
  2. Preflight mutable injection by setting `document.title` and appending a `<script>` tag. Read-only evaluate APIs do not count.
  3. If mutation is unavailable, skip live server, browser presentation, and injection; report fallback signal.
--4. If mutation is available, start `{{scripts_path}}/impeccable live-server --background`, present the browser if supported, label `[Human]`, scroll top, inject `http://localhost:PORT/detect.js`, wait 2-3 seconds, read `impeccable` console messages, then stop the live server.
-+4. If mutation is available, start `mise exec -- impeccable live-server --background`, present the browser if supported, label `[Human]`, scroll top, inject `http://localhost:PORT/detect.js`, wait 2-3 seconds, read `impeccable` console messages, then stop the live server.
+-4. If mutation is available, start `{{scripts_path}}/impeccable live-server --background`, present the browser if supported, label `[Human]`, scroll top, inject `http://localhost:PORT/detect.js`, wait 2-3 seconds, read `impeccable` console messages, then run `{{scripts_path}}/impeccable live-server stop --keep-inject`. The overlay went in through the browser, so the project's HTML has no script tag to strip; a bare `stop` also runs `live-inject --remove` against the project's entry file, an edit a read-only critique should not make.
++4. If mutation is available, start `mise exec -- impeccable live-server --background`, present the browser if supported, label `[Human]`, scroll top, inject `http://localhost:PORT/detect.js`, wait 2-3 seconds, read `impeccable` console messages, then run `mise exec -- impeccable live-server stop --keep-inject`. The overlay went in through the browser, so the project's HTML has no script tag to strip; a bare `stop` also runs `live-inject --remove` against the project's entry file, an edit a read-only critique should not make.
  5. For multi-view targets, inject on 3-5 representative pages.
--
+ 
+ **Desktop apps** (Electron, NW.js, CEF, WebView2): there is no URL to open, so Assessment B attaches to the running app instead.
+ 
+ 1. Launch the app with a local DevTools port: `--remote-debugging-port=9222` (Electron, NW.js, CEF), or `WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS=--remote-debugging-port=9222` for WebView2. Keep the port on 127.0.0.1 and never expose it beyond this machine; prefer a test profile and test data.
+ 2. Seed the state under review (route, open panel, theme, data). The scan reads the window as it stands. Keep the window on screen: a minimized or hidden window scans without the pixel contrast reads.
+-3. Run `{{scripts_path}}/impeccable detect --cdp 9222 --target <part of the page URL or title> --json`. It returns the same JSON as a URL scan and leaves the page as found. With several pages open it fails and lists them; rerun with a `--target` that names one.
++3. Run `mise exec -- impeccable detect --cdp 9222 --target <part of the page URL or title> --json`. It returns the same JSON as a URL scan and leaves the page as found. With several pages open it fails and lists them; rerun with a `--target` that names one.
+ 4. Take screenshots through the harness's CDP tooling (`Page.captureScreenshot` on the same target). Skip the live-server overlay: there is no `[Human]` tab.
+ 
+ The app has one window, so the assessments take turns in it instead of opening tabs (A, then B; see the sub-agent gate), and each must leave it as found: put back any route, scroll, theme, or panel it changed. Tauri on macOS (WKWebView) and on Linux (WebKitGTK) expose no CDP: run Assessment A and the source scan only, and say so in Run Notes.
+ 
 -<codex>
 -Codex Browser note: Use the Browser skill. Do not spend a Browser attempt on `file://`. Only call `visibility.set(true)` after mutable script injection is confirmed for the `[Human]` overlay path; verify with `get()`. Use `tab.dev.logs({ filter: "impeccable" })` for console results. Its Playwright `evaluate(...)` surface is read-only; do not rely on it for mutation.
 -</codex>
@@ -635,7 +656,7 @@ index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec6
 +OMP failure accounting: final Run Notes must include target slug, ignore list, assessment independence, CLI detector, browser visibility, overlay injection, live-server cleanup, temp-file cleanup, and any fallback signal used. Do not run repo status checks, late API spelunking, or unrelated verification after the report is assembled.
  ### Generate Combined Critique Report
  
- Synthesize both assessments into a single report. Do NOT simply concatenate. Weave the findings together, noting where the LLM review and detector agree, where the detector caught issues the LLM missed, and where detector findings are false positives.
+ Synthesize both assessments into a single report. Do not simply concatenate. Weave the findings together, noting where the LLM review and detector agree, where the detector caught issues the LLM missed, and where detector findings are false positives.
  
  The chat response is the primary user-facing deliverable. Present the full structured critique below in chat; do not replace it with a summary and a link. The persisted snapshot is an archive of that run.
 -
@@ -647,7 +668,7 @@ index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec6
  Structure your feedback as a design director would:
  
  #### Report header provenance
-@@ -168,12 +151,12 @@ For each issue, tag with **P0-P3 severity** (see [Issue Severity below](#issue-s
+@@ -178,12 +162,12 @@ For each issue, tag with **P0-P3 severity** (see [Issue Severity below](#issue-s
  - **[P?] What**: Name the problem clearly
  - **Why it matters**: How this hurts users or undermines goals
  - **Fix**: What to do about it (be concrete)
@@ -662,7 +683,7 @@ index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec6
  
  For each selected persona, walk through the primary user action and list specific red flags found:
  
-@@ -191,14 +174,10 @@ Provocative questions that might unlock better solutions:
+@@ -201,14 +185,10 @@ Provocative questions that might unlock better solutions:
  - "What if the primary action were more prominent?"
  - "Does this need to feel this complex?"
  - "What would a confident version of this look like?"
@@ -678,7 +699,7 @@ index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec6
  **Remember**:
  - Be direct. Vague feedback wastes everyone's time.
  - Be specific. "The submit button," not "some elements."
-@@ -217,22 +196,18 @@ Persistence is not the end of the run. After it, the response continues with the
+@@ -227,22 +207,18 @@ Persistence is not the end of the run. After it, the response continues with the
  
  ### Persist the Snapshot
  
@@ -705,7 +726,7 @@ index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec6
     ```
     `max_score` is the applicable maximum from the heuristic table (40 when every heuristic applied), so a later run can tell a renormalized total from a full one. For a local file target, the helper also records an exact content fingerprint so polish can distinguish the assessed bytes from later edits without relying on Git state or timestamps. The helper prints the absolute path it wrote. Leave that file on disk. Polish closes it; this run does not.
  
-@@ -240,7 +215,7 @@ Skip this step if the Setup slug was null (vague or root-level target).
+@@ -250,7 +226,7 @@ Skip this step if the Setup slug was null (vague or root-level target).
  
  4. **Read the trend** for context:
     ```bash
@@ -714,7 +735,7 @@ index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec6
     ```
     This returns a JSON array of the last 5 frontmatter entries (including the one you just wrote).
  
-@@ -253,13 +228,13 @@ Skip this step if the Setup slug was null (vague or root-level target).
+@@ -263,13 +239,13 @@ Skip this step if the Setup slug was null (vague or root-level target).
  
     If this is the first run for the slug, the trend is just one score; say so: "First run for this target, no trend yet."
  
@@ -730,7 +751,7 @@ index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec6
  
  Ask in the same message that carries the report, with the report written out first and the question last. Do not split the two across turns: a turn that ends on the report is a turn that ends, and the questions never arrive. Order within the message is what matters, because prose emitted after a structured question is withheld until the user answers.
  
-@@ -289,25 +264,25 @@ Ask questions along these lines (adapt to the specific findings; do NOT ask gene
+@@ -299,25 +275,25 @@ Ask questions along these lines (adapt to the specific findings; do not ask gene
  
  List recommended commands in priority order, based on the user's answers:
  
@@ -761,7 +782,7 @@ index 74816ee7a90d32a05ba4fda65d815e8e9efa72cc..68ad939585124748260607b3c2a95ec6
  
  ---
  
-@@ -825,7 +800,7 @@ Choose personas based on the interface type:
+@@ -835,7 +811,7 @@ Choose personas based on the interface type:
  
  #### Project-Specific Personas
  
@@ -790,7 +811,7 @@ index 952af09711345b28fb54aa1d335eed6cf38f86a5..ad3553052ca10c57db0ddf8fdbdbe540
 -When the personality feels earned, hand off to `{{command_prefix}}impeccable polish` for the final pass.
 +When the personality feels earned, hand off to `/skill:impeccable polish` for the final pass.
 diff --git a/skill/reference/distill.md b/skill/reference/distill.md
-index bc0f6e96472be319e27e62e681975d3716e7b43a..8c7646eccaa9a06901af62a5ef8250f275fb5957 100644
+index cf8225ce94175f32d0b4f723f67019527ed6836f..8680e12308b728a7ecc538492cc7747cc7111c83 100644
 --- a/skill/reference/distill.md
 +++ b/skill/reference/distill.md
 @@ -21,7 +21,7 @@ Analyze what makes the design feel complex or cluttered:
@@ -800,7 +821,7 @@ index bc0f6e96472be319e27e62e681975d3716e7b43a..8c7646eccaa9a06901af62a5ef8250f2
 -If any of these are unclear from the codebase, do not guess. {{ask_instruction}}
 +If any of these are unclear from the codebase, do not guess. Use OMP `ask` for material choices that cannot be inferred from the project or settled user requirements.
  
- **CRITICAL**: Simplicity is not about removing features. It's about removing obstacles between users and their goals. Every element should justify its existence.
+ Simplicity is not about removing features. It's about removing obstacles between users and their goals. Every element should justify its existence.
  
 @@ -108,4 +108,4 @@ If you removed features or options:
  - Consider if they need alternative access points
@@ -809,7 +830,7 @@ index bc0f6e96472be319e27e62e681975d3716e7b43a..8c7646eccaa9a06901af62a5ef8250f2
 -When the cuts feel right, hand off to `{{command_prefix}}impeccable polish` for the final pass. As Antoine de Saint-Exupéry put it: "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."
 +When the cuts feel right, hand off to `/skill:impeccable polish` for the final pass. As Antoine de Saint-Exupéry put it: "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."
 diff --git a/skill/reference/doctor.md b/skill/reference/doctor.md
-index 92387c2eeb47dba7b0eabbf7f0af427a2ac86fff..a1829b8c31164409e54f82134d544eee7ffb96b0 100644
+index 830f638d9e400adab0a850ebe722001e01b78aaa..b922f8a633e8e54b534e53ce9816c55d455a2038 100644
 --- a/skill/reference/doctor.md
 +++ b/skill/reference/doctor.md
 @@ -1,4 +1,4 @@
@@ -822,8 +843,8 @@ index 92387c2eeb47dba7b0eabbf7f0af427a2ac86fff..a1829b8c31164409e54f82134d544eee
  
  Three kinds of drift travel under "out of date". Keep them apart:
  
--- **Tool version.** The installed skill is older than the published one. `impeccable context` reports that at boot as `UPDATE_AVAILABLE` and `npx impeccable update` fixes it. Not this command's job.
-+- **Tool version.** The installed skill is older than the published one. `mise exec -- impeccable context` reports that at boot as `UPDATE_AVAILABLE`. Advance the upstream submodule pin and refresh the OMP adaptation patch after authorization, then run the repository's `prepare.nu`. The engine version is managed separately by mise. Not this command's job.
+-- **Tool version.** The installed skill is older than the published one. `impeccable context` reports that at boot as `UPDATE_AVAILABLE` and `npx impeccable update` fixes it, or the harness's plugin manager for a plugin install. Not this command's job.
++- **Tool version.** The installed skill is older than the published one. Update the mise-managed engine after installation approval, refresh the OMP adaptation patch when needed, then run the repository's `prepare.nu` to select the matching upstream release. Not this command's job.
  - **Schema drift.** An artifact was written by an older Impeccable: fields nothing reads, fields now expected, files in retired locations. Mechanical, and this command repairs most of it.
  - **Truth drift.** The code moved on and the document no longer describes it. No file comparison settles this. `document` owns DESIGN.md, `init` owns PRODUCT.md, and this command's job is to hand them a specific gap rather than a vague suspicion.
  
@@ -859,7 +880,7 @@ index 92387c2eeb47dba7b0eabbf7f0af427a2ac86fff..a1829b8c31164409e54f82134d544eee
 -`impeccable context` reports the cheap subset of these findings at session start, throttled to once a week per project. Set `"stalenessCheck": false` in `.impeccable/config.json` to silence that, or `IMPECCABLE_NO_STALENESS_CHECK=1` for one session. This command still works with the check disabled, and that is the combination to suggest for a user who wants the report only when they ask for it.
 +`mise exec -- impeccable context` reports the cheap subset of these findings at session start, throttled to once a week per project. Set `"stalenessCheck": false` in `.impeccable/config.json` to silence that, or `IMPECCABLE_NO_STALENESS_CHECK=1` for one session. This command still works with the check disabled, and that is the combination to suggest for a user who wants the report only when they ask for it.
 diff --git a/skill/reference/document.md b/skill/reference/document.md
-index 90b963b1a74a1e98848d200eafc1230b8e77e803..0ab591e65e904a8c2cdba5ffd4b5fa949da02d15 100644
+index edbe28e84aa7b8a3575e3d287362bb994f4d4a54..4ffba5b29931f99eaa144127d750fe56f5f69ca9 100644
 --- a/skill/reference/document.md
 +++ b/skill/reference/document.md
 @@ -68,14 +68,14 @@ Omit irrelevant sections rather than filling them with invented rules. Put respo
@@ -910,15 +931,15 @@ index 90b963b1a74a1e98848d200eafc1230b8e77e803..0ab591e65e904a8c2cdba5ffd4b5fa94
  Your own write is the freshest source; no reload needed.
  
 diff --git a/skill/reference/extract.md b/skill/reference/extract.md
-index 0f49cfbaa0f6787b0f3b2e5e89980f88fe06af7c..189a129820a3c33b9d1cd2fb8e574ea452b38277 100644
+index c4d5a402f6291095b6a99082f3680bc11f72f318..125cfdee417255205f7e57cb1163f289417e7c3e 100644
 --- a/skill/reference/extract.md
 +++ b/skill/reference/extract.md
 @@ -6,7 +6,7 @@ Identify reusable patterns, components, and design tokens, then extract and cons
  
  Find the design system, component library, or shared UI directory. Understand its structure: component organization, naming conventions, design token structure, import/export conventions.
  
--**CRITICAL**: If no design system exists, do not create one yet. {{ask_instruction}} Understand the preferred location and structure first.
-+**CRITICAL**: If no design system exists, do not create one yet. Use OMP `ask` for material choices that cannot be inferred from the project or settled user requirements. Understand the preferred location and structure first.
+-If no design system exists, do not create one yet. {{ask_instruction}} Understand the preferred location and structure first.
++If no design system exists, do not create one yet. Use OMP `ask` for material choices that cannot be inferred from the project or settled user requirements. Understand the preferred location and structure first.
  
  ## Step 2: Identify Patterns
  
@@ -1029,10 +1050,10 @@ index 7247104e9a1e743cf19ac0910d8788ef889cc6eb..e8bf85a390cee3908ce5dbe1fbdfb7f7
  
  Done when the helper is stopped and the dev site still answers with the accepted design.
 diff --git a/skill/reference/harden.md b/skill/reference/harden.md
-index e8a0567c5964ab154a726a2e53ea2b6563b780d5..8ee9f65df630ccb47cfb814bf2df9a273c8b7e74 100644
+index 8447329bcfd37566f09385136a373a97d54b6e45..824d6ac91c1d2e68539d5aabd84ac1d565b66f0a 100644
 --- a/skill/reference/harden.md
 +++ b/skill/reference/harden.md
-@@ -342,4 +342,4 @@ Test thoroughly with edge cases:
+@@ -359,4 +359,4 @@ Test thoroughly with edge cases:
  
  For gestures, say what produced the evidence (emulated viewport, synthesized touch, which engine, physical device) and name what stayed untested.
  
@@ -1040,17 +1061,17 @@ index e8a0567c5964ab154a726a2e53ea2b6563b780d5..8ee9f65df630ccb47cfb814bf2df9a27
 +When edge cases are covered, hand off to `/skill:impeccable polish` for the final pass.
 diff --git a/skill/reference/hooks.md b/skill/reference/hooks.md
 deleted file mode 100644
-index 8e71fe198de90d8d42ee81de72116b96d1b85ab2..0000000000000000000000000000000000000000
+index f7a0dfd8cc9a3097a83cae0cfe870ee4696aa53b..0000000000000000000000000000000000000000
 --- a/skill/reference/hooks.md
 +++ /dev/null
-@@ -1,113 +0,0 @@
+@@ -1,114 +0,0 @@
 -# /impeccable hooks
 -
 -Manage the **design detector hook** for the current project.
 -
--The hook runs the impeccable design detector on direct file edits to design-relevant files (`.tsx`, `.jsx`, `.html`, `.vue`, `.svelte`, `.astro`, `.css`, `.scss`, `.sass`, `.less`, `.ts`, `.js`). Claude Code, Codex, and GitHub Copilot use a post-tool-use hook and push a short system reminder into the agent's context after the edit; findings get a correction prompt, pending issues get a re-nudge, and clean UI-ish files get a short ack unless quiet mode is on (`hook.quiet` in config). Plain `.ts` and `.js` files are still scanned, but stay quiet unless the detector finds something. Cursor uses `preToolUse` to block bad proposed writes before they land and stays silent when it allows a clean write. Grok Build fires the same PostToolUse scan to mark touched files, then surfaces findings on Stop `additionalContext`. Do not expect a Grok per-edit reminder: Grok discards that stdout.
+-The hook runs the impeccable design detector on direct file edits to design-relevant files (`.tsx`, `.jsx`, `.html`, `.vue`, `.svelte`, `.astro`, `.css`, `.scss`, `.sass`, `.less`, `.ts`, `.js`). Claude Code, Codex, Cursor, and GitHub Copilot use a post-tool-use hook and push a short system reminder into the agent's context after the edit; findings get a correction prompt, pending issues get a re-nudge, and clean UI-ish files get a short ack unless quiet mode is on (`hook.quiet` in config). Plain `.ts` and `.js` files are still scanned, but stay quiet unless the detector finds something. Grok Build fires the same PostToolUse scan to mark touched files, then surfaces findings on Stop `additionalContext`. Do not expect a Grok per-edit reminder: Grok discards that stdout.
 -
--The detector rules run in two tiers. The per-edit hook surfaces only the immediate tier: mechanical, unambiguous problems worth interrupting an edit for, such as broken images, overflowing content, contrast and legibility failures, gradient text, glow shadows, and design-system drift. Everything else (copy cadence, palette and typography taste, layout rhythm) is deferred to a deep pass on the `Stop` hook event, which runs the full rule set over every UI file touched in the session and surfaces the remaining findings once, deduplicated against what the per-edit pass already reported. A session with nothing left to report stops silently. Set `hook.perEditRules` to `"all"` in `.impeccable/config.json` to restore the full rule set on every edit. The Stop deep pass is wired for Claude Code, Codex, and Grok Build, which dispatch a native `Stop` hook event. Cursor does not get one (its stop hook is not consistently dispatched; the pre-write gate covers it), and GitHub Copilot's stop-style events do not feed context back to the model, so they keep the full detector per edit. Grok also fires an observe-only Stop with `reason: "shutdown"` after `end_turn`; skip that one, scan only `end_turn`.
+-The detector rules run in two tiers. The per-edit hook surfaces only the immediate tier: mechanical, unambiguous problems worth interrupting an edit for, such as broken images, overflowing content, contrast and legibility failures, gradient text, glow shadows, and design-system drift. Everything else (copy cadence, palette and typography taste, layout rhythm) is deferred to a deep pass on the `Stop` hook event, which runs the full rule set over every UI file touched in the session and surfaces the remaining findings once, deduplicated against what the per-edit pass already reported. A session with nothing left to report stops silently. Set `hook.perEditRules` to `"all"` in `.impeccable/config.json` to restore the full rule set on every edit. The Stop deep pass is wired for Claude Code, Codex, and Grok Build, which dispatch a native `Stop` hook event. Cursor does not get one (its `stop` hook can only answer with a follow-up user message), and GitHub Copilot's stop-style events do not feed context back to the model, so they keep the full detector per edit. Grok also fires an observe-only Stop with `reason: "shutdown"` after `end_turn`; skip that one, scan only `end_turn`.
 -
 -Every hook is a mechanical pass. The reflexes no scanner catches live in [craft-floor.md](craft-floor.md), which the skill loads before it edits UI, so they apply whether or not a hook is wired. A session with no automatic hook gets one `MANUAL_DETECTOR_REQUIRED` directive from `impeccable context` asking for a single detector run at the end.
 -
@@ -1058,11 +1079,11 @@ index 8e71fe198de90d8d42ee81de72116b96d1b85ab2..00000000000000000000000000000000
 -
 -Declare server-side template extensions under **`detector.extensions`** when the project uses Blade, Twig, ERB, or Handlebars files; the hook skips them otherwise because they sit outside the built-in extension list. One entry per extension, `{ "ext": ".blade.php", "engine": "html" }`. `engine` picks the analyzer (`html` for markup templates, `text` for JS/TS/CSS-like files) and defaults to `html`. Match against the end of the filename, so double extensions like `.blade.php` and `.html.erb` work. Config only adds extensions; the built-in list always applies.
 -
--Manual `npx impeccable detect` scans use the same project filter config by default: `detector.ignoreRules`, `detector.ignoreFiles`, `detector.ignoreValues`, and `detector.designSystem.enabled`. `hook.enabled` only controls automatic hook execution, not manual CLI scans. Use `npx impeccable detect --no-config ...` for a raw detector run that ignores project config/context. Use `npx impeccable ignores ...` for direct CLI CRUD on the same detector ignores.
+-Manual `{{scripts_path}}/impeccable detect` scans use the same project filter config by default: `detector.ignoreRules`, `detector.ignoreFiles`, `detector.ignoreValues`, and `detector.designSystem.enabled`. `hook.enabled` only controls automatic hook execution, not manual CLI scans. Use `{{scripts_path}}/impeccable detect --no-config ...` for a raw detector run that ignores project config/context. Use `{{scripts_path}}/impeccable ignores ...` for direct CLI CRUD on the same detector ignores.
 -
 -Supported harnesses: Claude Code (`.claude/settings.local.json` for a project-scope install; `~/.claude/settings.json` for a user-scope install; a project hook moved into shared `.claude/settings.json` is honored in place too), Codex (`.codex/hooks.json` in the project), Cursor (`.cursor/hooks.json` in the project), Grok Build (`.grok/hooks/impeccable.json` in the project; requires `/hooks-trust` or `--trust`), and GitHub Copilot (`.github/hooks/impeccable.json` in the project, a team-shared committed file that both the Copilot CLI and the cloud agent read). For the Copilot CLI, repo-level hooks fire once `.github/hooks/impeccable.json` is committed to the repository's default branch.
 -
--On **Cursor**, `preToolUse` checks proposed Write/Edit/Shell write content and denies only when the real detector finds an issue. The denial message is visible to the agent as the tool error, so the agent can reconsider before the bad write lands.
+-On **Cursor**, the hook runs on `postToolUse` for the `Write` tool (every agent file edit) and returns its reminder as `additional_context`, which Cursor adds after the tool result. Projects set up before this ran a `preToolUse` gate (`hook-before-edit`) that blocked bad writes before they landed; that gate still works until `hooks on`, `impeccable update`, or `impeccable doctor --fix` moves the entry to `postToolUse`.
 -
 -Gemini installs session and completion hooks in `.gemini/settings.json`, merged into the settings already there (comments are tolerated; a commented file is backed up to `settings.json.bak` before the rewrite, and a file that is not valid JSON is left alone). It does not install a per-edit detector hook. The `BeforeTool` hook only rewrites shell commands that run `build-phase`, and only on macOS and Linux; on Windows (where Gemini runs hooks through PowerShell) no session id reaches the shell, so a comp build is not tied to the session and the completion reminder stays silent.
 -
@@ -1110,7 +1131,7 @@ index 8e71fe198de90d8d42ee81de72116b96d1b85ab2..00000000000000000000000000000000
 -
 -- If the finding line shows an `ignore-value <rule> <value>` pair, pass it to `impeccable hooks ignore-value` with your `--reason`. This writes shared `.impeccable/config.json` by default.
 -- For value-specific findings such as `overused-font` and `bounce-easing`, use `ignore-value` for the specific value. Do not use `ignore-rule overused-font` for a specific font.
--- If the finding has no value-specific command, such as `side-tab`, scope that one rule to the file: `ignore-value <id> "*" --file <path>`. Run `npx impeccable detect <path>` first to see what actually fires there.
+-- If the finding has no value-specific command, such as `side-tab`, scope that one rule to the file: `ignore-value <id> "*" --file <path>`. Run `{{scripts_path}}/impeccable detect <path>` first to see what actually fires there.
 -- Reach for `ignore-file <path>` only when the whole file is out of scope for design review: a fixture, a generated artifact, a deliberate slop demo. It silences every rule for that file permanently, including rules that have not been written yet. A real UI surface with one noisy rule wants the file-scoped value ignore above.
 -- Use `ignore-rule <id>` only when the user asks to suppress that whole rule across the project. For broad overused-font suppression, use `ignore-rule overused-font --all-values` only when the user asks to ignore overused fonts generally.
 -- Prefer config ignores (the commands above) by default; they keep suppressions in one reviewable place. Reach for an inline comment only when the waiver must travel with a single file that leaves the repo (a generated/exported standalone document, an emailed HTML file). The supported marker is `impeccable-disable <rule>` (whole file) or `impeccable-disable-line` / `impeccable-disable-next-line` (one line), in any comment syntax, with an optional reason after `:` or `--`. The detector honors it by default; `--no-inline-ignores` or `--no-config` bypasses it.
@@ -1150,7 +1171,8 @@ index 8e71fe198de90d8d42ee81de72116b96d1b85ab2..00000000000000000000000000000000
 -
 -- Never modify `.impeccable/config.json` or `.impeccable/config.local.json` by hand from this command. Always go through `impeccable hooks` so writes stay validated and the file shape stays consistent. One exception: `detector.extensions` has no admin action, so when the user asks to cover a template stack, edit that one field in `.impeccable/config.json` directly and leave the rest of the file untouched.
 -- Do not edit the launcher or the binary behind `impeccable hook` and `impeccable hook-before-edit` from this flow. Those are skill plumbing.
--- Cursor can block a proposed write when the detector finds a real issue. Claude Code, Codex, and GitHub Copilot do not block the edit; they emit a post-edit reminder instead. Disabling stops both blocking and reminders.
+-- When a user asks how far to trust the hook, say it runs the engine unsandboxed with the agent's environment and network access (in the Copilot cloud agent too, once `.github/hooks/impeccable.json` is committed), and that the launcher checks a downloaded engine against `{{scripts_path}}/engine-checksums.txt` before its first run; **never** call it sandboxed.
+-- The hook never blocks an edit; it emits a post-edit reminder. (A Cursor project still on the old `preToolUse` gate can block a write until its manifest is migrated.) Disabling stops the reminders.
 -- The hook is bundled with the Impeccable skill. Project installs use `.claude/settings.local.json`, `.codex/hooks.json`, `.cursor/hooks.json`, `.github/hooks/impeccable.json`, and `.gemini/settings.json`; a user-scope Claude install uses `~/.claude/settings.json`. On Codex, the user must approve the hook via `/hooks` the first time. On Cursor, confirm hooks are enabled under Settings -> Hooks. On GitHub Copilot, the CLI loads `.github/hooks/impeccable.json` once it is committed to the repository's default branch, and the cloud agent reads it from the repo directly.
 -
 -## Failure modes
@@ -1309,7 +1331,7 @@ index 274f8c3bd091afcf49fc33aaba70edecc11acfbf..df26856f148670741af9cef09abc5656
 -After setup, re-run `impeccable live`.
 +After setup, re-run `mise exec -- impeccable live`.
 diff --git a/skill/reference/live.md b/skill/reference/live.md
-index 5823d3407ebd4679ac3531eaa3008db798d9ed12..69d98641a1b70244d3d0d079df25067e558fa755 100644
+index 3acb6fa8651a3824c58389e6a6f5b7308a913e16..9381c17b2fe98da3932de22afcb2b8eca799c922 100644
 --- a/skill/reference/live.md
 +++ b/skill/reference/live.md
 @@ -4,30 +4,25 @@ Interactive live variant mode: select elements in the browser, pick a design act
@@ -1464,8 +1486,8 @@ index 5823d3407ebd4679ac3531eaa3008db798d9ed12..69d98641a1b70244d3d0d079df25067e
  When wrap returns `fallback: "agent-driven"`, you pick the source file yourself; the goal is unchanged: three preview variants now, and the accepted one persisted where the next build cannot wipe it.
  
  1. **Find where the element really lives** from the error payload: `element_not_in_source` + `generatedMatch` means the served HTML is generated, so find the generator's template or partial; `element_not_found` means runtime-injected, so find the rendering component or data source; `file_is_generated` resolves the same way. A purely visual change may belong in a shared stylesheet rather than a template.
--2. **Preview in the served file**: manually write the same wrapper scaffold `impeccable live-wrap` produces (`<!-- impeccable-variants-start ID --><div data-impeccable-variants="ID" data-impeccable-variant-count="3" style="display: contents">…</div><!-- end -->`) into the file the browser actually loaded, insert your variant divs, `--reply EVENT_ID done --file <served file>`. This edit is temporary; a regen wiping it is fine.
-+2. **Preview in the served file**: manually write the same wrapper scaffold `mise exec -- impeccable live-wrap` produces (`<!-- impeccable-variants-start ID --><div data-impeccable-variants="ID" data-impeccable-variant-count="3" style="display: contents">…</div><!-- end -->`) into the file the browser actually loaded, insert your variant divs, `--reply EVENT_ID done --file <served file>`. This edit is temporary; a regen wiping it is fine.
+-2. **Preview in the served file**: manually write the same wrapper scaffold `impeccable live-wrap` produces into the file the browser actually loaded, moving the element itself into the original slot: `<!-- impeccable-variants-start ID --><div data-impeccable-variants="ID" data-impeccable-variant-count="3" style="display: contents"><div data-impeccable-variant="original">THE ELEMENT, UNCHANGED</div><!-- Variants: insert below this line --></div><!-- impeccable-variants-end ID -->`. Insert your variant divs after the marker, then `--reply EVENT_ID done --file <served file>`. Never drop the original slot: discard restores the element from it and refuses a wrapper without one. This edit is temporary; a regen wiping it is fine.
++2. **Preview in the served file**: manually write the same wrapper scaffold `mise exec -- impeccable live-wrap` produces into the file the browser actually loaded, moving the element itself into the original slot: `<!-- impeccable-variants-start ID --><div data-impeccable-variants="ID" data-impeccable-variant-count="3" style="display: contents"><div data-impeccable-variant="original">THE ELEMENT, UNCHANGED</div><!-- Variants: insert below this line --></div><!-- impeccable-variants-end ID -->`. Insert your variant divs after the marker, then `--reply EVENT_ID done --file <served file>`. Never drop the original slot: discard restores the element from it and refuses a wrapper without one. This edit is temporary; a regen wiping it is fine.
  3. **On accept, write to true source** (accept refuses generated files, so `_acceptResult.handled` is usually `false` here): structural change → template/component source; visual-only → the right stylesheet; content rendered from data → the data source or render logic. Then remove the temporary wrapper from the served file.
  4. **On discard**, just remove the temporary wrapper.
  
@@ -1571,7 +1593,7 @@ index b30c4c9139e3094bd35c60738decb6109326153f..5ee978f60a9dc049caca899d9d1e5874
  ## Directions
  
 diff --git a/skill/reference/new-work.md b/skill/reference/new-work.md
-index 44abb022a31a3f45cca07560794679ad25cc90d2..1c78f1136d748f2fd2a9f2865973a96a71a5454b 100644
+index f3f84a7b03e0aad7c510f307e6d334adea9b5feb..2ef49c1c695370fedcbdfb8efb7fa7283291e622 100644
 --- a/skill/reference/new-work.md
 +++ b/skill/reference/new-work.md
 @@ -1,8 +1,8 @@
@@ -1611,7 +1633,7 @@ index 44abb022a31a3f45cca07560794679ad25cc90d2..1c78f1136d748f2fd2a9f2865973a96a
  3. Turn that material into complete directions: each joins a reusable visual world to a concrete first-surface experience.
 -4. Run `{{scripts_path}}/impeccable concept-seed --scope direction --mode <mode>` and follow what it prints. No substitute, no skip: on a new or replacement world, writing artifact code before this script has run and its assignment is acknowledged is a contract violation, whatever the harness, the model, or the time pressure; the roll is what keeps every run from converging on the category default. The script assigns the direction to build and deals catalog challengers. Fuse each challenger before judging it: the challenger supplies the form and its system grammar, the product supplies every fact, clarity wins conflicts. Weigh fused challengers against the assigned direction on exactly two axes, audience identification and product clarity. Losing to strong grounded material is a valid outcome; beating a thin or tool-monoculture list is the point. Close with a verdict per challenger, decided before any borrowing: wins (beats the assigned direction on both axes; becomes the build candidate), competitive (holds one axis; stays a full alternate), or declined (loses both). A declined challenger is not spent: name the one discipline of its system the assigned direction lacks, and raise the assigned direction to match before presenting it. A donation transfers ambition and system discipline (a palette's total commitment, a grid's density courage, a form's structural honesty), never the challenger's clothes. A component treatment, such as a button's shadow or a display face, is clothes, not discipline; a lifted motif is a costume note, not a raise, and one world owns the page. Write each raise into the presented direction as its own line, named for its donor; a raise nobody can read did not happen. <!-- rule:skill-concept-procedure --> <!-- rule:skill-verdict-and-donation -->
 +4. Run `mise exec -- impeccable concept-seed --scope direction --mode <mode>` and follow what it prints. No substitute, no skip: on a new or replacement world, writing artifact code before this script has run and its assignment is acknowledged is a contract violation, whatever the harness, the model, or the time pressure; the roll is what keeps every run from converging on the category default. The script assigns the direction to build and deals catalog challengers. Fuse each challenger before judging it: the challenger supplies the form and its system grammar, the product supplies every fact, clarity wins conflicts. Weigh fused challengers against the assigned direction on exactly two axes, audience identification and product clarity. Losing to strong grounded material is a valid outcome; beating a thin or tool-monoculture list is the point. Close with a verdict per challenger, decided before any borrowing: wins (beats the assigned direction on both axes; becomes the build candidate), competitive (holds one axis; stays a full alternate), or declined (loses both). A declined challenger is not spent: name the one discipline of its system the assigned direction lacks, and raise the assigned direction to match before presenting it. A donation transfers ambition and system discipline (a palette's total commitment, a grid's density courage, a form's structural honesty), never the challenger's clothes. A component treatment, such as a button's shadow or a display face, is clothes, not discipline; a lifted motif is a costume note, not a raise, and one world owns the page. Write each raise into the presented direction as its own line, named for its donor; a raise nobody can read did not happen. <!-- rule:skill-concept-procedure --> <!-- rule:skill-verdict-and-donation -->
- 5. Present one direction, fully committed and already raised by the hand it beat, raises visible as named lines: world, first viewport, visitor path, signature interaction, cross-surface reach, honest risk. Route each challenger by verdict: winning and competitive challengers are full alternates with their QUALITY BAR cards and one-line case; declined challengers render demoted, compact and quiet, each carrying its verdict and what the direction kept from it, never full-size, never silently dropped, still adoptable on request. The verdict informs the user's choice, never pre-empts it; the demoted row is the hand's proof of judgment. A hand holds at most three full-card challengers: when the roll deals more, the three strongest join and the rest wait in the re-roll pool, noted in one line; dropping a challenger from the hand itself takes a named product-truth failure, disclosed. Add one card for your own top-ranked grounded candidate when it is not the assigned direction, kicker IMPECCABLE’S PICK, same anatomy as every card, with an honest risk line naming its familiarity when true: the strongest grounded direction is often where most runs in this category land, and the user deciding that trade is the point of showing it. Familiar and effective is a legitimate destination, not a failure of nerve; the pick card and the standing exit serve it at two depths. One pick card, never two, never a ranked list: a lineup of your candidates hands selection back to a taste function and invites the safest card. The pick never takes the lead position; when the dice assign your top candidate there is no pick card, and the assigned card notes it topped your list. Add re-roll with an optional one-line steer, in three registers: plain (a fresh hand, same spread), safer (your remaining conventional grounded candidates plus the canon against named competitors), bolder (foreign forms only, at full commitment). The register is the user's steering on the familiar-to-bold axis, never yours to pre-select; when the answer carries one, re-run the seed with `--register <value>` and the next `--reroll` round, and follow what it prints. A user saying "bolder" or "safer" while a direction round is open means these registers, never the bolder or harden commands. The two channels share this structure and differ only in richness: cards and boards on the decision page, names and one-liners through the structured tool, whose option list carries the assigned direction, the pick, the winning and competitive challengers, and the standing exit last; declined challengers fold into the assigned option's description as their kept lines, so the raise survives the text channel. <!-- rule:skill-pick-card-one-only -->
+ 5. Present one direction, fully committed and already raised by the hand it beat, raises visible as named lines: world, first viewport, visitor path, signature interaction, cross-surface reach, honest risk. Route each challenger by verdict: winning and competitive challengers are full alternates with their QUALITY BAR cards and one-line case; declined challengers render demoted, compact and quiet, each carrying its verdict and what the direction kept from it, never full-size, never silently dropped, still adoptable on request. The verdict informs the user's choice, never pre-empts it; the demoted row is the hand's proof of judgment. A hand holds at most three full-card challengers: when the roll deals more, the three strongest join and the rest wait in the re-roll pool, noted in one line; dropping a challenger from the hand itself takes a named product-truth failure, disclosed. The hand's size follows the verdicts, never a number the user named: when the weighing yields fewer full cards than asked, deliver the honest hand, say in one line why it is smaller, and offer a re-roll to deal candidates that could earn full cards. A declined challenger is never promoted to fill a slot; a promoted card looks exactly like a competitive one, so the promotion leaves no trace. The standing exit does not count toward a requested number once the user has seen and rejected it; it stays present as the quiet door. Add one card for your own top-ranked grounded candidate when it is not the assigned direction, kicker IMPECCABLE’S PICK, same anatomy as every card, with an honest risk line naming its familiarity when true: the strongest grounded direction is often where most runs in this category land, and the user deciding that trade is the point of showing it. Familiar and effective is a legitimate destination, not a failure of nerve; the pick card and the standing exit serve it at two depths. One pick card, never two, never a ranked list: a lineup of your candidates hands selection back to a taste function and invites the safest card. The pick never takes the lead position; when the dice assign your top candidate there is no pick card, and the assigned card notes it topped your list. Add re-roll with an optional one-line steer, in three registers: plain (a fresh hand, same spread), safer (your remaining conventional grounded candidates plus the canon against named competitors), bolder (foreign forms only, at full commitment). The register is the user's steering on the familiar-to-bold axis, never yours to pre-select; when the answer carries one, re-run the seed with `--register <value>` and the next `--reroll` round, and follow what it prints. A user saying "bolder" or "safer" while a direction round is open means these registers, never the bolder or harden commands. The two channels share this structure and differ only in richness: cards and boards on the decision page, names and one-liners through the structured tool, whose option list carries the assigned direction, the pick, the winning and competitive challengers, and the standing exit last; declined challengers fold into the assigned option's description as their kept lines, so the raise survives the text channel. <!-- rule:skill-pick-card-one-only -->
  
 -The standing exit: every direction round offers one quiet, permanent alternative, the category standard, played straight. It is the user's door, never yours: never recommend it, never weigh it against the roll, never let it soften the dealt directions; the counterweights bind the unchosen default, not the chosen one. When the user takes it (the canon action, a safer-steer, or plain words asking for the familiar or competitor-like path), convention becomes the commitment: ask once for two or three products this should sit alongside, make their craft level the bar, and execute the canon at full fidelity, without irony or smuggled quirk. Record a standing preference as a brand commitment in PRODUCT.md. <!-- rule:skill-canon-standing-exit --> Re-roll eliminates every direction already shown, grounded and challenger alike; after two consecutive re-rolls, ask what quality is missing. Re-roll on your own only on named factual grounds, when the assigned direction cannot carry the product's truth or task; taste is never grounds. The user may re-roll freely, and a user- or brief-pinned direction beats the roll, always. Resolve collisions field by field: preserve every user- or brief-pinned constraint. In dimensions the brief leaves open, the assignment still binds through its topology, controls, state vocabulary, and ritual; when only its materials conflict with a pinned visual direction or PRODUCT.md brand commitment, translate that material expression and name the translation in the presented direction. A look mismatch is not grounds to re-roll. <!-- rule:skill-assigned-plus-reroll --> Present the decision visually: write an options payload with the assigned direction leading, its raised lines included; the pick card when one exists; the dealt challengers as alternates with their QUALITY BAR cards, verdicts, and kept lines; re-roll with its safer and bolder registers; steer; canon enabled; and `buildPath` carrying the recorded default with `toggle: true` whenever image generation exists (details in the build-path paragraph below). A degraded roll with no challengers still uses the page, as a single text-only card with re-roll. Every option declares its identity: `kind` is `assigned`, `pick`, `challenger`, or `grounded` (another of your own grounded directions, such as each card of a safer hand's lineup, any number of them), and each challenger carries `catalogId`, the SOURCE ID concept-seed printed for its world, never the card's own id; `--start` and `--update` refuse a direction or surface payload without them, and the page reports the choice from them. Give every card the same anatomy: thesis, palette, materials, first viewport, honest risk, and the challengers' case lines (`--schema` prints the exact shape); the page renders identity from these fields, demotes declined challengers to their row on its own, and a challenger's catalog image rides as labeled inspiration, never the promise of the build. Author `canonCard` too: the category standard as one honest card, same anatomy; the page keeps it subordinate, and the counterweights still bind you. Run `{{scripts_path}}/impeccable serve-question --start --payload <file>` (`--schema` first for the payload shape). It daemonizes, prints the page URL and a key, and exits; open that URL for the user, in-app browser first, then the system opener, then showing the URL. Collect the choice with `--wait --key <key>`, repeating while it exits 3; the ANSWER prints as JSON. An ANSWER of `{"optionId":"reroll"}` keeps the server alive and the page open on a loading hand: rerun concept-seed with the same `--scope` and `--mode` plus `--from <seed-key> --reroll <n>` (1 on the first re-roll, counting up), build the next payload, deliver it with `--update --key <same key> --payload <file>`, then return to `--wait` on that key. Never `--start` a second server or fall back to chat here: either strands the open tab on a hand that never arrives. Exit 4 means the page closed unanswered: re-present once through the structured question tool, and with no answer there either, proceed unattended with the assigned direction and state the assumptions. A harness that can leave a shell blocked in the background may run the script without `--start` and let it auto-open and block. A harness that cannot hold a blocking `--wait` (it detaches long-running commands without ever returning their output, or reaps a backgrounded child) takes the structured tool without starting the page and discloses the substitution in the first reply, so the tab is never left unanswered. A shell that hands back a still-running command as a session you can poll holds the wait: poll that session until it exits, and rerun `--wait` only after it exits without an answer. Never predict any other fallback: run the script, and only exit code 2 from starting it, or that wait check before starting, routes the decision to the structured tool; those are the fallback, never an error to retry. concept-seed closes every roll with this procedure, condensed, as a PRESENTATION block that names the recorded build path. <!-- rule:skill-visual-decision-page -->
 +The standing exit: every direction round offers one quiet, permanent alternative, the category standard, played straight. It is the user's door, never yours: never recommend it, never weigh it against the roll, never let it soften the dealt directions; the counterweights bind the unchosen default, not the chosen one. When the user takes it (the canon action, a safer-steer, or plain words asking for the familiar or competitor-like path), convention becomes the commitment: ask once for two or three products this should sit alongside, make their craft level the bar, and execute the canon at full fidelity, without irony or smuggled quirk. Record a standing preference as a brand commitment in PRODUCT.md. <!-- rule:skill-canon-standing-exit --> Re-roll eliminates every direction already shown, grounded and challenger alike; after two consecutive re-rolls, ask what quality is missing. Re-roll on your own only on named factual grounds, when the assigned direction cannot carry the product's truth or task; taste is never grounds. The user may re-roll freely, and a user- or brief-pinned direction beats the roll, always. Resolve collisions field by field: preserve every user- or brief-pinned constraint. In dimensions the brief leaves open, the assignment still binds through its topology, controls, state vocabulary, and ritual; when only its materials conflict with a pinned visual direction or PRODUCT.md brand commitment, translate that material expression and name the translation in the presented direction. A look mismatch is not grounds to re-roll. <!-- rule:skill-assigned-plus-reroll --> Present the decision visually: write an options payload with the assigned direction leading, its raised lines included; the pick card when one exists; the dealt challengers as alternates with their QUALITY BAR cards, verdicts, and kept lines; re-roll with its safer and bolder registers; steer; canon enabled; and `buildPath` carrying the recorded default with `toggle: true` whenever image generation exists (details in the build-path paragraph below). A degraded roll with no challengers still uses the page, as a single text-only card with re-roll. Every option declares its identity: `kind` is `assigned`, `pick`, `challenger`, or `grounded` (another of your own grounded directions, such as each card of a safer hand's lineup, any number of them), and each challenger carries `catalogId`, the SOURCE ID concept-seed printed for its world, never the card's own id; `--start` and `--update` refuse a direction or surface payload without them, and the page reports the choice from them. Give every card the same anatomy: thesis, palette, materials, first viewport, honest risk, and the challengers' case lines (`--schema` prints the exact shape); the page renders identity from these fields, demotes declined challengers to their row on its own, and a challenger's catalog image rides as labeled inspiration, never the promise of the build. Author `canonCard` too: the category standard as one honest card, same anatomy; the page keeps it subordinate, and the counterweights still bind you. Run `mise exec -- impeccable serve-question --start --payload <file>` (`--schema` first for the payload shape). It daemonizes, prints the page URL and a key, and exits; open that URL for the user, in-app browser first, then the system opener, then showing the URL. Collect the choice with `--wait --key <key>`, repeating while it exits 3; the ANSWER prints as JSON. An ANSWER of `{"optionId":"reroll"}` keeps the server alive and the page open on a loading hand: rerun concept-seed with the same `--scope` and `--mode` plus `--from <seed-key> --reroll <n>` (1 on the first re-roll, counting up), build the next payload, deliver it with `--update --key <same key> --payload <file>`, then return to `--wait` on that key. Never `--start` a second server or fall back to chat here: either strands the open tab on a hand that never arrives. Exit 4 means the page closed unanswered: re-present once through the structured question tool, and with no answer there either, proceed unattended with the assigned direction and state the assumptions. A harness that can leave a shell blocked in the background may run the script without `--start` and let it auto-open and block. A harness that cannot hold a blocking `--wait` (it detaches long-running commands without ever returning their output, or reaps a backgrounded child) takes the structured tool without starting the page and discloses the substitution in the first reply, so the tab is never left unanswered. A shell that hands back a still-running command as a session you can poll holds the wait: poll that session until it exits, and rerun `--wait` only after it exits without an answer. Never predict any other fallback: run the script, and only exit code 2 from starting it, or that wait check before starting, routes the decision to the structured tool; those are the fallback, never an error to retry. concept-seed closes every roll with this procedure, condensed, as a PRESENTATION block that names the recorded build path. <!-- rule:skill-visual-decision-page -->
@@ -1657,8 +1679,8 @@ index 44abb022a31a3f45cca07560794679ad25cc90d2..1c78f1136d748f2fd2a9f2865973a96a
  
  Keep the brief small: scope and visitor mode; audience, job, action/task, proof/content, and constraints; chosen direction and memorable moment; unresolved decisions. Do not copy global product truth or DESIGN.md tokens into it.
  
--On a comp-led build, whenever any image generation is available (a harness-native tool or the API fallback `impeccable context` reports), the locked direction is visualized before it is built, never skipped: load [visualize.md](visualize.md) and follow it, three compositional options put before the user for approval, the chosen card's decision comp plus two variations. This step is proven to produce the most compositional and ambitious work. On a code-led build the comp round is skipped by contract, never by drift: the ambition it would have carried lives in the direction contract's FIRST VIEWPORT block and named signature interaction, and the finish reviewer audits those promises in behavior. <!-- rule:skill-visualize-before-build -->
-+On a comp-led build, whenever any image generation is available (a harness-native tool or the API fallback `mise exec -- impeccable context` reports), the locked direction is visualized before it is built, never skipped: load [visualize.md](skill://impeccable/reference/visualize.md) and follow it, three compositional options put before the user for approval, the chosen card's decision comp plus two variations. This step is proven to produce the most compositional and ambitious work. On a code-led build the comp round is skipped by contract, never by drift: the ambition it would have carried lives in the direction contract's FIRST VIEWPORT block and named signature interaction, and the finish reviewer audits those promises in behavior. <!-- rule:skill-visualize-before-build -->
+-On a comp-led build, whenever any image generation is available (a harness-native tool or the API fallback `impeccable context` reports), the locked direction is visualized before it is built, never skipped: load [visualize.md](visualize.md) and follow it, three compositional options put before the user for approval, the chosen card's decision comp plus two variations. This step is proven to produce the most compositional and ambitious work. A comp locked in a surface-scope structure round has already discharged this round (Create a whole surface inside an established world, above). On a code-led build the comp round is skipped by contract, never by drift: the ambition it would have carried lives in the direction contract's FIRST VIEWPORT block and named signature interaction, and the finish reviewer audits those promises in behavior. <!-- rule:skill-visualize-before-build -->
++On a comp-led build, whenever any image generation is available (a harness-native tool or the API fallback `mise exec -- impeccable context` reports), the locked direction is visualized before it is built, never skipped: load [visualize.md](skill://impeccable/reference/visualize.md) and follow it, three compositional options put before the user for approval, the chosen card's decision comp plus two variations. This step is proven to produce the most compositional and ambitious work. A comp locked in a surface-scope structure round has already discharged this round (Create a whole surface inside an established world, above). On a code-led build the comp round is skipped by contract, never by drift: the ambition it would have carried lives in the direction contract's FIRST VIEWPORT block and named signature interaction, and the finish reviewer audits those promises in behavior. <!-- rule:skill-visualize-before-build -->
  
 -For `shape`, return the selected direction to [shape.md](shape.md) and stop before persistence or implementation.
 +For `shape`, return the selected direction to [shape.md](skill://impeccable/reference/shape.md) and stop before persistence or implementation.
@@ -1696,8 +1718,8 @@ index 44abb022a31a3f45cca07560794679ad25cc90d2..1c78f1136d748f2fd2a9f2865973a96a
  
  ## 7. Inspect and finish
  
--Inspect the surface's target sizes in one batched screenshot round: desktop and mobile on the web; on a native platform (`ios` / `android` / `adaptive`), the shipped device classes per OS, captured from the simulator or emulator the way the platform reference's Verifying the build section describes. When the harness reports the user's actual viewport (an in-app browser's size, a named resolution), add that width to the set: the width that breaks is the one the user sees first. Critique the render against the user's request and the direction contract, fix material gaps, and confirm with one final round; two rounds is the ceiling, and fixes batch between them rather than earning per-tweak screenshots. The ceiling bounds inspection and never closes an open build-phase gate: a gate stays open until it passes or the route it names is taken. On a comp-led build, run `{{scripts_path}}/impeccable comp-diff --comp <approved comp> --build .impeccable/review/desktop.png --spec .impeccable/build/spec.json --out-dir .impeccable/review/diff/final` and read its region rows and paired crops as the critique: the side-by-side is the view the build thread never has on its own, and a region it scores missing or contradicted is a fix whatever the page looks like from memory. Never judge fidelity from one full-page thumbnail; it hides exactly the failures that matter. On a Persuade surface, verify the mode did its job: a first-time visitor should know what this is, why it matters, and what to do within seconds, in the form's own vocabulary.
-+Inspect the surface's target sizes in one batched screenshot round: desktop and mobile on the web; on a native platform (`ios` / `android` / `adaptive`), the shipped device classes per OS, captured from the simulator or emulator the way the platform reference's Verifying the build section describes. When the harness reports the user's actual viewport (an in-app browser's size, a named resolution), add that width to the set: the width that breaks is the one the user sees first. Critique the render against the user's request and the direction contract, fix material gaps, and confirm with one final round; two rounds is the ceiling, and fixes batch between them rather than earning per-tweak screenshots. The ceiling bounds inspection and never closes an open build-phase gate: a gate stays open until it passes or the route it names is taken. On a comp-led build, run `mise exec -- impeccable comp-diff --comp <approved comp> --build .impeccable/review/desktop.png --spec .impeccable/build/spec.json --out-dir .impeccable/review/diff/final` and read its region rows and paired crops as the critique: the side-by-side is the view the build thread never has on its own, and a region it scores missing or contradicted is a fix whatever the page looks like from memory. Never judge fidelity from one full-page thumbnail; it hides exactly the failures that matter. On a Persuade surface, verify the mode did its job: a first-time visitor should know what this is, why it matters, and what to do within seconds, in the form's own vocabulary.
+-Inspect the surface's target sizes in one batched screenshot round: desktop and mobile on the web; on a native platform (`ios` / `android` / `adaptive`), the shipped device classes per OS, captured from the simulator or emulator the way the platform reference's Verifying the build section describes. When the harness reports the user's actual viewport (an in-app browser's size, a named resolution), add that width to the set: the width that breaks is the one the user sees first. On anything interactive, the round drives every interaction and reachable state (open, closed, hover, focus, error, empty, overlong content) and checks each for overlap and clipping, not only the resting screen. Critique the render against the user's request and the direction contract, fix material gaps, and confirm with one final round; two rounds is the ceiling, and fixes batch between them rather than earning per-tweak screenshots. The ceiling bounds inspection and never closes an open build-phase gate: a gate stays open until it passes or the route it names is taken. On a comp-led build, run `{{scripts_path}}/impeccable comp-diff --comp <approved comp> --build .impeccable/review/desktop.png --spec .impeccable/build/spec.json --out-dir .impeccable/review/diff/final` and read its region rows and paired crops as the critique: the side-by-side is the view the build thread never has on its own, and a region it scores missing or contradicted is a fix whatever the page looks like from memory. Never judge fidelity from one full-page thumbnail; it hides exactly the failures that matter. On a Persuade surface, verify the mode did its job: a first-time visitor should know what this is, why it matters, and what to do within seconds, in the form's own vocabulary.
++Inspect the surface's target sizes in one batched screenshot round: desktop and mobile on the web; on a native platform (`ios` / `android` / `adaptive`), the shipped device classes per OS, captured from the simulator or emulator the way the platform reference's Verifying the build section describes. When the harness reports the user's actual viewport (an in-app browser's size, a named resolution), add that width to the set: the width that breaks is the one the user sees first. On anything interactive, the round drives every interaction and reachable state (open, closed, hover, focus, error, empty, overlong content) and checks each for overlap and clipping, not only the resting screen. Critique the render against the user's request and the direction contract, fix material gaps, and confirm with one final round; two rounds is the ceiling, and fixes batch between them rather than earning per-tweak screenshots. The ceiling bounds inspection and never closes an open build-phase gate: a gate stays open until it passes or the route it names is taken. On a comp-led build, run `mise exec -- impeccable comp-diff --comp <approved comp> --build .impeccable/review/desktop.png --spec .impeccable/build/spec.json --out-dir .impeccable/review/diff/final` and read its region rows and paired crops as the critique: the side-by-side is the view the build thread never has on its own, and a region it scores missing or contradicted is a fix whatever the page looks like from memory. Never judge fidelity from one full-page thumbnail; it hides exactly the failures that matter. On a Persuade surface, verify the mode did its job: a first-time visitor should know what this is, why it matters, and what to do within seconds, in the form's own vocabulary.
  
  A capture is evidence only when it is valid, and you validate before you send. Settle or disable entrance motion first: an element hidden by animation timing reads as a missing element and gets fixed into a regression. Capture full-page shots from the document top. Capture the comp comparison at the comp's own pixel dimensions. Then open every file once and confirm it shows what its name claims: no black or blank regions, no wrong section behind a right filename, no half-loaded state. A malformed capture sent onward costs the whole round; the reviewer answers it with `disposition: recapture` and nothing it reviewed binds. <!-- rule:skill-capture-validity -->
  
@@ -1721,7 +1743,7 @@ index 44abb022a31a3f45cca07560794679ad25cc90d2..1c78f1136d748f2fd2a9f2865973a96a
 -On a comp-led build, record the final review disposition with `{{scripts_path}}/impeccable build-phase finish --disposition <ship|fix|rebuild|recapture>` before the final response. A refused `ship` is an unfinished build; report the outstanding phase with the verdict. Any edit after the last captured gate, a fix for a hook finding after `ship` included, voids that capture: run `finish --disposition ship` again before you stop, which rechecks the current files against the gate and names any recapture it needs. Never record `fix` to end a run over an open gate: take the route the gate names, and when the user leaves it open, report that phase as open.
 +On a comp-led build, record the final review disposition with `mise exec -- impeccable build-phase finish --disposition <ship|fix|rebuild|recapture>` before the final response. A refused `ship` is an unfinished build; report the outstanding phase with the verdict. Any edit after the last captured gate voids that capture: run `finish --disposition ship` again before you stop, which rechecks the current files against the gate and names any recapture it needs. Never record `fix` to end a run over an open gate: take the route the gate names, and when the user leaves it open, report that phase as open.
 diff --git a/skill/reference/onboard.md b/skill/reference/onboard.md
-index e6f835b46209087e6801f449160f7569c0efe713..735720cdbd374c908a4bec85ba88b3f4c00e199a 100644
+index e1bec71d385c00f536cc801e570d6446a58f415c..5b6779d889e5e030081f86e9c4b6776910b46e26 100644
 --- a/skill/reference/onboard.md
 +++ b/skill/reference/onboard.md
 @@ -231,4 +231,4 @@ Test with real users:
@@ -1743,20 +1765,20 @@ index 5e4666de08f63f55c832c7bb2511cc9ad8068744..1565605b3f089c45c2fcfa78f42b9530
  ## The product slop test
  
 diff --git a/skill/reference/optimize.md b/skill/reference/optimize.md
-index 9c7bb144ab0d5fa72f5bbb20785249895b0998ba..8e9a28f88f85866947901d5e6979d2e9f80fc92b 100644
+index 4943b6a7ba12742b98fd1b35e221aa0d35820782..ac362200ee67175fa040604d6891768b34351be1 100644
 --- a/skill/reference/optimize.md
 +++ b/skill/reference/optimize.md
-@@ -255,4 +255,4 @@ Test that optimizations worked:
+@@ -254,4 +254,4 @@ Test that optimizations worked:
  - **No regressions**: Ensure functionality still works
  - **User perception**: Does it *feel* faster?
  
 -When the user-facing numbers move, hand off to `{{command_prefix}}impeccable polish` for the final pass.
 +When the user-facing numbers move, hand off to `/skill:impeccable polish` for the final pass.
 diff --git a/skill/reference/overdrive.md b/skill/reference/overdrive.md
-index 474100a3043084ac187217edb6ffe9815f8b344f..43ba7ee5c92134c98a92770d2125abff947aa241 100644
+index 25e509f8659906ed942d033c15b919cf4a6c825b..3a997ce649377f080af90fb5140f4dc78ef9908d 100644
 --- a/skill/reference/overdrive.md
 +++ b/skill/reference/overdrive.md
-@@ -14,7 +14,7 @@ Push an interface past conventional limits. This isn't just about visual effects
+@@ -14,7 +14,7 @@ Context decides what "extraordinary" means. A particle system on a creative port
  This command has the highest potential to misfire. Do NOT jump straight into implementation. You MUST:
  
  1. **Think through 2-3 different directions**: consider different techniques, levels of ambition, and aesthetic approaches. For each direction, briefly describe what the result would look and feel like.
@@ -1796,7 +1818,7 @@ index f2146990505863574e3c8298613a37d4c31ee73c..597a048db4bd5298f522afbaa44036a1
  
  This closes only the snapshot this pass actually processed; if a newer critique landed meanwhile, its backlog stays live. Do not close when no snapshot was read, when `snapshot_file` was not retained, or when Priority Issues remain.
 diff --git a/skill/reference/quieter.md b/skill/reference/quieter.md
-index 8483d305d781885f549cb104346f534331d2ba8d..683c76be77610e65300c1ed74c297fcea76d27ea 100644
+index a59a20bfb01e39066bc43793662374338da96081..e8101916940e1214ab93deddc718575ede7876ce 100644
 --- a/skill/reference/quieter.md
 +++ b/skill/reference/quieter.md
 @@ -28,7 +28,7 @@ Analyze what makes the design feel too intense:
@@ -1806,7 +1828,7 @@ index 8483d305d781885f549cb104346f534331d2ba8d..683c76be77610e65300c1ed74c297fce
 -If any of these are unclear from the codebase, do not guess. {{ask_instruction}}
 +If any of these are unclear from the codebase, do not guess. Use OMP `ask` for material choices that cannot be inferred from the project or settled user requirements.
  
- **CRITICAL**: "Quieter" doesn't mean boring or generic. It means refined and easier on the eyes. Think luxury, not laziness.
+ "Quieter" means refined and easier on the eyes, not generic. Generic quiet looks like gray text on white, one sans at a uniform weight, and a grid of identical cards; restraint still needs a point of view.
  
 @@ -96,4 +96,4 @@ Ensure refinement maintains quality:
  - **Better reading**: Is text easier to read for extended periods?
@@ -1878,7 +1900,7 @@ index 90a74ae813331cbce8fff6beb498ced77970fadf..9e45b07c5841b134a4e3541a691e9b66
  ## Phase 3: Write the brief
  
 diff --git a/skill/reference/typeset.md b/skill/reference/typeset.md
-index a315599ca7ec821ba513b3181ad1bf9043b9218e..e3287c4577bc27911d9d44e2298871e5d540f00c 100644
+index b3aa293d11d9f55a42e59f45cc5371ac186797dd..4ee136f08b6e0d7f1d758ac853618b8c295a3d64 100644
 --- a/skill/reference/typeset.md
 +++ b/skill/reference/typeset.md
 @@ -6,9 +6,9 @@ Typography carries information, hierarchy, and voice. Improve it inside the esta
@@ -1902,7 +1924,7 @@ index a315599ca7ec821ba513b3181ad1bf9043b9218e..e3287c4577bc27911d9d44e2298871e5
  ```
  
  Also inspect dynamic or arbitrary font values the detector cannot interpret. Synthesize both assessments before editing, noting what each caught alone. A clean scan is a floor, not proof of good typography.
-@@ -67,7 +67,7 @@ Do not make type decorative at the expense of comprehension, or introduce a seco
+@@ -77,7 +77,7 @@ After Matthew Butterick's *Practical Typography*, paraphrased; where his numbers
  
  Answer each item with rendered or source evidence, then rerun the scan. Do not substitute a bare “yes” for verification.
  
@@ -1911,14 +1933,14 @@ index a315599ca7ec821ba513b3181ad1bf9043b9218e..e3287c4577bc27911d9d44e2298871e5
  
  ## Live-mode signature params
  
-@@ -77,4 +77,4 @@ Every variant declares a coarse `scale` parameter and authors its type ramp agai
+@@ -87,4 +87,4 @@ Every variant declares a coarse `scale` parameter and authors its type ramp agai
  {"id":"scale","kind":"range","min":0.85,"max":1.3,"step":0.05,"default":1,"label":"Scale"}
  ```
  
 -Add at most one pairing or weight parameter when it represents a real system choice. Follow [live.md](live.md)'s parameter contract.
 +Add at most one pairing or weight parameter when it represents a real system choice. Follow [live.md](skill://impeccable/reference/live.md)'s parameter contract.
 diff --git a/skill/reference/visualize.md b/skill/reference/visualize.md
-index 594ce801d48aac850e5eddb2e6f68e80994db3b3..370d7e7c4f2f16ef756b71ad9030317187b7f8c9 100644
+index b407914e12732db121f6dbb5eb6b85afddc17602..0ca39695b2d69daa6968c355d8f9073b3bbe945e 100644
 --- a/skill/reference/visualize.md
 +++ b/skill/reference/visualize.md
 @@ -1,17 +1,17 @@
@@ -1950,7 +1972,7 @@ index 594ce801d48aac850e5eddb2e6f68e80994db3b3..370d7e7c4f2f16ef756b71ad90303171
 -Show the three together on the decision page (`impeccable serve-question`, one option per comp with the comp as its hero), or in the harness only when it renders images inline; a text-only surface does not count as display. Ask what should carry forward, what feels false to the world, and whether the selected concept should be approved, combined, revised, or rejected. Then stop and wait. A structured simulated user counts as attended and receives the same question.
 +Show the three together on the decision page (`mise exec -- impeccable serve-question`, one option per comp with the comp as its hero), or in the harness only when it renders images inline; a text-only surface does not count as display. Ask what should carry forward, what feels false to the world, and whether the selected concept should be approved, combined, revised, or rejected. Then stop and wait. A structured simulated user counts as attended and receives the same question.
  
- Do not begin code until the user approves a direction or explicitly delegates the choice. If they delegate, choose using the task brief, PRODUCT.md, and DESIGN.md, and state the evidence. Approval refines the task concept; it does not modify DESIGN.md.
+ Do not begin code until the user approves a direction or explicitly delegates the choice. If they delegate, choose using the task brief, PRODUCT.md, and DESIGN.md (the chosen direction on a new world), and state the evidence. Approval refines the task concept; it does not modify DESIGN.md.
  
  This approval point has no substitute and no skip condition. When the structured question tool errors, fall back to the decision page; only after both fail may you treat the choice as delegated, and a delegated pick is recorded exactly as an approval is and disclosed in your first reply, not your last. The finish reviewer treats comp-round comps with no recorded approval as a material finding; decision comps under `.impeccable/mocks/decision/` are the direction round's hand, not comp-round output, and imply no approval on their own.
  
