@@ -16,3 +16,6 @@
 [submodule "upstream/humanlayer"]
 	path = upstream/humanlayer
 	url = https://github.com/humanlayer/skills.git
+[submodule "upstream/stageshow"]
+	path = upstream/stageshow
+	url = https://github.com/benjitaylor/skills.git

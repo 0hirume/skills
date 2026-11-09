@@ -178,6 +178,7 @@ def main [
         canonical
         pstack
         humanlayer
+        stageshow
     ] | each {|name|
         {
             name: $name
@@ -375,6 +376,9 @@ def main [
                         ) ($stage | path join skills $skill)
                     }
                 }
+                'stageshow' => {
+                    cp --recursive ($worktree | path join stageshow) ($stage | path join skills stageshow)
+                }
             }
         }
 
@@ -398,9 +402,11 @@ def main [
         if $update {
             for item in $worktrees {
                 let revision = execute $item.path rev-parse HEAD
+
                 if $revision != (execute $item.repository rev-parse HEAD) {
                     let patch = $REPOSITORY | path join patches $"($item.name).patch"
                     execute $item.repository checkout '--detach' $revision
+
                     (execute
                         $item.path
                         diff

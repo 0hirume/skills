@@ -1,0 +1,208 @@
+diff --git a/stageshow/README.md b/stageshow/README.md
+index fc1c5cc809424fcbcf096dbbcc83287ad4622bd4..0e570e58e50ff8eb52156a5e8c80c96fabb0891c 100644
+--- a/stageshow/README.md
++++ b/stageshow/README.md
+@@ -1,21 +1,19 @@
+ # Stageshow
+ 
+ A skill and a small React kit for product illustrations, cursor stories, and
+-motion design. Start with `SKILL.md`; follow its links for the task at hand.
++motion design. Start with [Stageshow](skill://stageshow); follow its links for the task at hand.
+ 
+ ## Preview
+ 
+-Requires Node 20.19 or later. From this folder:
++Requires Node 20.19 or later. Copy this folder into an authorized project-local workspace and leave the installed skill unchanged. Reuse installed tools and dependencies; install missing packages only after explicit approval using the project's package manager. From that working copy, once dependencies are available:
+ 
+ ```sh
+-npm install
+ npm run dev
+ ```
+ 
+ On macOS and Linux, open **http://stageshow.localhost:1355**. On Windows,
+ Vite starts directly; open the local URL it prints (normally **http://127.0.0.1:5173**).
+-Portless is installed automatically on supported platforms. If npm skipped
+-optional dependencies on macOS or Linux, run `npm install --include=optional`.
++The macOS and Linux launcher uses the optional Portless dependency. If it is missing, obtain approval before installing it in the working copy.
+ 
+ The playground includes the gold
+ examples, nine visual styles, and labeled bad/good teaching pairs.
+@@ -25,7 +23,7 @@ controls stay outside the example's isolated clock.
+ 
+ ## Use the kit
+ 
+-Copy `kit/` into your React project. Its components import their own CSS:
++Copy `kit/` and its license notices into your React project when needed. Reuse the project's existing components where they fit. Kit components import their own CSS:
+ 
+ ```tsx
+ import { Stage, Window, type Act } from './kit'
+@@ -38,9 +36,9 @@ changes the scene. They do not automate real application controls.
+ 
+ Real-product studies (Figma, Linear, Slack, Raycast and others) are included in
+ `examples/` and listed under **Real products** in the playground. Some import
+-`lucide-react`, which the playground installs. When copying a study into a
+-different project, keep its local assets and install that icon dependency or
+-adapt the icons.
++`lucide-react`, a playground dependency. When copying a study into a different
++project, keep its local assets and license notices, reuse the host's icon set,
++or obtain approval before adding the dependency.
+ 
+ The kit supports React 18 and later. It needs no third-party animation runtime. The
+ playground uses Vite; filming uses `playwright-core` and locally installed
+diff --git a/stageshow/SKILL.md b/stageshow/SKILL.md
+index 5b94faf312984346e98ffbc092c9837f55b3dea1..1c5dfb88e117739e6b20a26b17427347d423b1f1 100644
+--- a/stageshow/SKILL.md
++++ b/stageshow/SKILL.md
+@@ -1,14 +1,22 @@
+ ---
+ name: stageshow
+ description: Build faux product UI that looks like a real product, as a still illustration or an animated demo with a cursor. Browser and app windows, dashboards, phones, notifications, terminals, bento grids and cursor walkthroughs, framed, masked and cropped the way a marketing page, feature card or docs hero needs them. Use whenever someone wants a fake or mocked UI, a product demo or walkthrough animation, a hero or feature-card illustration of an app, a product shot in the style of a polished marketing site, or an animated cursor doing things in an interface, even if they never say "faux UI". React and plain CSS.
+-metadata:
+-  version: 1.1.1
++disable-model-invocation: true
++version: 1.1.1
+ ---
+ 
+ # Stageshow
+ 
+ Miniature product UI: a believable interface, framed in its space, as one still or a short animation in which one thing happens. The viewer recognizes the screen and sees the thing happen.
+ 
++## OMP scope
++
++Follow session and project rules and the authorized task scope. Discuss the design before editing until the user supplies `GO` or explicitly authorizes implementation. Reviews are read-only. Package installation, new documentation, commits, and remote mutations require their applicable explicit authorization.
++
++Resolve [Stageshow](skill://stageshow) for its installed filesystem location. Paths beginning with `references/`, `examples/`, `kit/`, `scripts/`, `assets/`, and `teaching/` are relative to that location; bare reference filenames are relative to `skill://stageshow/references/`. Keep the installed skill and upstream checkout unchanged. Copy the needed sources, assets, and license notices into the authorized project; use a project-local copy of the complete skill when the standalone playground is needed. Run the shell commands below from that working copy.
++
++Reuse the project's components, design decisions, and installed dependencies. Check available tools and global mise configuration before requesting missing packages. Use OMP browser or desktop tools for runtime evidence. Start preview servers through a named service, keep them local, and stop services you started when finished. Preserve the film gates, accessibility checks, and error handling; report unavailable checks and actual failures accurately.
++
+ ## The one idea
+ 
+ **It reads as a real product, simplified to what the viewer needs, framed with intent, and every motion has a cause.**
+@@ -31,15 +39,15 @@ Build it the way a product designer builds a launch page they will be judged on.
+ 
+ ## Workflow
+ 
+-Most of the quality is decided before any code. Write the plan first: where it sits, the focal object, the action, the payoff, what can be left out.
++Most of the quality is decided before any code. State the plan in chat first: where it sits, the focal object, the action, the payoff, what can be left out.
+ 
+ 1. **Medium and place.** Still or animation (loop, once in view, or hover). The page, its ground, its width. Design at the size it will be seen, about 720 × 340 for a hero beside copy (`hero-demo`), 900 to 1100 wide for a full-width hero (`linear`), 400 × 300 for a card, shown at 1:1; never under about 320 wide for a demo, though a bento tile or a satellite card may be smaller. Every demo that can sit in a phone column ships a `compact` design at the column's width (358), a redesign not a squeeze (`references/framing.md`, Small formats and the page). A grid of tiles is one set: plan it with `references/bento.md`.
+-2. **Look.** With the product's code or site at hand, map its tokens to the kit's (`references/looks.md`); if the developer asks for their own components, use them inside the stage instead of the kit's small parts. Otherwise a theme (light, dark, blueprint, glass), a palette (accent, mono) and a fidelity: `minimal` is all bars, `standard` is words where they carry meaning and bars elsewhere, `realistic` is real content everywhere. Default light, accent, standard; go realistic at hero scale, for a named real product, or a still whose subject is a list or page. Write filler once with `Text filler` and the fidelity decides. The product's own icons, its real chrome, the content that makes it recognizable. A brief with a style (kawaii, paper, a poster color) gets that style in full, still built to these rules.
++2. **Look.** With the product's code or site at hand, map its tokens to the kit's (`references/looks.md`); reuse the project's own components inside the stage when available. Otherwise a theme (light, dark, blueprint, glass), a palette (accent, mono) and a fidelity: `minimal` is all bars, `standard` is words where they carry meaning and bars elsewhere, `realistic` is real content everywhere. Default light, accent, standard; go realistic at hero scale, for a named real product, or a still whose subject is a list or page. Write filler once with `Text filler` and the fidelity decides. The product's own icons, its real chrome, the content that makes it recognizable. A brief with a style (kawaii, paper, a poster color) gets that style in full, still built to these rules.
+ 3. **The story.** Its shape (`references/motion.md`, Story): how it feels to use, a flow, or what the system does. Three to five beats and a payoff, 10 to 16 seconds. No cursor move you can't explain. Data never rewinds in view without a cause. Between a richer story and a calmer frame, choose the frame.
+-4. **Start from an example.** Find the closest gold example (the Gold table below) and film it (`node scripts/film.mjs "<preview>/?capture=<gold>" --select '#example' --still --out gold.png`; `npm run dev` serves the preview). Copy its folder into your project as the starting point; don't rewrite it from a glance. The quickest loop: copy it to `examples/<yours>/` here, where the preview picks it up and `?capture=<yours>` films it, then move it into the host when it passes and fix its kit import path. Keep its structure: the stage size, the crop and bleed, row and type sizes, spacing, the script's beats, the kit parts. Now read `references/craft.md` in full: it is short, and it holds the still-frame rules the gold can't show you, the cases your gold doesn't happen to contain. Then replace its look and content with the brief's product: the tokens from step 2, the product's own icons, chrome and words. A copy that only changes the name is not done: it should read as the brief's product, not the gold's. If no gold tells your story, choose in two parts: the layout first (pick it from the table in `references/framing.md`; each layout names its example), and copy that example even though its story differs; then borrow the motion for your beats from the example whose story is closest, and build what neither has in the same style. Then frame it: crop to the panel the story happens in, judged in the final visible crop (`references/framing.md` has the rules and the layout table). The short form: one gutter, a full one or well past; only filler bleeds; what opens stays in; windows keep their shape; the page is the ground, so no plate under a hero on a white or dark page and no window whole with air on four sides; `unframed` only when the developer asks; no dead corners. Film one still at both widths beside the gold's; if yours is emptier, flatter or more boxed, fix the frame before any motion.
++4. **Start from an example.** Find the closest gold example (the Gold table below) and film it (`node scripts/film.mjs "<preview>/?capture=<gold>" --select '#example' --still --out gold.png`; `npm run dev` serves the preview from the project-local copy with its dependencies already available). Copy its folder into your project as the starting point; don't rewrite it from a glance. For standalone iteration, copy it to `examples/<yours>/` in that working copy, where the preview picks it up and `?capture=<yours>` films it, then move it into the host when it passes and fix its kit import path. Keep its structure: the stage size, the crop and bleed, row and type sizes, spacing, the script's beats, the kit parts. Now read [craft](skill://stageshow/references/craft.md) in full: it is short, and it holds the still-frame rules the gold can't show you, the cases your gold doesn't happen to contain. Then replace its look and content with the brief's product: the tokens from step 2, the product's own icons, chrome and words. A copy that only changes the name is not done: it should read as the brief's product, not the gold's. If no gold tells your story, choose in two parts: the layout first (pick it from the table in `references/framing.md`; each layout names its example), and copy that example even though its story differs; then borrow the motion for your beats from the example whose story is closest, and build what neither has in the same style. Then frame it: crop to the panel the story happens in, judged in the final visible crop (`references/framing.md` has the rules and the layout table). The short form: one gutter, a full one or well past; only filler bleeds; what opens stays in; windows keep their shape; the page is the ground, so no plate under a hero on a white or dark page and no window whole with air on four sides; `unframed` only when the developer asks; no dead corners. Film one still at both widths beside the gold's; if yours is emptier, flatter or more boxed, fix the frame before any motion.
+ 5. **The screen.** Count the real strings, usually 3 to 7 (`references/craft.md`, Restraint): a budget for words, not elements. Build with the kit's tokens, `Bar`, `Text` and `Row`. Fit every control's text before it moves. Mark what the cursor touches with `data-target` and `data-cursor`; measure with `rect()`, never hard-code.
+ 6. **Choreograph.** The `Act` API. Keep what appears mounted and toggle it so exits animate (`Bubble` and `Fly` hand off explicitly). Animate the relationship, not just the object: a new row carries the rows below it, a surface that resizes never stretches its text. Beats overlap, groups stagger, the payoff holds, the loop ends where it began or resets with a visible cause.
+-7. **Rehearse.** Set `poster` first: most people see only that frame (a thumbnail, reduced motion, a screenshot), so it is the beat that tells the story on its own, never one caught mid-change, with the result left on screen rather than tidied away (`references/motion.md`, Story). Then film the loop, not just a still, and always with `--gate`: it is the same contact sheet plus the verdict, so it costs nothing extra. Film the contact sheet at the shown width and at 390, and step through every press, menu, morph and the loop seam (`references/rehearse.md`). A still can't show a pop. Read every frame, fix the largest visible fault first (framing, then hierarchy, then motion, then polish), re-film. Then hold it next to the closest gold and answer the whole-composition and style pairs in `references/teaching.md` as questions about your still (what does the eye land on first, and is it the result? is one window, tile or device clearly leading?); any no is the largest fault. Don't hand over until the loop's `--gate` ends `rehearsal passed`: every line it prints is a fault a viewer will see, even when the contact sheet looks smooth. Short on time or tool calls, fixing its lines comes before more stills, the review and the notes. Passing is necessary, not sufficient. Then run the last pass in `references/rehearse.md`: a fresh-eye review (`references/review.md`) and `REHEARSAL.md` beside the component (template in `references/verify.md`, Hand over): the gold you copied, what you changed, what you did not check.
++7. **Rehearse.** Set `poster` first: most people see only that frame (a thumbnail, reduced motion, a screenshot), so it is the beat that tells the story on its own, never one caught mid-change, with the result left on screen rather than tidied away (`references/motion.md`, Story). Then film the loop, not just a still, and always with `--gate`: it is the same contact sheet plus the verdict, so it costs nothing extra. Film the contact sheet at the shown width and at 390, and step through every press, menu, morph and the loop seam (`references/rehearse.md`). A still can't show a pop. Read every frame, fix the largest visible fault first (framing, then hierarchy, then motion, then polish), re-film. Then hold it next to the closest gold and answer the whole-composition and style pairs in `references/teaching.md` as questions about your still (what does the eye land on first, and is it the result? is one window, tile or device clearly leading?); any no is the largest fault. Don't hand over until the loop's `--gate` ends `rehearsal passed`: every line it prints is a fault a viewer will see, even when the contact sheet looks smooth. Short on time or tool calls, fixing its lines comes before more stills, the review and the notes. Passing is necessary, not sufficient. Then run the last pass in [rehearse](skill://stageshow/references/rehearse.md): a review following [review](skill://stageshow/references/review.md) and an in-chat handover using [verify](skill://stageshow/references/verify.md): the gold you copied, what you changed, what you did not check.
+ 
+ Faults that come back every round, each with its rule; check them before handing over:
+ 
+@@ -56,7 +64,7 @@ Faults that come back every round, each with its rule; check them before handing
+ 
+ ## Examples
+ 
+-Film the closest one before you start (step 4). The gold examples are the quality bar; product studies are for borrowing an interaction, never another product's identity; specimen sheets are catalogs, not compositions. Run everything with `npm install` and `npm run dev`. `teaching/` holds bad/good pairs (`references/teaching.md`) for diagnosing a problem; the bad halves are never starting points.
++Film the closest one before you start (step 4). The gold examples are the quality bar; product studies are for borrowing an interaction, never another product's identity; specimen sheets are catalogs, not compositions. Run the preview with `npm run dev` from the project-local copy after its dependencies are available. Installing missing dependencies requires approval. `teaching/` holds bad/good pairs (`references/teaching.md`) for diagnosing a problem; the bad halves are never starting points.
+ 
+ ### Gold
+ 
+@@ -138,13 +146,13 @@ Catalogs of parts and grounds, described in `references/kit.md` (Specimen sheets
+ 
+ ## The kit
+ 
+-Copy `kit/` into the project and import from `kit/index.ts`. React, react-dom and lucide-react (for `Icon`, which `Field` and `Chip` use); each part brings its own CSS. It does the parts that are hard to get right by hand and leaves the product's look to you. `references/kit.md` has every part's props and rules; read the entries for the parts you use.
++When the project needs the kit, copy `kit/` and its license notices into the project and import from `kit/index.ts`. React, react-dom and lucide-react (for `Icon`, which `Field` and `Chip` use) are required; each part brings its own CSS. Reuse installed dependencies and obtain approval before adding missing ones. It does the parts that are hard to get right by hand and leaves the product's look to you. `references/kit.md` has every part's props and rules; read the entries for the parts you use.
+ 
+ - **The stage.** `Stage`: design size and scale-to-fit, `compact`, scene state, playback, the look, the cursor. The script gets an `Act` (`set`, `wait`, `move`, `click`, `type` and the rest: `references/kit.md`, Act).
+ - **Frames.** `Window`, `Phone` with `LockScreen` and `Notification`, `Keyboard`, `Thread` with `Bubble`, `Stamp`, `Receipt`. Real geometry; never draw a window, device or bubble by hand.
+ - **Motion.** `Collapse`, `Roll`, `Swap`, `Count`, `Connector`, `Fly`, `Follow`, `States`, `Stream`, `Popover`, `Scroll`, `Camera`, `Expand`. They handle the frames a cold hand gets wrong.
+ - **Small parts.** `Bar`, `Text`, `Row` (every list is made of it), `Card`, `Divider`, `Avatar`, `Pin`, `Icon`, `Menu`, `Field`, `Draft`, `Button`, `Segmented`, `Toggle`, `Tabs`, `Badge`, `Chip`, `Kbd`, `BrandMark`, `Code`, `Chart`, `Toast`. Quiet starting points; restyle to the product, never reshape a kit part's geometry from outside.
+-- **Use the kit part, never a lookalike.** Before writing a class for a button, card, tab, avatar, field, toast, badge or shortcut, check this list: a hand-built one is where uneven padding, squeezed labels and unsized text come from. Restyle the kit part with its props and tokens instead. When a button's label or icon changes, change it on the same `Button`, which animates it; never swap in a second element (`references/motion.md`, Story).
++- **Reuse the project's component or the kit part.** Before writing a class for a button, card, tab, avatar, field, toast, badge or shortcut, check the project's components and this list: a hand-built one is where uneven padding, squeezed labels and unsized text come from. Restyle the chosen component with its supported props and tokens. When a button's label or icon changes, keep the same element and animate the change; the kit's `Button` handles this (`references/motion.md`, Story).
+ - **`stageshow.css`**: tokens, looks, edge fades, chrome, phones, keycaps.
+ 
+ ## The references
+diff --git a/stageshow/references/products.md b/stageshow/references/products.md
+index 333d7d3f89b3a7ae1ded8d4ba83b45bdd002c13c..4e3e6097b6aebb1774c25d4ce37998098da7f88a 100644
+--- a/stageshow/references/products.md
++++ b/stageshow/references/products.md
+@@ -21,6 +21,6 @@ These examples reproduce recognizable product interfaces. Use them when the brie
+ | Telegram | `examples/telegram/` | Phone conversation and message arrival |
+ | iMessage | `examples/imessage/` | Native composer and delivery feedback |
+ 
+-Some studies import `lucide-react`, which the playground installs. When copying one into a host, keep its local CSS and assets and install that icon dependency, or swap the icons for the host's own set. The kit itself needs React, react-dom and lucide-react (for its `Icon`). Product names, marks and imagery are covered by `NOTICE.md`.
++Some studies import `lucide-react`, which is a playground dependency. When copying one into a host, keep its local CSS, assets, and license notices. Reuse the host's installed icon set or obtain approval before adding `lucide-react`. The kit itself needs React, react-dom and lucide-react (for its `Icon`). Product names, marks and imagery are covered by `NOTICE.md`.
+ 
+ Open the source and look at it at the intended width before borrowing. A recognizable interface can still have a weak crop, reset or transition, so give it the same rehearsal as a new scene. Being in this list is not a review.
+diff --git a/stageshow/references/rehearse.md b/stageshow/references/rehearse.md
+index 00cfdd694535dbc8a8d2b46ced2325d044e04694..7252790a3afdd896427709cb39a26db80906c576 100644
+--- a/stageshow/references/rehearse.md
++++ b/stageshow/references/rehearse.md
+@@ -24,7 +24,7 @@ Run it on the viewer page, the direct scene route and the real destination page
+ 
+ `scripts/film.mjs` opens a page in headless Chrome and shoots the stage at a fixed interval into one contact sheet at true size. It prints console and `[stageshow]` warnings (loop seams, missing targets); `--help` lists every flag.
+ 
+-First time: copy `scripts/` beside `kit/`, `npm i -D playwright-core` (and `postcss` for the CSS check); `CHROME_PATH` picks another Chrome. The kit itself needs neither.
++Use the project-local working copy described in [Stageshow](skill://stageshow). The filming scripts need an installed Node runtime, `playwright-core`, and Chrome; the CSS check also needs `postcss`. Reuse existing installations and obtain approval before adding anything. Copy `scripts/` beside `kit/` when needed; `CHROME_PATH` selects an existing Chrome executable. Keep output at stable task-owned paths and confirm ownership before replacing existing files.
+ 
+ In the playground, film the direct `?capture=<name>` route (the ordinary viewer wraps the scene in an iframe); on a site, the real page URL (open an embedded frame's URL directly when needed). Still watch playback, pause, resume and Replay in the viewer yourself.
+ 
+@@ -106,7 +106,7 @@ Candidates, each named beside its rule. In `craft.md`: `touching` (text within 5
+ - **Check the host.** The demo works in the real page at every shipping width (plate, ground, padding, crop). Page backgrounds stay in the host; a component brings no full-page wrapper.
+ - **Reduced motion.** `--reduced` shows the poster, still and complete; overlays from `rect()` sit right in it; toggle the preference during playback and back. Drop presentation waits; keep task timing and reading time.
+ - **Live pacing.** The virtual clock proves geometry, not frame rate: log rAF timestamps against the transform on the real page; repeated poses then a jump mean a clock bug. Pause, offscreen, hidden tab and finished `once` scenes stop their work; resume and replay never skip a beat or replay an accumulation. Say which browser and device you checked.
+-- **Typecheck.** Run the host's typecheck (`npm run typecheck` from the skill folder); report unrelated failures separately, never filter them into a pass.
++- **Typecheck.** Run the host's existing typecheck, or `npm run typecheck` from the project-local playground copy; report unrelated failures separately, never filter them into a pass.
+ - **Blueprint grid.** Lines sit at `--ss-grid-x` and `--ss-grid-y`; set them on the Stage so a window's edge lands on a grid line.
+ - **What the tools can't sign off.** A contact sheet misses a one-frame flash; a scan does not know whether a morph, a story or a gesture is right. Watch playback at speed, slowed transitions, loop plus next start, an interruption, reduced motion, a return from offscreen; again after the final edit. The playground isolates each example in an iframe; Pause and Step advance one clock; Phone changes width but not touch, so check touch on a device or with input emulation.
+ 
+@@ -114,4 +114,4 @@ Then put your sheet beside the closest gold's: is this instantly a real product,
+ 
+ ## The last pass
+ 
+-`verify.md` from frames; `--gate` passing on the wide loop, the phone loop and `--states`; a fresh-eye review (`review.md`) returning nothing; `REHEARSAL.md` written beside the component. It lists the widths, looks, interactions and stages captured and the cases not. An empty, late or gapped capture is inconclusive, not a pass.
++[Verify](skill://stageshow/references/verify.md) from frames; `--gate` passing on the wide loop, the phone loop and `--states`; a review following [review](skill://stageshow/references/review.md) with its findings resolved; an in-chat handover listing the widths, looks, interactions and stages captured and the cases not. An empty, late or gapped capture is inconclusive, not a pass.
+diff --git a/stageshow/references/review.md b/stageshow/references/review.md
+index 37046f9e8e0ddb7fcfef273cc40c420e14b91fc9..2dde1a8b93b4be67262aac8ca428a55042f688df 100644
+--- a/stageshow/references/review.md
++++ b/stageshow/references/review.md
+@@ -1,6 +1,6 @@
+ # Review
+ 
+-The brief for a fresh-eye review after rehearsal. Give the reviewer this file, `verify.md`, the `examples/` folder, the scene's URL and the frames the builder filmed, with a one-line brief that names the gold and attaches its still beside the scene's. Nothing else: not the builder's plan, not its reasons, never its REHEARSAL.md.
++The brief for a visual review after rehearsal. For explicitly requested parallel review or substantial independent review work, use an available OMP `researcher` through `task` with a self-contained task and solution space. Supply this file, [verify](skill://stageshow/references/verify.md), the [examples](skill://stageshow/examples), the scene's URL, and the filmed frames, with a short brief naming the gold, the user's visual requirements, and both stills. Keep the builder's rationale out of the independent assessment. Otherwise apply this brief directly and report that the review used the builder's context. Reviewers edit nothing, spawn no nested agents, and return findings to the parent.
+ 
+ Your first question, before the checklist: does this composition answer this product and this page, or could it be any product in its category? A layout the brief did not shape (a window pinned with even margins whatever the product, the same phone framing every phone brief gets) is a finding, ranked with framing, even when every check passes. From the two stills, judge whether the scene gives its focal content as much of the frame as the gold does.
+ 
+@@ -8,9 +8,9 @@ Start from the brief's own words. If it says "white page", a tinted plate behind
+ 
+ ## The reviewer's brief
+ 
+-You are reviewing a faux product UI scene someone else built. You have the frames, the URL, `references/verify.md` and the gold examples in `examples/`. You have not seen the brief's intent beyond the one-line brief, and you do not need it: you are judging the picture.
++Review the faux product UI scene against the supplied visual requirements, frames, URL, [verification checklist](skill://stageshow/references/verify.md), and [gold examples](skill://stageshow/examples). Judge the picture from evidence.
+ 
+-Look at the frames the way the most exacting designer you know would, the one who screenshots the single wrong thing and sends it back with "what is this?". Then answer every item in `verify.md` from a frame, not from the code. If a frame you need does not exist (a beat at 40ms, a 4x zoom of a glyph, the phone width, `--states`), film it with `scripts/film.mjs` yourself before answering; a predicted failure is not a finding, and neither is a predicted pass.
++Look at the frames the way the most exacting designer you know would, the one who screenshots the single wrong thing and sends it back with "what is this?". Then answer every item in the verification checklist from a frame, not from the code. If a frame you need does not exist (a beat at 40ms, a 4x zoom of a glyph, the phone width, `--states`), request it from the parent. Run filming only when explicitly assigned, using existing tools and the authorized output location. A predicted failure is not a finding, and neither is a predicted pass.
+ 
+ Put the scene beside the gold example it is closest to and say the one difference.
+ 
+diff --git a/stageshow/references/verify.md b/stageshow/references/verify.md
+index aa504dd6a9b6aab80cda0e64de1e77efcf3feb25..42fe4627f5e0048e75ca04dbd88bf2fdfe068d51 100644
+--- a/stageshow/references/verify.md
++++ b/stageshow/references/verify.md
+@@ -62,12 +62,12 @@ The last pass. Every answer comes from a frame you looked at, never from the cod
+ | An emoji where an icon belongs (`emoji icon:`) | A drawn glyph from one family; emoji stay in messages and reactions |
+ | An icon cut by its box (`clipped glyph:`) | Fit the drawing in its viewBox, or use the kit's glyph |
+ | A reaction, dot or mark on the words | Move it to the edge or gutter the kit gives it |
+-| A gate line you think is intentional | Look again; if it still looks fine, say so in REHEARSAL.md with the frame; never clear it by hiding the thing |
++| A gate line you think is intentional | Look again; if it still looks fine, explain why with the frame in the handover; never clear it by hiding the thing |
+ | Ten film runs, gate green, frame unchanged | Stop. Fresh eye |
+ 
+ ## Hand over
+ 
+-- `REHEARSAL.md` written beside the component? A template:
++Report the handover in chat. Use this structure; persist it only when the user requests documentation:
+ 
+ ```md
+ # Rehearsal: <demo>
